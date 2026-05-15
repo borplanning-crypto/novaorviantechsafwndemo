@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Novatech LLC — Premier U.S. Distribution & Technology Solutions</title>
+<title>Novatech LLC — National Distribution & Wholesale Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -23,13 +23,16 @@
   --emerald2: #15803d;
   --slate:    #44433d;
   --slate2:   #7a7870;
-  --slate3:   #b0ae a5;
+  --slate3:   #b0aea5;
   --white:    #ffffff;
   --border:   rgba(17,18,16,0.09);
   --border2:  rgba(232,86,10,0.18);
   --font-display: 'Fraunces', serif;
   --font-body:    'DM Sans', sans-serif;
   --font-mono:    'Syne', sans-serif;
+  --shadow-sm: 0 2px 14px rgba(17,18,16,0.05);
+  --shadow-md: 0 8px 32px rgba(17,18,16,0.09);
+  --shadow-lg: 0 20px 56px rgba(17,18,16,0.10);
 }
 
 html { scroll-behavior: smooth; }
@@ -41,7 +44,9 @@ body {
   line-height: 1.6;
 }
 
-/* ── NAV ── */
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: 72px;
@@ -61,27 +66,19 @@ nav.scrolled {
   display: flex; align-items: center; gap: 11px;
   text-decoration: none;
 }
-.logo-img {
-  width: 42px; height: 42px; border-radius: 10px;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  background: var(--dark);
-  flex-shrink: 0;
-}
-/* fallback if image fails */
-.logo-img-fallback {
+.logo-icon {
   width: 42px; height: 42px; border-radius: 10px;
   background: var(--dark);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; position: relative; overflow: hidden;
 }
-.logo-img-fallback::before {
+.logo-icon::before {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
-  opacity: 0.7;
+  background: linear-gradient(135deg, var(--accent) 0%, transparent 65%);
+  opacity: 0.75;
 }
-.logo-img-fallback span {
+.logo-icon span {
   font-family: var(--font-mono); font-size: 13px; font-weight: 800;
   color: var(--white); position: relative; z-index: 1; letter-spacing: -0.5px;
 }
@@ -104,7 +101,16 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
 }
 .nav-cta:hover { background: var(--accent2) !important; transform: translateY(-1px) !important; }
 
-/* ── HERO ── */
+/* Mobile menu button */
+.nav-hamburger {
+  display: none; background: none; border: none; cursor: pointer; padding: 6px;
+  flex-direction: column; gap: 4px;
+}
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
   display: grid; grid-template-columns: 1fr 1fr;
@@ -116,12 +122,19 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
 .hero::before {
   content: '';
   position: absolute; top: -160px; right: -80px;
-  width: 680px; height: 680px;
+  width: 700px; height: 700px;
   background: radial-gradient(circle, rgba(232,86,10,0.07) 0%, transparent 70%);
   pointer-events: none;
 }
+.hero::after {
+  content: '';
+  position: absolute; bottom: -100px; left: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(22,101,52,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
 .hero-noise {
-  position: absolute; inset: 0; pointer-events: none; opacity: 0.02;
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 .hero-left { position: relative; z-index: 2; }
@@ -131,7 +144,7 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
   border-radius: 100px; padding: 6px 16px 6px 8px;
   font-size: 12px; font-weight: 600; color: var(--slate);
   letter-spacing: 0.4px; margin-bottom: 32px;
-  box-shadow: 0 2px 14px rgba(17,18,16,0.05);
+  box-shadow: var(--shadow-sm);
 }
 .hero-chip-dot {
   width: 22px; height: 22px; border-radius: 50%;
@@ -147,13 +160,12 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
   0%,100% { transform: scale(1); opacity: 1; }
   50%      { transform: scale(1.35); opacity: 0.65; }
 }
-
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(50px, 5.8vw, 80px);
+  font-size: clamp(48px, 5.8vw, 78px);
   line-height: 1.0;
   color: var(--dark);
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   margin-bottom: 24px;
   font-weight: 300;
 }
@@ -163,7 +175,7 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
 }
 .hero-desc {
   font-size: 17px; color: var(--slate); line-height: 1.82;
-  max-width: 460px; font-weight: 400; margin-bottom: 44px;
+  max-width: 470px; font-weight: 400; margin-bottom: 44px;
 }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
@@ -182,7 +194,6 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
 }
 .btn-primary svg { transition: transform 0.2s; }
 .btn-primary:hover svg { transform: translateX(4px); }
-
 .btn-outline {
   display: inline-flex; align-items: center; gap: 10px;
   background: transparent; color: var(--dark);
@@ -208,20 +219,21 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
   letter-spacing: 0.3px; margin-top: 3px;
 }
 
-/* Hero right card */
+/* Hero right visual card */
 .hero-right { position: relative; z-index: 2; }
 .hero-visual {
   background: var(--dark2);
-  border-radius: 24px; overflow: hidden;
-  padding: 40px;
+  border-radius: 28px; overflow: hidden;
+  padding: 44px;
   position: relative;
-  min-height: 480px;
+  min-height: 500px;
   display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: 0 32px 80px rgba(17,18,16,0.2);
 }
 .hero-visual::before {
   content: '';
   position: absolute; top: 0; right: 0;
-  width: 320px; height: 320px;
+  width: 340px; height: 340px;
   background: radial-gradient(circle at 80% 20%, rgba(232,86,10,0.22) 0%, transparent 60%);
 }
 .hero-visual-label {
@@ -230,7 +242,7 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
   color: var(--accent3); opacity: 0.85;
 }
 .hero-visual h3 {
-  font-family: var(--font-display); font-size: 30px;
+  font-family: var(--font-display); font-size: 28px;
   color: var(--white); margin-top: 14px; line-height: 1.2; font-weight: 300;
 }
 .hero-metrics {
@@ -239,23 +251,19 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
 .hero-metric {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px; padding: 20px 18px;
+  border-radius: 14px; padding: 20px 18px;
   transition: background 0.2s;
 }
 .hero-metric:hover { background: rgba(255,255,255,0.09); }
 .hero-metric .m-val {
   font-family: var(--font-display); font-size: 34px;
   color: var(--accent3); line-height: 1; font-weight: 600;
-  /* subtle pulse on the live metrics */
   animation: metricPulse 3s ease infinite;
 }
 .hero-metric:nth-child(2) .m-val { animation-delay: 0.5s; }
 .hero-metric:nth-child(3) .m-val { animation-delay: 1s; }
 .hero-metric:nth-child(4) .m-val { animation-delay: 1.5s; }
-@keyframes metricPulse {
-  0%,100% { opacity: 1; }
-  50%      { opacity: 0.75; }
-}
+@keyframes metricPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.75; } }
 .hero-metric .m-lbl {
   font-size: 11.5px; color: rgba(255,255,255,0.38);
   font-weight: 500; margin-top: 4px;
@@ -281,12 +289,11 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
   letter-spacing: 2px; text-transform: uppercase;
   color: #4ade80; margin-left: 10px;
 }
-.live-tag span {
-  width: 6px; height: 6px; border-radius: 50%; background: #4ade80;
-  animation: pulse 1.5s ease infinite;
-}
+.live-tag span { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: pulse 1.5s ease infinite; }
 
-/* ── MARQUEE ── */
+/* ═══════════════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════════════ */
 .marquee-section {
   background: var(--white);
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -294,7 +301,7 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
 }
 .marquee-track {
   display: flex; gap: 72px; width: max-content;
-  animation: marquee 28s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -304,17 +311,17 @@ nav a:hover { color: var(--dark); background: rgba(17,18,16,0.05); }
   color: var(--slate2); white-space: nowrap;
   display: flex; align-items: center; gap: 14px;
 }
-.marquee-item::after {
-  content: '◆'; font-size: 8px; color: var(--accent); opacity: 0.55;
-}
+.marquee-item::after { content: '◆'; font-size: 8px; color: var(--accent); opacity: 0.55; }
 
-/* ── SECTION BASE ── */
-section { padding: 100px 5vw; }
+/* ═══════════════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════════════ */
+section { padding: 108px 5vw; }
 .section-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--font-mono); font-size: 11px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 14px;
+  color: var(--accent); margin-bottom: 16px;
 }
 .section-eyebrow::before {
   content: ''; display: block;
@@ -330,26 +337,28 @@ h2.section-title {
 h2.section-title em { font-style: italic; color: var(--accent); }
 .section-desc {
   font-size: 15.5px; color: var(--slate); line-height: 1.82;
-  max-width: 500px; font-weight: 400;
+  max-width: 510px; font-weight: 400;
 }
 
-/* ── SERVICES (light bg) ── */
+/* ═══════════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════════ */
 .services { background: var(--bg); }
 .services-header {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 40px; margin-bottom: 68px; align-items: end;
+  gap: 40px; margin-bottom: 72px; align-items: end;
 }
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 22px;
 }
 .service-card {
   background: var(--white);
-  border-radius: 20px; padding: 38px 34px;
+  border-radius: 22px; padding: 40px 36px;
   border: 1px solid var(--border);
   position: relative; overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s;
 }
 .service-card::before {
   content: '';
@@ -360,53 +369,52 @@ h2.section-title em { font-style: italic; color: var(--accent); }
   transition: transform 0.35s ease;
 }
 .service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 56px rgba(17,18,16,0.09);
+  transform: translateY(-7px);
+  box-shadow: 0 24px 60px rgba(17,18,16,0.10);
   border-color: transparent;
 }
 .service-card:hover::before { transform: scaleX(1); }
 .service-num {
   font-family: var(--font-mono); font-size: 11px; font-weight: 700;
-  letter-spacing: 3px; color: var(--accent); opacity: 0.5; margin-bottom: 22px;
+  letter-spacing: 3px; color: var(--accent); opacity: 0.45; margin-bottom: 22px;
 }
 .service-icon-wrap {
-  width: 50px; height: 50px; border-radius: 13px;
+  width: 52px; height: 52px; border-radius: 14px;
   background: rgba(232,86,10,0.08);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 22px;
-  transition: background 0.3s;
+  margin-bottom: 24px;
+  transition: background 0.3s, transform 0.3s;
 }
-.service-card:hover .service-icon-wrap { background: rgba(232,86,10,0.14); }
+.service-card:hover .service-icon-wrap { background: rgba(232,86,10,0.15); transform: scale(1.08); }
 .service-icon-wrap svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
 .service-card h3 {
   font-family: var(--font-display); font-size: 22px; font-weight: 400;
-  color: var(--dark); margin-bottom: 10px; line-height: 1.25;
+  color: var(--dark); margin-bottom: 11px; line-height: 1.25;
 }
-.service-card p { font-size: 14px; color: var(--slate); line-height: 1.78; font-weight: 400; }
+.service-card p { font-size: 14px; color: var(--slate); line-height: 1.82; font-weight: 400; }
 .service-link {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 13px; font-weight: 600; color: var(--accent);
-  text-decoration: none; margin-top: 18px;
+  text-decoration: none; margin-top: 20px;
   transition: gap 0.2s;
 }
 .service-link:hover { gap: 10px; }
-
-/* Featured service (dark card) */
 .service-card.featured { background: var(--dark); }
 .service-card.featured h3 { color: var(--white); }
 .service-card.featured p { color: rgba(255,255,255,0.48); }
-.service-card.featured .service-num { color: var(--accent3); opacity: 0.6; }
+.service-card.featured .service-num { color: var(--accent3); opacity: 0.55; }
 .service-card.featured .service-icon-wrap { background: rgba(232,86,10,0.18); }
 .service-card.featured .service-link { color: var(--accent3); }
 
-/* ── INDUSTRIES (darker bg for contrast) ── */
+/* ═══════════════════════════════════════════════
+   INDUSTRIES
+═══════════════════════════════════════════════ */
 .industries { background: var(--bg3); }
 .industries-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-
-.industry-tabs { margin-top: 34px; display: flex; flex-direction: column; gap: 0; }
+.industry-tabs { margin-top: 36px; display: flex; flex-direction: column; gap: 0; }
 .ind-tab {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 0; border-bottom: 1px solid var(--border);
+  padding: 18px 0; border-bottom: 1px solid var(--border);
   transition: padding-left 0.22s;
   cursor: default;
 }
@@ -414,96 +422,227 @@ h2.section-title em { font-style: italic; color: var(--accent); }
 .ind-tab:hover { padding-left: 8px; }
 .ind-tab-left { display: flex; align-items: center; gap: 14px; }
 .ind-icon {
-  width: 34px; height: 34px; border-radius: 9px;
+  width: 36px; height: 36px; border-radius: 10px;
   background: rgba(232,86,10,0.08);
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .ind-icon svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; stroke-width: 2; }
 .ind-name { font-size: 14.5px; font-weight: 600; color: var(--dark); }
-.ind-sub  { font-size: 11.5px; color: var(--slate2); font-weight: 400; }
-.ind-badge {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  background: rgba(232,86,10,0.07); color: var(--accent);
-  padding: 4px 10px; border-radius: 100px;
-  border: 1px solid rgba(232,86,10,0.14);
+.ind-arrow { color: var(--slate3); font-size: 18px; transition: transform 0.2s; }
+.ind-tab:hover .ind-arrow { transform: translateX(4px); color: var(--accent); }
+
+/* Industry image cards grid */
+.industry-cards-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.industry-img-card {
+  border-radius: 18px; overflow: hidden;
+  position: relative; aspect-ratio: 4/3;
+  background: var(--dark3);
+  cursor: default;
+}
+.industry-img-card:first-child { grid-column: span 2; aspect-ratio: 16/7; }
+.industry-img-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease, filter 0.4s ease;
+  filter: saturate(0.75);
+}
+.industry-img-card:hover img { transform: scale(1.05); filter: saturate(1); }
+.industry-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(17,18,16,0.72) 0%, transparent 55%);
+}
+.industry-img-label {
+  position: absolute; bottom: 18px; left: 18px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white); opacity: 0.85;
 }
 
-.capabilities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
-.cap-card {
-  background: var(--white); border-radius: 16px; padding: 26px 22px;
-  border: 1px solid var(--border);
-  transition: box-shadow 0.22s, transform 0.22s;
+/* Placeholder image for industry cards using unsplash */
+.ind-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--dark2) 0%, var(--dark3) 100%);
+  display: flex; align-items: center; justify-content: center;
 }
-.cap-card:hover { box-shadow: 0 8px 28px rgba(17,18,16,0.06); transform: translateY(-2px); }
-.cap-card h4 {
-  font-family: var(--font-mono); font-size: 11.5px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 8px;
-}
-.cap-card p { font-size: 13px; color: var(--slate); line-height: 1.72; }
 
-/* ── NUMBERS (dark, bold) ── */
-.numbers-section { background: var(--dark); padding: 76px 5vw; }
+/* ═══════════════════════════════════════════════
+   NUMBERS / STATS BLOCK
+═══════════════════════════════════════════════ */
+.numbers-section { background: var(--dark); padding: 84px 5vw; }
 .numbers-inner {
   display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
 }
 .num-item {
-  text-align: center; padding: 22px 10px;
+  text-align: center; padding: 26px 10px;
   border-right: 1px solid rgba(255,255,255,0.06);
 }
 .num-item:last-child { border-right: none; }
 .num-item .big {
-  font-family: var(--font-display); font-size: 56px;
-  color: var(--white); line-height: 1; font-weight: 300;
+  font-family: var(--font-display); font-size: 58px;
+  color: var(--white); line-height: 1; font-weight: 200;
   transition: color 0.22s;
 }
 .num-item:hover .big { color: var(--accent3); }
+.num-item .suf {
+  font-family: var(--font-display); font-size: 42px;
+  color: var(--accent); font-weight: 600;
+  display: inline;
+}
 .num-item .lbl {
   font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 500;
   letter-spacing: 1px; margin-top: 8px; text-transform: uppercase;
 }
 
-/* ── WHY US (light) ── */
+/* ═══════════════════════════════════════════════
+   WHY CHOOSE US
+═══════════════════════════════════════════════ */
 .why-section { background: var(--bg); }
 .why-header {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 60px; margin-bottom: 68px; align-items: end;
 }
-.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .why-card {
-  background: var(--white); border-radius: 20px; padding: 38px 34px;
+  background: var(--white); border-radius: 22px; padding: 40px 36px;
   border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px;
   transition: box-shadow 0.3s, transform 0.3s;
 }
-.why-card:hover { box-shadow: 0 16px 44px rgba(17,18,16,0.08); transform: translateY(-4px); }
+.why-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 .why-card.dark { background: var(--dark); border-color: transparent; }
 .why-card.dark h3 { color: var(--white); }
-.why-card.dark p { color: rgba(255,255,255,0.42); }
+.why-card.dark p { color: rgba(255,255,255,0.44); }
 .why-card-num {
   font-family: var(--font-mono); font-size: 11px; font-weight: 700;
-  letter-spacing: 3px; color: var(--accent); opacity: 0.55;
+  letter-spacing: 3px; color: var(--accent); opacity: 0.5;
 }
-.why-card.dark .why-card-num { color: var(--accent3); opacity: 0.55; }
+.why-card.dark .why-card-num { color: var(--accent3); opacity: 0.5; }
 .why-card h3 {
   font-family: var(--font-display); font-size: 24px; font-weight: 400;
   color: var(--dark); line-height: 1.22;
 }
-.why-card p { font-size: 14px; color: var(--slate); line-height: 1.78; }
+.why-card p { font-size: 14px; color: var(--slate); line-height: 1.82; }
 .why-icon {
-  width: 46px; height: 46px; border-radius: 12px;
+  width: 48px; height: 48px; border-radius: 13px;
   background: rgba(232,86,10,0.08);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 2px;
+  margin-bottom: 2px; transition: background 0.3s, transform 0.3s;
 }
+.why-card:hover .why-icon { background: rgba(232,86,10,0.14); transform: scale(1.08); }
 .why-card.dark .why-icon { background: rgba(232,86,10,0.18); }
 .why-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
 
-/* ── PROCESS (bg2) ── */
+/* ═══════════════════════════════════════════════
+   PARTNER LOGOS
+═══════════════════════════════════════════════ */
+.partners-section { background: var(--bg2); }
+.partners-intro {
+  text-align: center; max-width: 560px; margin: 0 auto 72px;
+}
+.partners-intro .section-eyebrow { justify-content: center; }
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 60px;
+}
+.partner-logo-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 20px;
+  display: flex; align-items: center; justify-content: center;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  min-height: 90px;
+}
+.partner-logo-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: rgba(232,86,10,0.2);
+}
+.partner-logo-card svg { width: 100%; height: 32px; }
+.partner-logo-name {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 800;
+  color: var(--slate); letter-spacing: -0.3px;
+  transition: color 0.2s;
+}
+.partner-logo-card:hover .partner-logo-name { color: var(--dark); }
+.partners-note {
+  text-align: center;
+  font-size: 13px; color: var(--slate2);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT / OVERVIEW BANNER
+═══════════════════════════════════════════════ */
+.about-banner {
+  background: var(--dark2); padding: 108px 5vw;
+}
+.about-banner-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.about-banner .section-eyebrow { color: var(--accent3); }
+.about-banner .section-eyebrow::before { background: var(--accent3); }
+.about-banner h2.section-title { color: var(--white); }
+.about-banner .section-desc { color: rgba(255,255,255,0.5); max-width: 520px; }
+.about-highlights {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px; margin-top: 44px;
+}
+.about-hl {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 24px 22px;
+  transition: background 0.2s;
+}
+.about-hl:hover { background: rgba(255,255,255,0.07); }
+.about-hl-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(232,86,10,0.18);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 12px;
+}
+.about-hl-icon svg { width: 18px; height: 18px; stroke: var(--accent3); fill: none; stroke-width: 1.8; }
+.about-hl h4 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.about-hl p { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.72; }
+
+/* About right side visual */
+.about-visual-side {
+  position: relative;
+}
+.about-main-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px; padding: 40px;
+}
+.about-main-card h3 {
+  font-family: var(--font-display); font-size: 28px;
+  color: var(--white); font-weight: 300; line-height: 1.3;
+  margin-bottom: 24px;
+}
+.about-main-card h3 em { color: var(--accent3); }
+.about-timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item {
+  display: flex; gap: 18px; padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.tl-item:last-child { border-bottom: none; }
+.tl-year {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  color: var(--accent3); opacity: 0.7; white-space: nowrap; padding-top: 2px;
+  min-width: 56px;
+}
+.tl-content h5 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+.tl-content p { font-size: 12.5px; color: rgba(255,255,255,0.36); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════════════ */
 .process-section { background: var(--bg2); }
 .process-steps {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0; margin-top: 60px; position: relative;
+  gap: 0; margin-top: 64px; position: relative;
 }
 .process-steps::before {
   content: '';
@@ -513,41 +652,87 @@ h2.section-title em { font-style: italic; color: var(--accent); }
 }
 .process-step { text-align: center; padding: 0 22px; }
 .step-circle {
-  width: 54px; height: 54px; border-radius: 50%;
+  width: 56px; height: 56px; border-radius: 50%;
   border: 1.5px solid var(--border2);
   background: var(--white);
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 26px;
+  margin: 0 auto 28px;
   position: relative; z-index: 1;
   font-family: var(--font-mono); font-size: 15px; font-weight: 700;
   color: var(--accent);
-  transition: background 0.22s, border-color 0.22s;
+  transition: background 0.22s, border-color 0.22s, transform 0.22s;
 }
 .process-step:hover .step-circle {
   background: var(--accent); color: var(--white); border-color: var(--accent);
+  transform: scale(1.1);
 }
-.process-step h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 9px; }
-.process-step p  { font-size: 13.5px; color: var(--slate); line-height: 1.74; }
+.process-step h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+.process-step p  { font-size: 13.5px; color: var(--slate); line-height: 1.78; }
 
-/* ── CONTACT (dark) ── */
-.contact-section { background: var(--dark2); padding: 100px 5vw; }
+/* ═══════════════════════════════════════════════
+   TESTIMONIAL STRIP
+═══════════════════════════════════════════════ */
+.testimonial-section { background: var(--white); }
+.testimonial-header {
+  text-align: center; max-width: 560px; margin: 0 auto 64px;
+}
+.testimonial-header .section-eyebrow { justify-content: center; }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.testimonial-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 22px; padding: 38px 34px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.testimonial-card::before {
+  content: '"';
+  font-family: var(--font-display); font-size: 80px;
+  color: var(--accent); opacity: 0.12;
+  position: absolute; top: 16px; right: 24px;
+  line-height: 1; font-weight: 700;
+}
+.testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.test-stars { display: flex; gap: 4px; margin-bottom: 18px; }
+.test-stars span { color: var(--accent2); font-size: 15px; }
+.testimonial-card p {
+  font-size: 14.5px; color: var(--slate); line-height: 1.82;
+  font-style: italic; margin-bottom: 26px;
+}
+.test-author { display: flex; align-items: center; gap: 13px; }
+.test-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 14px; font-weight: 700;
+  color: var(--white); flex-shrink: 0;
+}
+.test-name { font-size: 14px; font-weight: 700; color: var(--dark); }
+.test-role { font-size: 12px; color: var(--slate2); margin-top: 1px; }
+
+/* ═══════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════ */
+.contact-section { background: var(--dark2); padding: 108px 5vw; }
 .contact-section .section-eyebrow { color: var(--accent3); }
 .contact-section .section-eyebrow::before { background: var(--accent3); }
 .contact-section h2.section-title { color: var(--white); }
-.contact-section .section-desc { color: rgba(255,255,255,0.42); }
-
+.contact-section .section-desc { color: rgba(255,255,255,0.44); }
 .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
 .contact-details { margin-top: 44px; display: flex; flex-direction: column; gap: 18px; }
 .contact-card {
   display: flex; gap: 14px; align-items: flex-start;
-  padding: 18px 22px; border-radius: 14px;
+  padding: 20px 24px; border-radius: 16px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.07);
-  transition: background 0.2s;
+  transition: background 0.2s, border-color 0.2s;
 }
-.contact-card:hover { background: rgba(255,255,255,0.07); }
+.contact-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(232,86,10,0.2); }
 .contact-card-icon {
-  width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
   background: rgba(232,86,10,0.18);
   display: flex; align-items: center; justify-content: center;
 }
@@ -558,23 +743,21 @@ h2.section-title em { font-style: italic; color: var(--accent); }
   color: var(--accent3); opacity: 0.65; margin-bottom: 3px; display: block;
 }
 .contact-card .cc-val { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
-
-/* Form */
 .contact-form {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 24px; padding: 46px 42px;
+  border-radius: 26px; padding: 48px 44px;
 }
 .form-title {
-  font-family: var(--font-display); font-size: 28px; color: var(--white);
-  margin-bottom: 30px; font-weight: 300;
+  font-family: var(--font-display); font-size: 30px; color: var(--white);
+  margin-bottom: 32px; font-weight: 300;
 }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.form-group { margin-bottom: 16px; }
+.form-group { margin-bottom: 18px; }
 .form-group label {
   display: block; font-family: var(--font-mono); font-size: 10.5px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,0.28); margin-bottom: 7px;
+  color: rgba(255,255,255,0.28); margin-bottom: 8px;
 }
 .form-group input,
 .form-group select,
@@ -583,7 +766,7 @@ h2.section-title em { font-style: italic; color: var(--accent); }
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.09);
   color: var(--white); font-family: var(--font-body); font-size: 14.5px;
-  padding: 13px 17px; border-radius: 10px; outline: none;
+  padding: 14px 18px; border-radius: 11px; outline: none;
   transition: border-color 0.2s, background 0.2s;
   font-weight: 400;
 }
@@ -592,10 +775,9 @@ h2.section-title em { font-style: italic; color: var(--accent); }
   border-color: rgba(232,86,10,0.5); background: rgba(255,255,255,0.07);
 }
 .form-group select option { background: var(--dark2); color: var(--white); }
-.form-group textarea { resize: vertical; min-height: 118px; }
-
+.form-group textarea { resize: vertical; min-height: 120px; }
 .form-submit {
-  width: 100%; padding: 15px 30px;
+  width: 100%; padding: 16px 30px;
   background: var(--accent); color: var(--white);
   font-family: var(--font-body); font-size: 15px; font-weight: 700;
   border: none; border-radius: 12px; cursor: pointer;
@@ -609,61 +791,123 @@ h2.section-title em { font-style: italic; color: var(--accent); }
   box-shadow: 0 8px 28px rgba(232,86,10,0.38);
 }
 
-/* ── FOOTER ── */
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
 footer {
-  background: #0a0906;
+  background: #08070a;
   border-top: 1px solid rgba(255,255,255,0.04);
-  padding: 70px 5vw 34px;
+  padding: 80px 5vw 38px;
 }
 .footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 56px; margin-bottom: 56px;
+  display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr 1.4fr;
+  gap: 48px; margin-bottom: 64px;
 }
 .footer-brand-text {
   font-size: 13.5px; color: rgba(255,255,255,0.28);
-  line-height: 1.82; margin-top: 16px; max-width: 252px;
+  line-height: 1.86; margin-top: 18px; max-width: 258px;
 }
 .footer-col h4 {
   font-family: var(--font-mono); font-size: 10.5px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.2); margin-bottom: 18px;
+  color: rgba(255,255,255,0.22); margin-bottom: 20px;
 }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-col a {
   font-size: 13.5px; color: rgba(255,255,255,0.38); text-decoration: none;
   transition: color 0.2s;
 }
-.footer-col a:hover { color: rgba(255,255,255,0.8); }
+.footer-col a:hover { color: rgba(255,255,255,0.82); }
+/* Newsletter col */
+.footer-newsletter p {
+  font-size: 13px; color: rgba(255,255,255,0.32);
+  line-height: 1.72; margin-bottom: 18px; margin-top: 4px;
+}
+.newsletter-input-row {
+  display: flex; gap: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; overflow: hidden;
+}
+.newsletter-input-row input {
+  flex: 1; background: rgba(255,255,255,0.05);
+  border: none; color: var(--white);
+  font-family: var(--font-body); font-size: 13px;
+  padding: 11px 15px; outline: none;
+}
+.newsletter-input-row input::placeholder { color: rgba(255,255,255,0.2); }
+.newsletter-input-row button {
+  background: var(--accent); color: var(--white);
+  border: none; padding: 11px 16px; cursor: pointer;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  transition: background 0.2s;
+}
+.newsletter-input-row button:hover { background: var(--accent2); }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.05);
-  padding-top: 26px;
+  padding-top: 28px;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
 }
 .footer-bottom p { font-size: 12.5px; color: rgba(255,255,255,0.18); }
-.footer-badges { display: flex; gap: 9px; }
+.footer-badges { display: flex; gap: 9px; flex-wrap: wrap; }
 .f-badge {
   font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px;
   color: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.07);
-  padding: 5px 11px; border-radius: 6px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 6px; text-transform: uppercase;
 }
 
-/* ── REVEAL ANIMATIONS ── */
-.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.72s ease, transform 0.72s ease; }
+/* Footer logo */
+.footer-logo {
+  display: flex; align-items: center; gap: 11px; text-decoration: none; margin-bottom: 4px;
+}
+.footer-logo-icon {
+  width: 38px; height: 38px; border-radius: 9px;
+  background: var(--dark2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; position: relative; overflow: hidden;
+}
+.footer-logo-icon::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--accent) 0%, transparent 65%);
+  opacity: 0.75;
+}
+.footer-logo-icon span {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 800;
+  color: var(--white); position: relative; z-index: 1;
+}
+.footer-logo-text .name {
+  font-family: var(--font-mono); font-size: 16px; font-weight: 800;
+  color: var(--white); letter-spacing: -0.3px;
+}
+.footer-logo-text .sub { font-size: 9.5px; color: rgba(255,255,255,0.28); letter-spacing: 2px; text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.72s ease, transform 0.72s ease; }
 .reveal.in { opacity: 1; transform: none; }
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
-.hero-chip    { animation: fadeUp 0.6s ease forwards; }
-.hero h1      { animation: fadeUp 0.6s 0.1s ease both; }
-.hero-desc    { animation: fadeUp 0.6s 0.2s ease both; }
-.hero-actions { animation: fadeUp 0.6s 0.28s ease both; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:none; } }
+.hero-chip     { animation: fadeUp 0.6s ease forwards; }
+.hero h1       { animation: fadeUp 0.6s 0.1s ease both; }
+.hero-desc     { animation: fadeUp 0.6s 0.2s ease both; }
+.hero-actions  { animation: fadeUp 0.6s 0.28s ease both; }
 .hero-stats-row { animation: fadeUp 0.6s 0.38s ease both; }
-.hero-right   { animation: fadeUp 0.72s 0.18s ease both; }
+.hero-right    { animation: fadeUp 0.72s 0.18s ease both; }
 
-/* ── RESPONSIVE ── */
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .partners-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+}
 @media (max-width: 1100px) {
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-right { display: none; }
@@ -671,38 +915,40 @@ footer {
   .numbers-inner { grid-template-columns: repeat(3, 1fr); }
   .process-steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
   .process-steps::before { display: none; }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .about-banner-grid { grid-template-columns: 1fr; gap: 52px; }
 }
 @media (max-width: 900px) {
   nav ul { display: none; }
+  .nav-hamburger { display: flex; }
   .services-header { grid-template-columns: 1fr; }
   .industries-grid { grid-template-columns: 1fr; }
+  .industry-cards-grid { display: none; }
   .contact-layout { grid-template-columns: 1fr; }
   .why-header { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .about-highlights { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .services-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
-  .capabilities-grid { grid-template-columns: 1fr; }
-  .contact-form { padding: 26px 20px; }
+  .contact-form { padding: 28px 22px; }
   .numbers-inner { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+  .partners-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- ═══════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="logo">
-    <img
-      class="logo-img"
-      src="./nova.jpeg"
-      alt="Novatech LLC"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-    >
-    <div class="logo-img-fallback" style="display:none;"><span>NT</span></div>
+    <div class="logo-icon"><span>NT</span></div>
     <div class="logo-text">
       <span class="name">Novatech</span>
       <span class="sub">LLC &nbsp;·&nbsp; Distribution</span>
@@ -711,34 +957,43 @@ footer {
   <ul>
     <li><a href="#services">Services</a></li>
     <li><a href="#industries">Industries</a></li>
+    <li><a href="#partners">Partners</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
   </ul>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
 <section class="hero" id="home">
   <div class="hero-noise"></div>
   <div class="hero-left">
     <div class="hero-chip">
       <div class="hero-chip-dot"><span></span></div>
-      Premier U.S. Distribution Partner · Est. 2024
+      Premier U.S. Wholesale & Distribution Partner
     </div>
     <h1>
-      Powering America's
-      <em>Distribution</em>
-      Network.
+      Supply Chain Built
+      <em>For Enterprise</em>
+      Scale.
     </h1>
     <p class="hero-desc">
-      Novatech LLC delivers end-to-end distribution and supply chain solutions nationwide — connecting manufacturers, businesses, and communities with speed, precision, and technology-driven reliability.
+      Novatech LLC operates a fully integrated national distribution network — moving goods from manufacturer to market with precision, speed, and real-time visibility across every link in the chain.
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">
-        Request a Quote
+        Request a Proposal
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="#services" class="btn-outline">Explore Services</a>
+      <a href="#services" class="btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        Our Services
+      </a>
     </div>
     <div class="hero-stats-row">
       <div class="hero-stat">
@@ -746,15 +1001,15 @@ footer {
         <div class="lbl">States Served</div>
       </div>
       <div class="hero-stat">
-        <div class="num">99%</div>
-        <div class="lbl">On-Time Rate</div>
+        <div class="num">99.2%</div>
+        <div class="lbl">On-Time Delivery</div>
       </div>
       <div class="hero-stat">
         <div class="num">24/7</div>
         <div class="lbl">Operations</div>
       </div>
       <div class="hero-stat">
-        <div class="num">1K+</div>
+        <div class="num">1,200+</div>
         <div class="lbl">SKUs Managed</div>
       </div>
     </div>
@@ -763,24 +1018,24 @@ footer {
     <div class="hero-visual">
       <div>
         <div class="hero-visual-label">Live Operations Dashboard <span class="live-tag"><span></span>Live</span></div>
-        <h3>Real-Time Supply Chain Visibility</h3>
+        <h3>Real-Time Distribution Intelligence</h3>
       </div>
       <div class="hero-metrics">
         <div class="hero-metric">
-          <div class="m-val">99%</div>
-          <div class="m-lbl">On-Time Delivery</div>
+          <div class="m-val">99.2%</div>
+          <div class="m-lbl">Order Accuracy Rate</div>
         </div>
         <div class="hero-metric">
           <div class="m-val">50+</div>
           <div class="m-lbl">States Covered</div>
         </div>
         <div class="hero-metric">
-          <div class="m-val">99.9%</div>
-          <div class="m-lbl">Inventory Accuracy</div>
+          <div class="m-val">48hr</div>
+          <div class="m-lbl">Avg Fulfillment Time</div>
         </div>
         <div class="hero-metric">
-          <div class="m-val">8</div>
-          <div class="m-lbl">Industries Served</div>
+          <div class="m-val">100+</div>
+          <div class="m-lbl">Active Brand Partners</div>
         </div>
       </div>
       <div class="hero-visual-bottom">
@@ -794,40 +1049,44 @@ footer {
   </div>
 </section>
 
-<!-- ── MARQUEE ── -->
+<!-- ═══════════════════════════════════════════════
+     MARQUEE
+═══════════════════════════════════════════════ -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span class="marquee-item">Freight &amp; Logistics</span>
-    <span class="marquee-item">Warehousing &amp; Fulfillment</span>
+    <span class="marquee-item">Wholesale Distribution</span>
+    <span class="marquee-item">eCommerce Fulfillment</span>
     <span class="marquee-item">Supply Chain Management</span>
     <span class="marquee-item">Last-Mile Delivery</span>
-    <span class="marquee-item">Product Sourcing</span>
-    <span class="marquee-item">Analytics &amp; Reporting</span>
+    <span class="marquee-item">Private Label Solutions</span>
+    <span class="marquee-item">Retail Merchandising</span>
     <span class="marquee-item">EDI Integration</span>
-    <span class="marquee-item">FDA Compliance</span>
-    <span class="marquee-item">Hazmat Certified</span>
+    <span class="marquee-item">Reverse Logistics</span>
+    <span class="marquee-item">Cross-Docking</span>
     <span class="marquee-item">Nationwide Coverage</span>
-    <span class="marquee-item">Freight &amp; Logistics</span>
-    <span class="marquee-item">Warehousing &amp; Fulfillment</span>
+    <span class="marquee-item">Wholesale Distribution</span>
+    <span class="marquee-item">eCommerce Fulfillment</span>
     <span class="marquee-item">Supply Chain Management</span>
     <span class="marquee-item">Last-Mile Delivery</span>
-    <span class="marquee-item">Product Sourcing</span>
-    <span class="marquee-item">Analytics &amp; Reporting</span>
+    <span class="marquee-item">Private Label Solutions</span>
+    <span class="marquee-item">Retail Merchandising</span>
     <span class="marquee-item">EDI Integration</span>
-    <span class="marquee-item">FDA Compliance</span>
-    <span class="marquee-item">Hazmat Certified</span>
+    <span class="marquee-item">Reverse Logistics</span>
+    <span class="marquee-item">Cross-Docking</span>
     <span class="marquee-item">Nationwide Coverage</span>
   </div>
 </div>
 
-<!-- ── SERVICES ── -->
+<!-- ═══════════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════════ -->
 <section class="services" id="services">
   <div class="services-header">
     <div class="reveal">
-      <div class="section-eyebrow">What We Do</div>
-      <h2 class="section-title">Full-Spectrum<br><em>Distribution Services</em></h2>
+      <div class="section-eyebrow">What We Deliver</div>
+      <h2 class="section-title">Full-Spectrum<br><em>Distribution Solutions</em></h2>
     </div>
-    <p class="section-desc reveal reveal-delay-1">From first mile to last mile, our integrated distribution network ensures your products reach their destination — on time, every time, with complete visibility.</p>
+    <p class="section-desc reveal reveal-delay-1">From purchase order through point-of-sale, our integrated capabilities cover every stage of your distribution journey — with the technology and scale that enterprise demands.</p>
   </div>
   <div class="services-grid">
 
@@ -836,49 +1095,49 @@ footer {
       <div class="service-icon-wrap">
         <svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
       </div>
-      <h3>Freight &amp; Logistics</h3>
-      <p>Comprehensive freight management with nationwide carrier relationships. LTL, FTL, and expedited shipping solutions tailored to your timeline and budget.</p>
-      <a href="#contact" class="service-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h3>Wholesale Distribution</h3>
+      <p>National-scale wholesale operations with established carrier relationships, flexible MOQ structures, and automated purchase order processing across thousands of active SKUs.</p>
+      <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num">02</div>
       <div class="service-icon-wrap">
-        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2M12 12v4M10 14h4"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </div>
-      <h3>Warehousing &amp; Storage</h3>
-      <p>Strategically located fulfillment centers across the U.S. with secure, climate-controlled storage, real-time inventory management, and rapid dispatch.</p>
-      <a href="#contact" class="service-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h3>Logistics &amp; Fulfillment</h3>
+      <p>Strategically placed fulfillment centers with real-time WMS integration, same-day pick and pack, climate-controlled storage, and carrier-agnostic shipping optimization.</p>
+      <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 
     <div class="service-card featured reveal reveal-delay-2">
       <div class="service-num">03</div>
       <div class="service-icon-wrap">
-        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
       </div>
-      <h3>Supply Chain Management</h3>
-      <p>End-to-end supply chain visibility with intelligent planning tools. We optimize every link in your chain — from vendor sourcing to final delivery.</p>
-      <a href="#contact" class="service-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h3>eCommerce Support</h3>
+      <p>End-to-end digital fulfillment built for Amazon, Walmart Marketplace, Shopify, and direct-to-consumer channels — including FBA prep, kitting, and returns management.</p>
+      <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num">04</div>
       <div class="service-icon-wrap">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 104.93 19.07"/><path d="M16 8l3-3M8 16l-3 3"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
       </div>
-      <h3>Last-Mile Delivery</h3>
-      <p>Precision last-mile solutions for B2B and B2C. Real-time tracking, electronic proof of delivery, and flexible time-window scheduling on every shipment.</p>
-      <a href="#contact" class="service-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h3>Retail Merchandising</h3>
+      <p>In-store execution and retail program management including planogram compliance, shelf replenishment, display builds, and retail audit reporting across major chains.</p>
+      <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 
     <div class="service-card reveal reveal-delay-2">
       <div class="service-num">05</div>
       <div class="service-icon-wrap">
-        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
       </div>
-      <h3>Product Sourcing</h3>
-      <p>Leverage our national network of verified manufacturers and vendors to source products competitively. We handle vetting, negotiation, and quality assurance.</p>
-      <a href="#contact" class="service-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h3>Private Label Solutions</h3>
+      <p>White-label and private label product development from concept to shelf — including sourcing, packaging design, compliance certification, and brand registry support.</p>
+      <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 
     <div class="service-card reveal reveal-delay-3">
@@ -887,199 +1146,430 @@ footer {
         <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
       </div>
       <h3>Analytics &amp; Reporting</h3>
-      <p>Data-driven insights into your distribution performance. Custom dashboards and regular reporting help you make smarter, faster business decisions.</p>
-      <a href="#contact" class="service-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <p>Custom dashboards tracking sell-through rates, inventory velocity, carrier performance, and margin analytics — delivered weekly with actionable recommendations.</p>
+      <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 
   </div>
 </section>
 
-<!-- ── INDUSTRIES ── -->
+<!-- ═══════════════════════════════════════════════
+     INDUSTRIES
+═══════════════════════════════════════════════ -->
 <section class="industries" id="industries">
   <div class="industries-grid">
     <div>
-      <div class="section-eyebrow reveal">Industries We Serve</div>
-      <h2 class="section-title reveal">Built for<br><em>Every Sector</em></h2>
-      <p class="section-desc reveal">Our cross-industry expertise means we understand the compliance requirements, temperature sensitivities, and delivery urgencies unique to your field.</p>
+      <div class="reveal">
+        <div class="section-eyebrow">Sectors We Serve</div>
+        <h2 class="section-title">Deep Expertise<br>Across <em>Every Industry</em></h2>
+        <p class="section-desc">Our operational model adapts to the unique compliance, velocity, and handling requirements of each vertical we serve.</p>
+      </div>
       <div class="industry-tabs reveal">
         <div class="ind-tab">
           <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-            <div><div class="ind-name">Food &amp; Beverage</div><div class="ind-sub">Consumer Goods</div></div>
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <span class="ind-name">Consumer Electronics</span>
           </div>
-          <div class="ind-badge">FDA Ready</div>
+          <span class="ind-arrow">→</span>
+        </div>
+        <div class="ind-tab">
+          <div class="ind-tab-left">
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M9 2H1v6l11 13L23 8 12 2z"/><path d="M1 8l11 13"/></svg></div>
+            <span class="ind-name">Food &amp; Beverage</span>
+          </div>
+          <span class="ind-arrow">→</span>
         </div>
         <div class="ind-tab">
           <div class="ind-tab-left">
             <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-            <div><div class="ind-name">Healthcare &amp; Pharma</div><div class="ind-sub">Medical Supply</div></div>
+            <span class="ind-name">Healthcare &amp; Medical</span>
           </div>
-          <div class="ind-badge">Compliant</div>
+          <span class="ind-arrow">→</span>
         </div>
         <div class="ind-tab">
           <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 104.93 19.07"/></svg></div>
-            <div><div class="ind-name">Industrial &amp; MRO</div><div class="ind-sub">Manufacturing</div></div>
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+            <span class="ind-name">General Merchandise</span>
           </div>
-          <div class="ind-badge">Hazmat OK</div>
+          <span class="ind-arrow">→</span>
         </div>
         <div class="ind-tab">
           <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-            <div><div class="ind-name">Building &amp; Construction</div><div class="ind-sub">Materials</div></div>
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5V5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v3.5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5V19c0 .83-.67 1.5-1.5 1.5S8 19.83 8 19v-3.5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5H19c.83 0 1.5.67 1.5 1.5S19.83 16 19 16h-3.5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8H5c-.83 0-1.5.67-1.5 1.5S4.17 11 5 11h3.5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg></div>
+            <span class="ind-name">Health &amp; Beauty</span>
           </div>
-          <div class="ind-badge">Heavy Freight</div>
+          <span class="ind-arrow">→</span>
         </div>
         <div class="ind-tab">
           <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-            <div><div class="ind-name">Electronics &amp; Tech</div><div class="ind-sub">Components</div></div>
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <span class="ind-name">Home &amp; Garden</span>
           </div>
-          <div class="ind-badge">High-Value</div>
+          <span class="ind-arrow">→</span>
         </div>
         <div class="ind-tab">
           <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
-            <div><div class="ind-name">Retail &amp; E-Commerce</div><div class="ind-sub">Fulfillment</div></div>
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+            <span class="ind-name">Industrial &amp; B2B</span>
           </div>
-          <div class="ind-badge">B2B + B2C</div>
-        </div>
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div><div class="ind-name">Government &amp; Defense</div><div class="ind-sub">Public Sector</div></div>
-          </div>
-          <div class="ind-badge">Cleared</div>
-        </div>
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></svg></div>
-            <div><div class="ind-name">Electrical &amp; Plumbing</div><div class="ind-sub">Trades &amp; Contractors</div></div>
-          </div>
-          <div class="ind-badge">Just-in-Time</div>
+          <span class="ind-arrow">→</span>
         </div>
       </div>
     </div>
-    <div class="reveal">
-      <div class="section-eyebrow">Our Capabilities</div>
-      <h2 class="section-title">Why Choose<br><em>Novatech</em></h2>
-      <p class="section-desc">We've built cross-industry infrastructure to meet every compliance standard, sensitivity requirement, and delivery window.</p>
-      <div class="capabilities-grid">
-        <div class="cap-card">
-          <h4>FDA Compliance</h4>
-          <p>Temperature-controlled facilities and complete chain-of-custody documentation for food and pharma clients.</p>
-        </div>
-        <div class="cap-card">
-          <h4>Hazmat Certified</h4>
-          <p>Fully trained and licensed to handle hazardous materials with complete regulatory compliance.</p>
-        </div>
-        <div class="cap-card">
-          <h4>EDI Integration</h4>
-          <p>Seamless Electronic Data Interchange connections with all major ERP and ordering platforms.</p>
-        </div>
-        <div class="cap-card">
-          <h4>Private Label &amp; OEM</h4>
-          <p>Custom packaging, private labeling, and OEM product line support tailored to your brand.</p>
-        </div>
-        <div class="cap-card">
-          <h4>Drop Ship Ready</h4>
-          <p>Direct-to-consumer fulfillment for e-commerce, with branded packing slips and same-day dispatch.</p>
-        </div>
-        <div class="cap-card">
-          <h4>White Glove Delivery</h4>
-          <p>Premium installation-and-placement delivery for high-value equipment and furniture categories.</p>
-        </div>
+
+    <!-- Industry image cards -->
+    <div class="industry-cards-grid reveal">
+      <div class="industry-img-card">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80&auto=format&fit=crop" alt="Warehouse operations" onerror="this.parentElement.querySelector('.ind-placeholder').style.display='flex';this.style.display='none'">
+        <div class="ind-placeholder" style="display:none; background: linear-gradient(135deg,#1c1b18 0%,#28271f 100%);"></div>
+        <div class="industry-img-overlay"></div>
+        <div class="industry-img-label">Warehouse & Fulfillment</div>
+      </div>
+      <div class="industry-img-card">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Electronics distribution" onerror="this.parentElement.querySelector('.ind-placeholder').style.display='flex';this.style.display='none'">
+        <div class="ind-placeholder" style="display:none; background: linear-gradient(135deg,#1c1b18 0%,#28271f 100%);"></div>
+        <div class="industry-img-overlay"></div>
+        <div class="industry-img-label">Consumer Electronics</div>
+      </div>
+      <div class="industry-img-card">
+        <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=600&q=80&auto=format&fit=crop" alt="Food distribution" onerror="this.parentElement.querySelector('.ind-placeholder').style.display='flex';this.style.display='none'">
+        <div class="ind-placeholder" style="display:none; background: linear-gradient(135deg,#1c1b18 0%,#28271f 100%);"></div>
+        <div class="industry-img-overlay"></div>
+        <div class="industry-img-label">Food &amp; Beverage</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── NUMBERS ── -->
+<!-- ═══════════════════════════════════════════════
+     NUMBERS
+═══════════════════════════════════════════════ -->
 <div class="numbers-section">
-  <div class="numbers-inner reveal">
-    <div class="num-item"><div class="big">50+</div><div class="lbl">States Covered</div></div>
-    <div class="num-item"><div class="big">8</div><div class="lbl">Industries Served</div></div>
-    <div class="num-item"><div class="big">99%</div><div class="lbl">On-Time Delivery</div></div>
-    <div class="num-item"><div class="big">24/7</div><div class="lbl">Operations &amp; Support</div></div>
-    <div class="num-item"><div class="big">1K+</div><div class="lbl">SKUs Managed</div></div>
+  <div class="numbers-inner">
+    <div class="num-item reveal">
+      <div class="big"><span class="counter" data-target="1200">0</span><span class="suf">+</span></div>
+      <div class="lbl">Active SKUs</div>
+    </div>
+    <div class="num-item reveal reveal-delay-1">
+      <div class="big"><span class="counter" data-target="50">0</span><span class="suf">+</span></div>
+      <div class="lbl">States Served</div>
+    </div>
+    <div class="num-item reveal reveal-delay-2">
+      <div class="big"><span class="counter" data-target="99">0</span><span class="suf">%</span></div>
+      <div class="lbl">On-Time Rate</div>
+    </div>
+    <div class="num-item reveal reveal-delay-3">
+      <div class="big"><span class="counter" data-target="100">0</span><span class="suf">+</span></div>
+      <div class="lbl">Brand Partners</div>
+    </div>
+    <div class="num-item reveal reveal-delay-4">
+      <div class="big"><span class="counter" data-target="48">0</span><span class="suf">hr</span></div>
+      <div class="lbl">Avg Fulfillment</div>
+    </div>
   </div>
 </div>
 
-<!-- ── WHY US ── -->
+<!-- ═══════════════════════════════════════════════
+     WHY CHOOSE US
+═══════════════════════════════════════════════ -->
 <section class="why-section" id="about">
   <div class="why-header">
     <div class="reveal">
       <div class="section-eyebrow">Our Advantage</div>
-      <h2 class="section-title">The Novatech<br><em>Difference</em></h2>
+      <h2 class="section-title">Why Enterprise<br>Partners Choose <em>Novatech</em></h2>
     </div>
-    <p class="section-desc reveal">We don't just move products — we build supply chain partnerships. Here's what sets us apart from every other distributor in the U.S.</p>
+    <p class="section-desc reveal reveal-delay-1">We operate differently from traditional distributors. Speed, transparency, and technology define how we work — and why companies across every industry grow with us.</p>
   </div>
   <div class="why-grid">
     <div class="why-card reveal">
-      <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-      <div class="why-card-num">01 / Reliability</div>
-      <h3>We Deliver on Our Promise</h3>
-      <p>Industry-leading 99% on-time delivery rate backed by redundant logistics networks and proactive exception management. Your supply chain never sleeps, and neither do we.</p>
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="why-card-num">01 / Speed</div>
+      <h3>Rapid Onboarding & Turnaround</h3>
+      <p>New accounts are operational within 72 hours. Our streamlined intake process and pre-configured EDI templates mean your first shipment ships — not sits in a queue.</p>
     </div>
     <div class="why-card dark reveal reveal-delay-1">
-      <div class="why-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-      <div class="why-card-num">02 / Technology</div>
-      <h3>Real-Time Visibility</h3>
-      <p>Our tracking platform gives you live visibility into every shipment, order, and inventory position — accessible from any device, at any time, with full reporting history.</p>
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <div class="why-card-num">02 / Visibility</div>
+      <h3>Full-Chain Transparency</h3>
+      <p>Every pallet, every order, every carrier scan — visible in your portal in real time. No black boxes. No status-request emails. Just clear data when you need it.</p>
     </div>
     <div class="why-card dark reveal reveal-delay-2">
-      <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-      <div class="why-card-num">03 / Relationships</div>
-      <h3>Dedicated Account Teams</h3>
-      <p>Every client gets a dedicated account manager who knows your business, your suppliers, and your customers. Real people, not call center scripts or chatbots.</p>
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="why-card-num">03 / Reliability</div>
+      <h3>Service Level You Can Count On</h3>
+      <p>We stand behind our commitments with contractual SLAs, dedicated account managers, and proactive communication — not reactive excuses when things go sideways.</p>
     </div>
     <div class="why-card reveal reveal-delay-3">
-      <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
       <div class="why-card-num">04 / Scale</div>
-      <h3>Nationwide Reach</h3>
-      <p>From a single pallet to a full truckload, coast to coast. Our nationwide infrastructure scales with your growth — no minimums, no caps, no geographic limits.</p>
+      <h3>Infrastructure That Grows With You</h3>
+      <p>From a single product launch to a full national rollout, our network handles volume at every stage. No minimums, no capacity ceilings, no geographic blind spots.</p>
     </div>
   </div>
 </section>
 
-<!-- ── PROCESS ── -->
+<!-- ═══════════════════════════════════════════════
+     PARTNER LOGOS
+═══════════════════════════════════════════════ -->
+<section class="partners-section" id="partners">
+  <div class="partners-intro reveal">
+    <div class="section-eyebrow">Trusted By</div>
+    <h2 class="section-title">Products We<br><em>Distribute</em></h2>
+    <p class="section-desc" style="margin: 0 auto; text-align: center;">We are an authorized distributor for leading global brands across technology, consumer goods, and industrial categories.</p>
+  </div>
+
+  <div class="partners-grid">
+    <!-- HP -->
+    <div class="partner-logo-card reveal">
+      <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="24" font-family="Arial" font-weight="900" font-size="26" fill="#0096D6">hp</text>
+      </svg>
+    </div>
+    <!-- Dell -->
+    <div class="partner-logo-card reveal reveal-delay-1">
+      <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="8" y="24" font-family="Arial" font-weight="700" font-size="22" fill="#007DB8">Dell</text>
+      </svg>
+    </div>
+    <!-- Samsung -->
+    <div class="partner-logo-card reveal reveal-delay-2">
+      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="4" y="24" font-family="Arial" font-weight="700" font-size="19" fill="#1428A0">SAMSUNG</text>
+      </svg>
+    </div>
+    <!-- Lenovo -->
+    <div class="partner-logo-card reveal reveal-delay-3">
+      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="4" y="24" font-family="Arial" font-weight="700" font-size="20" fill="#E2231A">Lenovo</text>
+      </svg>
+    </div>
+    <!-- Nestlé -->
+    <div class="partner-logo-card reveal reveal-delay-4">
+      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="4" y="24" font-family="Georgia" font-weight="700" font-size="20" fill="#009DDA">Nestlé</text>
+      </svg>
+    </div>
+    <!-- LG -->
+    <div class="partner-logo-card reveal reveal-delay-5">
+      <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="25" font-family="Arial" font-weight="900" font-size="26" fill="#A50034">LG</text>
+      </svg>
+    </div>
+    <!-- Logitech -->
+    <div class="partner-logo-card reveal">
+      <svg viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="2" y="24" font-family="Arial" font-weight="700" font-size="18" fill="#00B8FC">Logitech</text>
+      </svg>
+    </div>
+    <!-- Unilever -->
+    <div class="partner-logo-card reveal reveal-delay-1">
+      <svg viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="2" y="24" font-family="Arial" font-weight="700" font-size="18" fill="#1F36C7">Unilever</text>
+      </svg>
+    </div>
+    <!-- Sony -->
+    <div class="partner-logo-card reveal reveal-delay-2">
+      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="8" y="25" font-family="Arial" font-weight="900" font-size="24" fill="#000000">SONY</text>
+      </svg>
+    </div>
+    <!-- Epson -->
+    <div class="partner-logo-card reveal reveal-delay-3">
+      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="4" y="24" font-family="Arial" font-weight="700" font-size="20" fill="#003087">Epson</text>
+      </svg>
+    </div>
+    <!-- Asus -->
+    <div class="partner-logo-card reveal reveal-delay-4">
+      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="6" y="24" font-family="Arial" font-weight="900" font-size="22" fill="#00AEEF">ASUS</text>
+      </svg>
+    </div>
+    <!-- Canon -->
+    <div class="partner-logo-card reveal reveal-delay-5">
+      <svg viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="4" y="24" font-family="Arial" font-weight="700" font-size="22" fill="#CC0000">Canon</text>
+      </svg>
+    </div>
+  </div>
+
+  <p class="partners-note reveal">+ 80 additional authorized brand partnerships across CPG, electronics, industrial, and health sectors.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT BANNER
+═══════════════════════════════════════════════ -->
+<section class="about-banner" id="about-story">
+  <div class="about-banner-grid">
+    <div class="reveal">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">Built to Move<br><em>What Matters</em></h2>
+      <p class="section-desc">Novatech LLC was founded with a singular mission: give growing businesses access to the distribution infrastructure that has historically been reserved for Fortune 500 companies.</p>
+      <div class="about-highlights">
+        <div class="about-hl">
+          <div class="about-hl-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h4>Dedicated Account Teams</h4>
+          <p>A named account manager and operations contact for every partner — not a ticketing system.</p>
+        </div>
+        <div class="about-hl">
+          <div class="about-hl-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Compliance-Ready</h4>
+          <p>FDA, USDA, Prop 65, and retail routing guide compliance built into every workflow.</p>
+        </div>
+        <div class="about-hl">
+          <div class="about-hl-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h4>Technology-Driven</h4>
+          <p>Proprietary OMS with real-time API feeds, EDI support, and deep carrier integrations.</p>
+        </div>
+        <div class="about-hl">
+          <div class="about-hl-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h4>24/7 Operations</h4>
+          <p>Round-the-clock warehouse operations and support — no business hours for urgent shipments.</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual-side reveal reveal-delay-2">
+      <div class="about-main-card">
+        <h3>A Distribution Partner<br>Built for <em>Long-Term Growth</em></h3>
+        <div class="about-timeline">
+          <div class="tl-item">
+            <span class="tl-year">2024</span>
+            <div class="tl-content">
+              <h5>Founding & Launch</h5>
+              <p>Novatech LLC established in the United States with initial distribution capabilities across the Eastern seaboard.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2024</span>
+            <div class="tl-content">
+              <h5>National Expansion</h5>
+              <p>Extended distribution network to all 50 states; onboarded first wave of authorized brand partnerships.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2025</span>
+            <div class="tl-content">
+              <h5>eCommerce Platform Launch</h5>
+              <p>Launched dedicated eCommerce fulfillment division with Amazon and Walmart Marketplace integration.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2025</span>
+            <div class="tl-content">
+              <h5>1,200+ SKUs Under Management</h5>
+              <p>Surpassed 100 brand partners and 1,200 active SKUs with a 99.2% on-time delivery rate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROCESS
+═══════════════════════════════════════════════ -->
 <section class="process-section">
-  <div class="reveal" style="text-align:center; max-width:580px; margin:0 auto;">
+  <div class="reveal" style="text-align:center; max-width:580px; margin:0 auto 0;">
     <div class="section-eyebrow" style="justify-content:center;">How It Works</div>
-    <h2 class="section-title">Simple. Fast.<br><em>Scalable.</em></h2>
-    <p class="section-desc" style="margin:0 auto;">From first conversation to first shipment — our onboarding is built for speed.</p>
+    <h2 class="section-title">From First Call<br><em>To First Shipment.</em></h2>
+    <p class="section-desc" style="margin:0 auto;">Our partnership process is designed for speed without sacrificing customization. Most accounts are live within a week.</p>
   </div>
   <div class="process-steps">
     <div class="process-step reveal">
       <div class="step-circle">01</div>
       <h4>Discovery Call</h4>
-      <p>Tell us about your volume, geography, product type, and goals. We listen first, then customize a solution.</p>
+      <p>We learn your volume, geography, product categories, and operational goals in a focused 30-minute conversation.</p>
     </div>
     <div class="process-step reveal reveal-delay-1">
       <div class="step-circle">02</div>
       <h4>Custom Proposal</h4>
-      <p>Receive a detailed distribution plan with transparent pricing, timelines, and SLA commitments within 48 hours.</p>
+      <p>A tailored distribution plan with transparent pricing, SLA terms, and projected timelines — delivered within 48 hours.</p>
     </div>
     <div class="process-step reveal reveal-delay-2">
       <div class="step-circle">03</div>
-      <h4>Onboarding &amp; Setup</h4>
-      <p>Our team integrates your systems, trains your staff, and configures inventory workflows — seamlessly.</p>
+      <h4>Setup &amp; Integration</h4>
+      <p>We configure your EDI connections, inventory workflows, and carrier accounts. Your team gets a dedicated onboarding specialist.</p>
     </div>
     <div class="process-step reveal reveal-delay-3">
       <div class="step-circle">04</div>
-      <h4>Go Live &amp; Scale</h4>
-      <p>Start shipping with full visibility from day one. We grow with you as your volumes and geography expand.</p>
+      <h4>Go Live &amp; Grow</h4>
+      <p>Start shipping with full dashboard visibility. Your account manager checks in weekly as you scale.</p>
     </div>
   </div>
 </section>
 
-<!-- ── CONTACT ── -->
+<!-- ═══════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════ -->
+<section class="testimonial-section">
+  <div class="testimonial-header reveal">
+    <div class="section-eyebrow">Partner Feedback</div>
+    <h2 class="section-title">What Our<br><em>Partners Say</em></h2>
+    <p class="section-desc" style="margin: 0 auto; text-align:center;">Real feedback from brand partners and retail clients who trust Novatech to move their products.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p>Switching to Novatech cut our fulfillment errors by over 60%. Their real-time inventory portal alone saved us hours of back-and-forth every week. The team actually knows our products.</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: linear-gradient(135deg,#e8560a,#1c1b18);">MR</div>
+        <div>
+          <div class="test-name">Marcus R.</div>
+          <div class="test-role">VP of Operations, Consumer Tech Brand</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p>We needed a partner who could handle both our Amazon FBA prep and our retail route — Novatech is the only distributor we found who does both at this quality level and this price point.</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: linear-gradient(135deg,#166534,#1c1b18);">SL</div>
+        <div>
+          <div class="test-name">Sandra L.</div>
+          <div class="test-role">Director of Sales, CPG Manufacturer</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p>Onboarding was faster than any distributor I've worked with in 15 years. We were shipping inside 5 days. Their 24/7 ops team is the real differentiator — problems get solved, not escalated.</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: linear-gradient(135deg,#e8560a,#44433d);">JK</div>
+        <div>
+          <div class="test-name">James K.</div>
+          <div class="test-role">Chief Supply Chain Officer, Electronics Co.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════ -->
 <section class="contact-section" id="contact">
   <div class="contact-layout">
     <div>
-      <div class="section-eyebrow">Reach Us</div>
+      <div class="section-eyebrow">Get In Touch</div>
       <h2 class="section-title">Let's Build<br><em>Together</em></h2>
-      <p class="section-desc">Ready to streamline your distribution? Tell us about your needs and we'll put together a custom solution — fast.</p>
+      <p class="section-desc">Ready to scale your distribution? Tell us about your business and we'll put together a custom operational plan — typically within 48 hours.</p>
       <div class="contact-details">
         <div class="contact-card">
           <div class="contact-card-icon">
@@ -1105,13 +1595,13 @@ footer {
           </div>
           <div>
             <span class="cc-label">Headquarters</span>
-            <span class="cc-val">United States of America<br><small style="opacity:0.55">Operations: Nationwide</small></span>
+            <span class="cc-val">United States of America<br><small style="opacity:0.55">Nationwide Operations</small></span>
           </div>
         </div>
       </div>
     </div>
     <div class="contact-form">
-      <div class="form-title">Send Us a Message</div>
+      <div class="form-title">Request a Proposal</div>
       <div class="form-row">
         <div class="form-group">
           <label>First Name</label>
@@ -1123,30 +1613,30 @@ footer {
         </div>
       </div>
       <div class="form-group">
-        <label>Company</label>
+        <label>Company Name</label>
         <input type="text" placeholder="Your Company, Inc.">
       </div>
       <div class="form-group">
-        <label>Email Address</label>
+        <label>Business Email</label>
         <input type="email" placeholder="john@yourcompany.com">
       </div>
       <div class="form-group">
         <label>Service Interest</label>
         <select>
           <option value="">— Select a Service —</option>
-          <option>Freight &amp; Logistics</option>
-          <option>Warehousing &amp; Storage</option>
-          <option>Supply Chain Management</option>
-          <option>Last-Mile Delivery</option>
-          <option>Product Sourcing</option>
-          <option>Full Distribution Partnership</option>
+          <option>Wholesale Distribution</option>
+          <option>Logistics &amp; Fulfillment</option>
+          <option>eCommerce Support</option>
+          <option>Retail Merchandising</option>
+          <option>Private Label Solutions</option>
           <option>Analytics &amp; Reporting</option>
+          <option>Full Distribution Partnership</option>
           <option>Other</option>
         </select>
       </div>
       <div class="form-group">
         <label>Tell Us About Your Needs</label>
-        <textarea placeholder="Monthly volume, geography, product type, timeline, special requirements..."></textarea>
+        <textarea placeholder="Monthly volume, product categories, target geography, current distribution challenges, timeline..."></textarea>
       </div>
       <button class="form-submit" onclick="handleSubmit(this)">
         Submit Inquiry
@@ -1156,57 +1646,61 @@ footer {
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="#" class="logo">
-        <img
-          class="logo-img"
-          src="./nova.jpeg"
-          alt="Novatech LLC"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        >
-        <div class="logo-img-fallback" style="display:none;"><span>NT</span></div>
-        <div class="logo-text">
-          <span class="name" style="color:#fff">Novatech</span>
-          <span class="sub">LLC · Distribution</span>
+      <a href="#" class="footer-logo">
+        <div class="footer-logo-icon"><span>NT</span></div>
+        <div class="footer-logo-text">
+          <div class="name">Novatech</div>
+          <div class="sub">LLC · Distribution</div>
         </div>
       </a>
-      <p class="footer-brand-text">A premier U.S. distribution company delivering reliability, technology-driven efficiency, and scale across every industry we serve.</p>
+      <p class="footer-brand-text">A premier U.S. distribution company delivering technology-driven supply chain efficiency, enterprise-scale infrastructure, and operational reliability across every industry we serve.</p>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
-        <li><a href="#services">Freight &amp; Logistics</a></li>
-        <li><a href="#services">Warehousing</a></li>
-        <li><a href="#services">Supply Chain</a></li>
-        <li><a href="#services">Last-Mile Delivery</a></li>
-        <li><a href="#services">Product Sourcing</a></li>
+        <li><a href="#services">Wholesale Distribution</a></li>
+        <li><a href="#services">Logistics &amp; Fulfillment</a></li>
+        <li><a href="#services">eCommerce Support</a></li>
+        <li><a href="#services">Retail Merchandising</a></li>
+        <li><a href="#services">Private Label</a></li>
         <li><a href="#services">Analytics</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Industries</h4>
       <ul>
+        <li><a href="#industries">Consumer Electronics</a></li>
         <li><a href="#industries">Food &amp; Beverage</a></li>
         <li><a href="#industries">Healthcare</a></li>
-        <li><a href="#industries">Industrial</a></li>
-        <li><a href="#industries">Construction</a></li>
-        <li><a href="#industries">Electronics</a></li>
-        <li><a href="#industries">Retail</a></li>
+        <li><a href="#industries">General Merchandise</a></li>
+        <li><a href="#industries">Health &amp; Beauty</a></li>
+        <li><a href="#industries">Industrial &amp; B2B</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
         <li><a href="#about">About Us</a></li>
+        <li><a href="#partners">Brand Partners</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#contact">Get a Quote</a></li>
         <li><a href="#">Careers</a></li>
         <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
       </ul>
+    </div>
+    <div class="footer-col footer-newsletter">
+      <h4>Stay Informed</h4>
+      <p>Industry updates, distribution insights, and partner announcements — delivered monthly.</p>
+      <div class="newsletter-input-row">
+        <input type="email" placeholder="your@email.com">
+        <button>Join</button>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1215,33 +1709,91 @@ footer {
       <span class="f-badge">LLC Registered</span>
       <span class="f-badge">USA Distributor</span>
       <span class="f-badge">Nationwide</span>
+      <span class="f-badge">EDI Certified</span>
     </div>
   </div>
 </footer>
 
 <script>
-// ── Scroll nav ──
+/* ── Scroll nav ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-// ── Reveal on scroll ──
+/* ── Reveal on scroll ── */
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      // trigger counter if applicable
+      const counter = e.target.querySelector('.counter');
+      if (counter && !counter.dataset.done) {
+        animateCounter(counter);
+        counter.dataset.done = '1';
+      }
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── Form submit ──
+/* Also observe num-items for counter */
+document.querySelectorAll('.num-item').forEach(el => {
+  const counter = el.querySelector('.counter');
+  if (counter) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !counter.dataset.done) {
+          animateCounter(counter);
+          counter.dataset.done = '1';
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    io.observe(el);
+  }
+});
+
+/* ── Animated counters ── */
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const duration = 1800;
+  const step = 16;
+  const increment = target / (duration / step);
+  let current = 0;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = Math.floor(current).toLocaleString();
+  }, step);
+}
+
+/* ── Form submit ── */
 function handleSubmit(btn) {
   btn.textContent = 'Sending…';
   btn.disabled = true;
   setTimeout(() => {
-    btn.innerHTML = '✓ Message Sent! We\'ll be in touch within 24 hours.';
+    btn.innerHTML = '✓ Proposal Request Received — We\'ll be in touch within 48 hours.';
     btn.style.background = '#166534';
     btn.style.boxShadow = '0 4px 20px rgba(22,101,52,0.3)';
   }, 1100);
 }
+
+/* ── Newsletter ── */
+document.querySelector('.newsletter-input-row button').addEventListener('click', function() {
+  const input = this.previousElementSibling;
+  if (input.value.includes('@')) {
+    this.textContent = '✓';
+    this.style.background = '#166534';
+    input.value = '';
+    input.placeholder = 'You\'re subscribed!';
+    input.disabled = true;
+    this.disabled = true;
+  }
+});
 </script>
 </body>
 </html>
