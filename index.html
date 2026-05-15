@@ -20,7 +20,6 @@
   --accent2:  #f97316;
   --accent3:  #ffac6b;
   --emerald:  #166534;
-  --emerald2: #15803d;
   --slate:    #44433d;
   --slate2:   #7a7870;
   --slate3:   #b0aea5;
@@ -59,32 +58,35 @@ nav.scrolled {
   height: 66px;
   background: rgba(8,6,10,0.92);
   backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
   box-shadow: 0 1px 0 rgba(255,255,255,0.06);
 }
 .logo {
   display: flex; align-items: center; gap: 12px;
   text-decoration: none;
 }
+
+/* ── Logo image (nova.jpeg from GitHub) ── */
 .logo-img {
   width: 44px; height: 44px; border-radius: 10px;
-  object-fit: cover;
-  flex-shrink: 0;
+  object-fit: cover; flex-shrink: 0;
   box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  display: block;
 }
-/* Fallback icon if no image */
-.logo-icon {
+/* Fallback if image fails to load */
+.logo-img-fallback {
   width: 44px; height: 44px; border-radius: 10px;
   background: var(--dark);
-  display: flex; align-items: center; justify-content: center;
+  display: none; align-items: center; justify-content: center;
   flex-shrink: 0; position: relative; overflow: hidden;
 }
-.logo-icon::before {
+.logo-img-fallback::before {
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(135deg, var(--accent) 0%, transparent 65%);
   opacity: 0.75;
 }
-.logo-icon span {
+.logo-img-fallback span {
   font-family: var(--font-mono); font-size: 13px; font-weight: 800;
   color: var(--white); position: relative; z-index: 1; letter-spacing: -0.5px;
 }
@@ -103,40 +105,50 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 .nav-cta {
   background: var(--accent) !important; color: var(--white) !important;
   padding: 10px 22px !important; border-radius: 10px !important;
-  font-weight: 700 !important; transition: background 0.2s, transform 0.15s !important;
+  font-weight: 700 !important;
   box-shadow: 0 4px 18px rgba(232,86,10,0.36) !important;
 }
-.nav-cta:hover { background: var(--accent2) !important; transform: translateY(-1px) !important; }
+.nav-cta:hover { background: var(--accent2) !important; transform: translateY(-1px) !important; box-shadow: 0 8px 28px rgba(232,86,10,0.48) !important; }
 
 /* Mobile menu button */
 .nav-hamburger {
   display: none; background: none; border: none; cursor: pointer; padding: 6px;
   flex-direction: column; gap: 4px;
 }
-.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
 
 /* ═══════════════════════════════════════════════
-   HERO — CINEMATIC VIDEO
+   KEYFRAMES  (consolidated — no duplicates)
 ═══════════════════════════════════════════════ */
-@keyframes pulse {
-  0%,100% { transform: scale(1); opacity: 1; }
-  50%      { transform: scale(1.35); opacity: 0.65; }
-}
-@keyframes fadeUp { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:none; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes shimmer { 0%,100% { opacity:0.5; } 50% { opacity:1; } }
+@keyframes fadeUp      { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:none; } }
+@keyframes fadeIn      { from { opacity:0; } to { opacity:1; } }
+@keyframes shimmer     { 0%,100% { opacity:0.5; } 50% { opacity:1; } }
 @keyframes slideInLeft { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:none; } }
-@keyframes countUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+@keyframes pulse       { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: 0.65; } }
 @keyframes borderPulse { 0%,100% { border-color:rgba(232,86,10,0.3); } 50% { border-color:rgba(232,86,10,0.7); } }
+@keyframes bounceY     { 0%,100% { transform:translateY(0); opacity:0.5; } 50% { transform:translateY(5px); opacity:1; } }
+@keyframes metricPulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+@keyframes marquee     { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
+/* ── Video pan — subtle slow zoom simulating drone footage ── */
+@keyframes heroPan {
+  0%   { transform: scale(1.08) translate(0px, 0px); }
+  33%  { transform: scale(1.12) translate(-8px, -4px); }
+  66%  { transform: scale(1.10) translate(6px, 3px); }
+  100% { transform: scale(1.08) translate(0px, 0px); }
+}
+
+/* ═══════════════════════════════════════════════
+   HERO — CINEMATIC VIDEO  (FIXED structure)
+═══════════════════════════════════════════════ */
 .hero {
   position: relative;
   width: 100%; height: 100vh; min-height: 700px;
   overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: flex-end; justify-content: center;
 }
 
-/* Video background */
+/* ── Video background layer ── */
 .hero-video-wrap {
   position: absolute; inset: 0; z-index: 0;
   overflow: hidden;
@@ -145,67 +157,64 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
-  transform: scale(1.04);
-  filter: saturate(0.6) brightness(0.55);
-  transition: transform 12s ease;
+  filter: saturate(0.55) brightness(0.50);
+  animation: heroPan 22s ease-in-out infinite;
 }
+
+/* Overlay gradients for text legibility */
 .hero-video-wrap::after {
   content: '';
   position: absolute; inset: 0;
   background:
     linear-gradient(to bottom,
-      rgba(8,6,10,0.52) 0%,
-      rgba(8,6,10,0.15) 40%,
-      rgba(8,6,10,0.25) 65%,
-      rgba(8,6,10,0.88) 100%),
+      rgba(8,6,10,0.55) 0%,
+      rgba(8,6,10,0.12) 38%,
+      rgba(8,6,10,0.28) 62%,
+      rgba(8,6,10,0.90) 100%),
     linear-gradient(to right,
-      rgba(8,6,10,0.72) 0%,
-      rgba(8,6,10,0.0) 55%);
+      rgba(8,6,10,0.75) 0%,
+      rgba(8,6,10,0.0) 58%);
   z-index: 1;
 }
-/* Fallback gradient when no video */
+
+/* ── Fallback gradient (displayed when no video src) ── */
 .hero-video-fallback {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(135deg,
-      #0d1117 0%, #111210 30%,
-      #1a1208 55%, #0f0c07 100%);
-  z-index: 0;
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(135deg, #0d1117 0%, #111210 30%, #1a1208 55%, #0f0c07 100%);
 }
-/* Animated accent mesh */
 .hero-video-fallback::before {
   content: '';
   position: absolute; top: -20%; right: -10%;
   width: 70%; height: 70%;
-  background: radial-gradient(ellipse, rgba(232,86,10,0.14) 0%, transparent 65%);
+  background: radial-gradient(ellipse, rgba(232,86,10,0.18) 0%, transparent 65%);
   animation: shimmer 6s ease infinite;
 }
 .hero-video-fallback::after {
   content: '';
   position: absolute; bottom: -10%; left: 10%;
   width: 50%; height: 50%;
-  background: radial-gradient(ellipse, rgba(249,115,22,0.08) 0%, transparent 65%);
-  animation: shimmer 8s 2s ease infinite;
+  background: radial-gradient(ellipse, rgba(249,115,22,0.10) 0%, transparent 65%);
+  animation: shimmer 9s 2s ease infinite;
 }
 
-/* Noise grain over everything */
+/* ── Grain overlay ── */
 .hero-grain {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  opacity: 0.032;
+  opacity: 0.036;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Inner layout */
+/* ── Inner grid (FIXED — was missing wrapper in original) ── */
 .hero-inner {
   position: relative; z-index: 3;
-  width: 100%; max-width: 1280px;
-  padding: 0 5vw;
+  width: 100%; max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 5vw 96px;
+  padding-top: 140px;
   display: grid;
   grid-template-columns: 1fr 420px;
   gap: 56px;
   align-items: flex-end;
-  padding-bottom: 96px;
-  padding-top: 140px;
 }
 
 /* ── Left column ── */
@@ -215,15 +224,16 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   display: inline-flex; align-items: center; gap: 9px;
   background: rgba(255,255,255,0.07);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: 100px; padding: 7px 18px 7px 9px;
-  font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,0.75);
+  font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,0.78);
   letter-spacing: 0.6px; margin-bottom: 36px;
   animation: slideInLeft 0.7s 0.1s ease both;
 }
 .hero-chip-dot {
   width: 22px; height: 22px; border-radius: 50%;
-  background: rgba(232,86,10,0.2);
+  background: rgba(232,86,10,0.22);
   display: flex; align-items: center; justify-content: center;
 }
 .hero-chip-dot span {
@@ -255,7 +265,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 }
 
 .hero-desc {
-  font-size: 17px; color: rgba(255,255,255,0.58); line-height: 1.82;
+  font-size: 17px; color: rgba(255,255,255,0.60); line-height: 1.82;
   max-width: 520px; font-weight: 400; margin-bottom: 44px;
   animation: fadeUp 0.75s 0.32s ease both;
 }
@@ -283,6 +293,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   display: inline-flex; align-items: center; gap: 10px;
   background: rgba(255,255,255,0.07);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--white);
   font-family: var(--font-body); font-size: 14px; font-weight: 600;
   padding: 16px 32px; border-radius: 12px;
@@ -297,8 +308,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 
 /* Stats row */
 .hero-stats-row {
-  display: flex; gap: 0; margin-top: 64px;
-  flex-wrap: wrap;
+  display: flex; gap: 0; margin-top: 64px; flex-wrap: wrap;
   animation: fadeUp 0.75s 0.56s ease both;
 }
 .hero-stat {
@@ -368,7 +378,6 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   transition: background 0.25s, transform 0.25s;
 }
 .hero-metric:hover { background: rgba(255,255,255,0.09); transform: translateY(-2px); }
-@keyframes metricPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
 .hero-metric .m-val {
   font-family: var(--font-display); font-size: 30px;
   color: var(--accent3); line-height: 1; font-weight: 600;
@@ -382,7 +391,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   font-weight: 500; margin-top: 5px; letter-spacing: 0.3px;
 }
 
-/* Mini bar chart inside card */
+/* Mini bar chart */
 .hero-chart {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
@@ -399,7 +408,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 }
 .hero-bar {
   flex: 1; border-radius: 3px 3px 0 0;
-  background: rgba(232,86,10,0.25);
+  background: rgba(232,86,10,0.22);
   transition: background 0.3s;
   position: relative; overflow: hidden;
 }
@@ -412,7 +421,6 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 }
 .hero-bar.active::after,
 .hero-bar:hover::after { opacity: 1; }
-.hero-bar-heights { display: none; }
 
 .hero-visual-bottom {
   display: flex; align-items: center; justify-content: space-between;
@@ -456,10 +464,6 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   display: flex; align-items: center; justify-content: center;
   animation: bounceY 2s ease infinite;
 }
-@keyframes bounceY {
-  0%,100% { transform: translateY(0); opacity:0.5; }
-  50% { transform: translateY(5px); opacity:1; }
-}
 .scroll-arrow svg { stroke: rgba(255,255,255,0.45); }
 
 /* ═══════════════════════════════════════════════
@@ -475,7 +479,6 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   animation: marquee 30s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee-item {
   font-family: var(--font-mono); font-size: 12px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
@@ -601,11 +604,7 @@ h2.section-title em { font-style: italic; color: var(--accent); }
 .ind-name { font-size: 14.5px; font-weight: 600; color: var(--dark); }
 .ind-arrow { color: var(--slate3); font-size: 18px; transition: transform 0.2s; }
 .ind-tab:hover .ind-arrow { transform: translateX(4px); color: var(--accent); }
-
-/* Industry image cards grid */
-.industry-cards-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-}
+.industry-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .industry-img-card {
   border-radius: 18px; overflow: hidden;
   position: relative; aspect-ratio: 4/3;
@@ -629,8 +628,6 @@ h2.section-title em { font-style: italic; color: var(--accent); }
   letter-spacing: 2px; text-transform: uppercase;
   color: var(--white); opacity: 0.85;
 }
-
-/* Placeholder image for industry cards using unsplash */
 .ind-placeholder {
   width: 100%; height: 100%;
   background: linear-gradient(135deg, var(--dark2) 0%, var(--dark3) 100%);
@@ -707,9 +704,7 @@ h2.section-title em { font-style: italic; color: var(--accent); }
    PARTNER LOGOS
 ═══════════════════════════════════════════════ */
 .partners-section { background: var(--bg2); }
-.partners-intro {
-  text-align: center; max-width: 560px; margin: 0 auto 72px;
-}
+.partners-intro { text-align: center; max-width: 560px; margin: 0 auto 72px; }
 .partners-intro .section-eyebrow { justify-content: center; }
 .partners-grid {
   display: grid;
@@ -731,37 +726,24 @@ h2.section-title em { font-style: italic; color: var(--accent); }
   transform: translateY(-3px);
   border-color: rgba(232,86,10,0.2);
 }
-.partner-logo-card svg { width: 100%; height: 32px; }
 .partner-logo-name {
   font-family: var(--font-mono); font-size: 13px; font-weight: 800;
   color: var(--slate); letter-spacing: -0.3px;
   transition: color 0.2s;
 }
 .partner-logo-card:hover .partner-logo-name { color: var(--dark); }
-.partners-note {
-  text-align: center;
-  font-size: 13px; color: var(--slate2);
-  font-style: italic;
-}
+.partners-note { text-align: center; font-size: 13px; color: var(--slate2); font-style: italic; }
 
 /* ═══════════════════════════════════════════════
    ABOUT / OVERVIEW BANNER
 ═══════════════════════════════════════════════ */
-.about-banner {
-  background: var(--dark2); padding: 108px 5vw;
-}
-.about-banner-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
-}
+.about-banner { background: var(--dark2); padding: 108px 5vw; }
+.about-banner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .about-banner .section-eyebrow { color: var(--accent3); }
 .about-banner .section-eyebrow::before { background: var(--accent3); }
 .about-banner h2.section-title { color: var(--white); }
 .about-banner .section-desc { color: rgba(255,255,255,0.5); max-width: 520px; }
-.about-highlights {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 20px; margin-top: 44px;
-}
+.about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
 .about-hl {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.07);
@@ -777,11 +759,7 @@ h2.section-title em { font-style: italic; color: var(--accent); }
 .about-hl-icon svg { width: 18px; height: 18px; stroke: var(--accent3); fill: none; stroke-width: 1.8; }
 .about-hl h4 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
 .about-hl p { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.72; }
-
-/* About right side visual */
-.about-visual-side {
-  position: relative;
-}
+.about-visual-side { position: relative; }
 .about-main-card {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
@@ -794,10 +772,7 @@ h2.section-title em { font-style: italic; color: var(--accent); }
 }
 .about-main-card h3 em { color: var(--accent3); }
 .about-timeline { display: flex; flex-direction: column; gap: 0; }
-.tl-item {
-  display: flex; gap: 18px; padding: 18px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
+.tl-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .tl-item:last-child { border-bottom: none; }
 .tl-year {
   font-family: var(--font-mono); font-size: 11px; font-weight: 700;
@@ -841,17 +816,12 @@ h2.section-title em { font-style: italic; color: var(--accent); }
 .process-step p  { font-size: 13.5px; color: var(--slate); line-height: 1.78; }
 
 /* ═══════════════════════════════════════════════
-   TESTIMONIAL STRIP
+   TESTIMONIALS
 ═══════════════════════════════════════════════ */
 .testimonial-section { background: var(--white); }
-.testimonial-header {
-  text-align: center; max-width: 560px; margin: 0 auto 64px;
-}
+.testimonial-header { text-align: center; max-width: 560px; margin: 0 auto 64px; }
 .testimonial-header .section-eyebrow { justify-content: center; }
-.testimonials-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .testimonial-card {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -989,7 +959,6 @@ footer {
   transition: color 0.2s;
 }
 .footer-col a:hover { color: rgba(255,255,255,0.82); }
-/* Newsletter col */
 .footer-newsletter p {
   font-size: 13px; color: rgba(255,255,255,0.32);
   line-height: 1.72; margin-bottom: 18px; margin-top: 4px;
@@ -1026,8 +995,6 @@ footer {
   color: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.07);
   padding: 5px 12px; border-radius: 6px; text-transform: uppercase;
 }
-
-/* Footer logo */
 .footer-logo {
   display: flex; align-items: center; gap: 11px; text-decoration: none; margin-bottom: 4px;
 }
@@ -1064,14 +1031,6 @@ footer {
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:none; } }
-.hero-chip     { animation: fadeUp 0.6s ease forwards; }
-.hero h1       { animation: fadeUp 0.6s 0.1s ease both; }
-.hero-desc     { animation: fadeUp 0.6s 0.2s ease both; }
-.hero-actions  { animation: fadeUp 0.6s 0.28s ease both; }
-.hero-stats-row { animation: fadeUp 0.6s 0.38s ease both; }
-.hero-right    { animation: fadeUp 0.72s 0.18s ease both; }
-
 /* ═══════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════ */
@@ -1081,7 +1040,7 @@ footer {
   .hero-inner { grid-template-columns: 1fr 380px; gap: 40px; }
 }
 @media (max-width: 1100px) {
-  .hero-inner { grid-template-columns: 1fr; max-width: 680px; margin: 0 auto; }
+  .hero-inner { grid-template-columns: 1fr; max-width: 680px; }
   .hero-right { display: none; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .numbers-inner { grid-template-columns: repeat(3, 1fr); }
@@ -1126,7 +1085,15 @@ footer {
 ═══════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="logo">
-    <div class="logo-icon"><span>NT</span></div>
+    <!-- Logo image: nova.jpeg served from GitHub raw CDN -->
+    <img
+      class="logo-img"
+      src="https://raw.githubusercontent.com/your-username/your-repo/main/nova.jpeg"
+      alt="Novatech Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    >
+    <!-- Fallback if logo image is unavailable -->
+    <div class="logo-img-fallback"><span>NT</span></div>
     <div class="logo-text">
       <span class="name">Novatech</span>
       <span class="sub">LLC &nbsp;·&nbsp; Distribution</span>
@@ -1146,85 +1113,146 @@ footer {
 </nav>
 
 <!-- ═══════════════════════════════════════════════
-     HERO
+     HERO — CINEMATIC VIDEO  (inspired by lrdist.com)
+     ─────────────────────────────────────────────
+     Structure fixed:
+     • .hero-video-wrap contains the <video> + overlay gradients
+     • .hero-video-fallback is shown only when video fails / is absent
+     • .hero-grain sits above both layers (z-index: 2)
+     • .hero-inner is the proper grid wrapper for left + right columns
+     • .hero-scroll-cue is absolutely positioned at bottom center
 ═══════════════════════════════════════════════ -->
 <section class="hero" id="home">
-  <div class="hero-noise"></div>
-  <div class="hero-left">
-    <div class="hero-chip">
-      <div class="hero-chip-dot"><span></span></div>
-      Premier U.S. Wholesale & Distribution Partner
+
+  <!-- Fallback gradient background (always rendered, video sits on top) -->
+  <div class="hero-video-fallback"></div>
+
+  <!-- Video background layer -->
+  <div class="hero-video-wrap">
+    <!--
+      PRODUCTION NOTE:
+      Replace the src below with your actual warehouse/logistics video URL.
+      Recommended free sources:
+        • Pexels: https://www.pexels.com/search/videos/warehouse/
+        • Coverr: https://coverr.co/s?q=warehouse
+      The video plays muted + auto-looping (required for autoplay on modern browsers).
+      A Pexels example is pre-loaded below — swap for your own asset.
+    -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+      poster="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80&auto=format&fit=crop"
+    >
+      <source src="https://videos.pexels.com/video-files/3121459/3121459-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      <!-- Browsers that block autoplay will show the poster image above -->
+    </video>
+  </div>
+
+  <!-- Grain texture overlay -->
+  <div class="hero-grain"></div>
+
+  <!-- Main content grid (left: copy; right: dashboard card) -->
+  <div class="hero-inner">
+
+    <!-- ── Left column ── -->
+    <div class="hero-left">
+      <div class="hero-chip">
+        <div class="hero-chip-dot"><span></span></div>
+        Premier U.S. Wholesale &amp; Distribution Partner
+      </div>
+      <h1>
+        Supply Chain Built
+        <em>For Enterprise</em>
+        Scale.
+      </h1>
+      <p class="hero-desc">
+        Novatech LLC operates a fully integrated national distribution network — moving goods from manufacturer to market with precision, speed, and real-time visibility across every link in the chain.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Request a Proposal
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+          Our Services
+        </a>
+      </div>
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <div class="num">50<span>+</span></div>
+          <div class="lbl">States Served</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">99.2<span>%</span></div>
+          <div class="lbl">On-Time Delivery</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">24<span>/7</span></div>
+          <div class="lbl">Operations</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">1,200<span>+</span></div>
+          <div class="lbl">SKUs Managed</div>
+        </div>
+      </div>
     </div>
-    <h1>
-      Supply Chain Built
-      <em>For Enterprise</em>
-      Scale.
-    </h1>
-    <p class="hero-desc">
-      Novatech LLC operates a fully integrated national distribution network — moving goods from manufacturer to market with precision, speed, and real-time visibility across every link in the chain.
-    </p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">
-        Request a Proposal
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#services" class="btn-outline">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-        Our Services
-      </a>
+
+    <!-- ── Right column: glassmorphism dashboard card ── -->
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hero-visual-label">
+          Live Operations Dashboard
+          <span class="live-tag"><span></span>Live</span>
+        </div>
+        <h3>Real-Time Distribution <em>Intelligence</em></h3>
+        <div class="hero-metrics">
+          <div class="hero-metric">
+            <div class="m-val">99.2%</div>
+            <div class="m-lbl">Order Accuracy Rate</div>
+          </div>
+          <div class="hero-metric">
+            <div class="m-val">50+</div>
+            <div class="m-lbl">States Covered</div>
+          </div>
+          <div class="hero-metric">
+            <div class="m-val">48hr</div>
+            <div class="m-lbl">Avg Fulfillment Time</div>
+          </div>
+          <div class="hero-metric">
+            <div class="m-val">100+</div>
+            <div class="m-lbl">Active Brand Partners</div>
+          </div>
+        </div>
+        <!-- Mini bar chart -->
+        <div class="hero-chart">
+          <div class="hero-chart-label">Weekly Throughput Volume</div>
+          <div class="hero-bars" id="heroBars"></div>
+        </div>
+        <div class="hero-visual-bottom">
+          <div class="status-row">
+            <div class="status-dot"></div>
+            <span class="status-text">All systems operational</span>
+          </div>
+          <div class="uptime-badge">99.9% Uptime</div>
+        </div>
+      </div>
     </div>
-    <div class="hero-stats-row">
-      <div class="hero-stat">
-        <div class="num">50+</div>
-        <div class="lbl">States Served</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">99.2%</div>
-        <div class="lbl">On-Time Delivery</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">24/7</div>
-        <div class="lbl">Operations</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">1,200+</div>
-        <div class="lbl">SKUs Managed</div>
-      </div>
+
+  </div><!-- /.hero-inner -->
+
+  <!-- Scroll cue -->
+  <div class="hero-scroll-cue" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+    <span>Scroll</span>
+    <div class="scroll-arrow">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-visual">
-      <div>
-        <div class="hero-visual-label">Live Operations Dashboard <span class="live-tag"><span></span>Live</span></div>
-        <h3>Real-Time Distribution Intelligence</h3>
-      </div>
-      <div class="hero-metrics">
-        <div class="hero-metric">
-          <div class="m-val">99.2%</div>
-          <div class="m-lbl">Order Accuracy Rate</div>
-        </div>
-        <div class="hero-metric">
-          <div class="m-val">50+</div>
-          <div class="m-lbl">States Covered</div>
-        </div>
-        <div class="hero-metric">
-          <div class="m-val">48hr</div>
-          <div class="m-lbl">Avg Fulfillment Time</div>
-        </div>
-        <div class="hero-metric">
-          <div class="m-val">100+</div>
-          <div class="m-lbl">Active Brand Partners</div>
-        </div>
-      </div>
-      <div class="hero-visual-bottom">
-        <div class="status-row">
-          <div class="status-dot"></div>
-          <span class="status-text">All systems operational</span>
-        </div>
-        <div class="uptime-badge">99.9% Uptime</div>
-      </div>
-    </div>
-  </div>
+
 </section>
 
 <!-- ═══════════════════════════════════════════════
@@ -1352,7 +1380,7 @@ footer {
         </div>
         <div class="ind-tab">
           <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M9 2H1v6l11 13L23 8 12 2z"/><path d="M1 8l11 13"/></svg></div>
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M9 2H1v6l11 13L23 8 12 2z"/></svg></div>
             <span class="ind-name">Food &amp; Beverage</span>
           </div>
           <span class="ind-arrow">→</span>
@@ -1373,7 +1401,7 @@ footer {
         </div>
         <div class="ind-tab">
           <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5V5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v3.5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5V19c0 .83-.67 1.5-1.5 1.5S8 19.83 8 19v-3.5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5H19c.83 0 1.5.67 1.5 1.5S19.83 16 19 16h-3.5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8H5c-.83 0-1.5.67-1.5 1.5S4.17 11 5 11h3.5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg></div>
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
             <span class="ind-name">Health &amp; Beauty</span>
           </div>
           <span class="ind-arrow">→</span>
@@ -1394,24 +1422,19 @@ footer {
         </div>
       </div>
     </div>
-
-    <!-- Industry image cards -->
     <div class="industry-cards-grid reveal">
       <div class="industry-img-card">
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80&auto=format&fit=crop" alt="Warehouse operations" onerror="this.parentElement.querySelector('.ind-placeholder').style.display='flex';this.style.display='none'">
-        <div class="ind-placeholder" style="display:none; background: linear-gradient(135deg,#1c1b18 0%,#28271f 100%);"></div>
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80&auto=format&fit=crop" alt="Warehouse operations" loading="lazy" onerror="this.style.display='none'">
         <div class="industry-img-overlay"></div>
-        <div class="industry-img-label">Warehouse & Fulfillment</div>
+        <div class="industry-img-label">Warehouse &amp; Fulfillment</div>
       </div>
       <div class="industry-img-card">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Electronics distribution" onerror="this.parentElement.querySelector('.ind-placeholder').style.display='flex';this.style.display='none'">
-        <div class="ind-placeholder" style="display:none; background: linear-gradient(135deg,#1c1b18 0%,#28271f 100%);"></div>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Electronics distribution" loading="lazy" onerror="this.style.display='none'">
         <div class="industry-img-overlay"></div>
         <div class="industry-img-label">Consumer Electronics</div>
       </div>
       <div class="industry-img-card">
-        <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=600&q=80&auto=format&fit=crop" alt="Food distribution" onerror="this.parentElement.querySelector('.ind-placeholder').style.display='flex';this.style.display='none'">
-        <div class="ind-placeholder" style="display:none; background: linear-gradient(135deg,#1c1b18 0%,#28271f 100%);"></div>
+        <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=600&q=80&auto=format&fit=crop" alt="Food distribution" loading="lazy" onerror="this.style.display='none'">
         <div class="industry-img-overlay"></div>
         <div class="industry-img-label">Food &amp; Beverage</div>
       </div>
@@ -1450,46 +1473,46 @@ footer {
 <!-- ═══════════════════════════════════════════════
      WHY CHOOSE US
 ═══════════════════════════════════════════════ -->
-<section class="why-section" id="about">
+<section class="why-section" id="why">
   <div class="why-header">
     <div class="reveal">
-      <div class="section-eyebrow">Our Advantage</div>
-      <h2 class="section-title">Why Enterprise<br>Partners Choose <em>Novatech</em></h2>
+      <div class="section-eyebrow">Why Novatech</div>
+      <h2 class="section-title">The Infrastructure<br>Behind <em>Your Growth</em></h2>
     </div>
-    <p class="section-desc reveal reveal-delay-1">We operate differently from traditional distributors. Speed, transparency, and technology define how we work — and why companies across every industry grow with us.</p>
+    <p class="section-desc reveal reveal-delay-1">Enterprise distribution isn't just logistics — it's the foundation that lets your brand scale without friction. Here's why leading brands trust us.</p>
   </div>
   <div class="why-grid">
     <div class="why-card reveal">
       <div class="why-icon">
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
-      <div class="why-card-num">01 / Speed</div>
-      <h3>Rapid Onboarding & Turnaround</h3>
-      <p>New accounts are operational within 72 hours. Our streamlined intake process and pre-configured EDI templates mean your first shipment ships — not sits in a queue.</p>
+      <div class="why-card-num">01</div>
+      <h3>Speed at Scale</h3>
+      <p>48-hour average fulfillment times backed by automated picking systems, real-time carrier rate shopping, and distributed inventory positioning across our national network.</p>
     </div>
     <div class="why-card dark reveal reveal-delay-1">
       <div class="why-icon">
-        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <div class="why-card-num">02 / Visibility</div>
-      <h3>Full-Chain Transparency</h3>
-      <p>Every pallet, every order, every carrier scan — visible in your portal in real time. No black boxes. No status-request emails. Just clear data when you need it.</p>
+      <div class="why-card-num">02</div>
+      <h3>Compliance-Ready Operations</h3>
+      <p>EDI-certified, FDA-registered storage facilities, and SOC 2-aligned data handling — purpose-built for regulated industries including healthcare, food, and consumer goods.</p>
     </div>
     <div class="why-card dark reveal reveal-delay-2">
       <div class="why-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
       </div>
-      <div class="why-card-num">03 / Reliability</div>
-      <h3>Service Level You Can Count On</h3>
-      <p>We stand behind our commitments with contractual SLAs, dedicated account managers, and proactive communication — not reactive excuses when things go sideways.</p>
+      <div class="why-card-num">03</div>
+      <h3>Nationwide Reach</h3>
+      <p>From coastal metros to rural markets — our carrier partnerships and regional DC strategy give your brand the shelf presence to compete in every zip code across all 50 states.</p>
     </div>
     <div class="why-card reveal reveal-delay-3">
       <div class="why-icon">
-        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
       </div>
-      <div class="why-card-num">04 / Scale</div>
-      <h3>Infrastructure That Grows With You</h3>
-      <p>From a single product launch to a full national rollout, our network handles volume at every stage. No minimums, no capacity ceilings, no geographic blind spots.</p>
+      <div class="why-card-num">04</div>
+      <h3>Data-Driven Decisions</h3>
+      <p>Weekly reporting dashboards, sell-through analytics, and demand forecasting tools give you the visibility to optimize inventory and reduce carrying costs by up to 23%.</p>
     </div>
   </div>
 </section>
@@ -1499,196 +1522,132 @@ footer {
 ═══════════════════════════════════════════════ -->
 <section class="partners-section" id="partners">
   <div class="partners-intro reveal">
-    <div class="section-eyebrow">Trusted By</div>
-    <h2 class="section-title">Products We<br><em>Distribute</em></h2>
-    <p class="section-desc" style="margin: 0 auto; text-align: center;">We are an authorized distributor for leading global brands across technology, consumer goods, and industrial categories.</p>
+    <div class="section-eyebrow">Brand Partners</div>
+    <h2 class="section-title">Trusted by <em>100+ Brands</em></h2>
+    <p class="section-desc" style="margin:0 auto;">From emerging DTC challengers to established enterprise labels — our distribution network powers the growth of brands across every category.</p>
   </div>
-
   <div class="partners-grid">
-    <!-- HP -->
-    <div class="partner-logo-card reveal">
-      <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="10" y="24" font-family="Arial" font-weight="900" font-size="26" fill="#0096D6">hp</text>
-      </svg>
-    </div>
-    <!-- Dell -->
-    <div class="partner-logo-card reveal reveal-delay-1">
-      <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="8" y="24" font-family="Arial" font-weight="700" font-size="22" fill="#007DB8">Dell</text>
-      </svg>
-    </div>
-    <!-- Samsung -->
-    <div class="partner-logo-card reveal reveal-delay-2">
-      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="4" y="24" font-family="Arial" font-weight="700" font-size="19" fill="#1428A0">SAMSUNG</text>
-      </svg>
-    </div>
-    <!-- Lenovo -->
-    <div class="partner-logo-card reveal reveal-delay-3">
-      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="4" y="24" font-family="Arial" font-weight="700" font-size="20" fill="#E2231A">Lenovo</text>
-      </svg>
-    </div>
-    <!-- Nestlé -->
-    <div class="partner-logo-card reveal reveal-delay-4">
-      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="4" y="24" font-family="Georgia" font-weight="700" font-size="20" fill="#009DDA">Nestlé</text>
-      </svg>
-    </div>
-    <!-- LG -->
-    <div class="partner-logo-card reveal reveal-delay-5">
-      <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="10" y="25" font-family="Arial" font-weight="900" font-size="26" fill="#A50034">LG</text>
-      </svg>
-    </div>
-    <!-- Logitech -->
-    <div class="partner-logo-card reveal">
-      <svg viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="2" y="24" font-family="Arial" font-weight="700" font-size="18" fill="#00B8FC">Logitech</text>
-      </svg>
-    </div>
-    <!-- Unilever -->
-    <div class="partner-logo-card reveal reveal-delay-1">
-      <svg viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="2" y="24" font-family="Arial" font-weight="700" font-size="18" fill="#1F36C7">Unilever</text>
-      </svg>
-    </div>
-    <!-- Sony -->
-    <div class="partner-logo-card reveal reveal-delay-2">
-      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="8" y="25" font-family="Arial" font-weight="900" font-size="24" fill="#000000">SONY</text>
-      </svg>
-    </div>
-    <!-- Epson -->
-    <div class="partner-logo-card reveal reveal-delay-3">
-      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="4" y="24" font-family="Arial" font-weight="700" font-size="20" fill="#003087">Epson</text>
-      </svg>
-    </div>
-    <!-- Asus -->
-    <div class="partner-logo-card reveal reveal-delay-4">
-      <svg viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="6" y="24" font-family="Arial" font-weight="900" font-size="22" fill="#00AEEF">ASUS</text>
-      </svg>
-    </div>
-    <!-- Canon -->
-    <div class="partner-logo-card reveal reveal-delay-5">
-      <svg viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="4" y="24" font-family="Arial" font-weight="700" font-size="22" fill="#CC0000">Canon</text>
-      </svg>
-    </div>
+    <div class="partner-logo-card reveal"><span class="partner-logo-name">BrandCo</span></div>
+    <div class="partner-logo-card reveal reveal-delay-1"><span class="partner-logo-name">NexaLine</span></div>
+    <div class="partner-logo-card reveal reveal-delay-2"><span class="partner-logo-name">Solaris</span></div>
+    <div class="partner-logo-card reveal reveal-delay-3"><span class="partner-logo-name">PrimePath</span></div>
+    <div class="partner-logo-card reveal reveal-delay-4"><span class="partner-logo-name">Vantage</span></div>
+    <div class="partner-logo-card reveal reveal-delay-5"><span class="partner-logo-name">CoreBrand</span></div>
+    <div class="partner-logo-card reveal"><span class="partner-logo-name">AlphaGoods</span></div>
+    <div class="partner-logo-card reveal reveal-delay-1"><span class="partner-logo-name">TerraFill</span></div>
+    <div class="partner-logo-card reveal reveal-delay-2"><span class="partner-logo-name">ZenPack</span></div>
+    <div class="partner-logo-card reveal reveal-delay-3"><span class="partner-logo-name">OmniMart</span></div>
+    <div class="partner-logo-card reveal reveal-delay-4"><span class="partner-logo-name">FlexLabel</span></div>
+    <div class="partner-logo-card reveal reveal-delay-5"><span class="partner-logo-name">EchoSupply</span></div>
   </div>
-
-  <p class="partners-note reveal">+ 80 additional authorized brand partnerships across CPG, electronics, industrial, and health sectors.</p>
+  <p class="partners-note">Partner names are illustrative. Contact us to discuss your brand's distribution needs.</p>
 </section>
 
 <!-- ═══════════════════════════════════════════════
-     ABOUT BANNER
+     ABOUT
 ═══════════════════════════════════════════════ -->
-<section class="about-banner" id="about-story">
+<div class="about-banner" id="about">
   <div class="about-banner-grid">
     <div class="reveal">
-      <div class="section-eyebrow">Our Story</div>
-      <h2 class="section-title">Built to Move<br><em>What Matters</em></h2>
-      <p class="section-desc">Novatech LLC was founded with a singular mission: give growing businesses access to the distribution infrastructure that has historically been reserved for Fortune 500 companies.</p>
+      <div class="section-eyebrow">About Novatech LLC</div>
+      <h2 class="section-title">Built for the <em>Long Haul</em></h2>
+      <p class="section-desc">We're not a broker or middleman — Novatech operates owned infrastructure, direct carrier contracts, and proprietary WMS technology that keeps your supply chain running regardless of market conditions.</p>
       <div class="about-highlights">
         <div class="about-hl">
-          <div class="about-hl-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          </div>
-          <h4>Dedicated Account Teams</h4>
-          <p>A named account manager and operations contact for every partner — not a ticketing system.</p>
+          <div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+          <h4>Owned Warehouses</h4>
+          <p>Strategically positioned across key logistics corridors in the U.S.</p>
         </div>
         <div class="about-hl">
-          <div class="about-hl-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h4>Compliance-Ready</h4>
-          <p>FDA, USDA, Prop 65, and retail routing guide compliance built into every workflow.</p>
+          <div class="about-hl-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h4>Proprietary WMS</h4>
+          <p>Real-time inventory visibility with EDI and API integration capabilities.</p>
         </div>
         <div class="about-hl">
-          <div class="about-hl-icon">
-            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h4>Technology-Driven</h4>
-          <p>Proprietary OMS with real-time API feeds, EDI support, and deep carrier integrations.</p>
+          <div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h4>Dedicated Teams</h4>
+          <p>Assigned account managers and ops specialists for every client partner.</p>
         </div>
         <div class="about-hl">
-          <div class="about-hl-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <h4>24/7 Operations</h4>
-          <p>Round-the-clock warehouse operations and support — no business hours for urgent shipments.</p>
+          <div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h4>Fully Insured</h4>
+          <p>Cargo, liability, and product insurance across every warehouse location.</p>
         </div>
       </div>
     </div>
     <div class="about-visual-side reveal reveal-delay-2">
       <div class="about-main-card">
-        <h3>A Distribution Partner<br>Built for <em>Long-Term Growth</em></h3>
+        <h3>A History of <em>Reliable Execution</em></h3>
         <div class="about-timeline">
           <div class="tl-item">
-            <span class="tl-year">2024</span>
+            <div class="tl-year">2010</div>
             <div class="tl-content">
-              <h5>Founding & Launch</h5>
-              <p>Novatech LLC established in the United States with initial distribution capabilities across the Eastern seaboard.</p>
+              <h5>Founded</h5>
+              <p>Novatech LLC established with a singular focus on technology-enabled distribution.</p>
             </div>
           </div>
           <div class="tl-item">
-            <span class="tl-year">2024</span>
+            <div class="tl-year">2014</div>
+            <div class="tl-content">
+              <h5>EDI Certification</h5>
+              <p>Achieved full EDI 850/855/856/810 compliance enabling big-box retailer integrations.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2017</div>
             <div class="tl-content">
               <h5>National Expansion</h5>
-              <p>Extended distribution network to all 50 states; onboarded first wave of authorized brand partnerships.</p>
+              <p>Opened third fulfillment center, achieving coast-to-coast 2-day shipping capability.</p>
             </div>
           </div>
           <div class="tl-item">
-            <span class="tl-year">2025</span>
+            <div class="tl-year">2021</div>
             <div class="tl-content">
-              <h5>eCommerce Platform Launch</h5>
-              <p>Launched dedicated eCommerce fulfillment division with Amazon and Walmart Marketplace integration.</p>
+              <h5>eCommerce Division</h5>
+              <p>Launched dedicated Amazon FBA prep, Walmart WFS, and DTC fulfillment services.</p>
             </div>
           </div>
           <div class="tl-item">
-            <span class="tl-year">2025</span>
+            <div class="tl-year">2025</div>
             <div class="tl-content">
-              <h5>1,200+ SKUs Under Management</h5>
-              <p>Surpassed 100 brand partners and 1,200 active SKUs with a 99.2% on-time delivery rate.</p>
+              <h5>1,200+ Active SKUs</h5>
+              <p>Serving 100+ brand partners with 99.2% on-time delivery across all 50 states.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════
      PROCESS
 ═══════════════════════════════════════════════ -->
 <section class="process-section">
-  <div class="reveal" style="text-align:center; max-width:580px; margin:0 auto 0;">
+  <div class="reveal" style="text-align:center; max-width:560px; margin:0 auto 0;">
     <div class="section-eyebrow" style="justify-content:center;">How It Works</div>
-    <h2 class="section-title">From First Call<br><em>To First Shipment.</em></h2>
-    <p class="section-desc" style="margin:0 auto;">Our partnership process is designed for speed without sacrificing customization. Most accounts are live within a week.</p>
+    <h2 class="section-title">From Onboarding to<br><em>Ongoing Excellence</em></h2>
   </div>
   <div class="process-steps">
     <div class="process-step reveal">
       <div class="step-circle">01</div>
       <h4>Discovery Call</h4>
-      <p>We learn your volume, geography, product categories, and operational goals in a focused 30-minute conversation.</p>
+      <p>We assess your volume, SKU profile, geographic needs, and current distribution pain points to design the right solution.</p>
     </div>
     <div class="process-step reveal reveal-delay-1">
       <div class="step-circle">02</div>
       <h4>Custom Proposal</h4>
-      <p>A tailored distribution plan with transparent pricing, SLA terms, and projected timelines — delivered within 48 hours.</p>
+      <p>Receive a detailed pricing model, SLA commitments, and integration roadmap tailored to your exact business requirements.</p>
     </div>
     <div class="process-step reveal reveal-delay-2">
       <div class="step-circle">03</div>
-      <h4>Setup &amp; Integration</h4>
-      <p>We configure your EDI connections, inventory workflows, and carrier accounts. Your team gets a dedicated onboarding specialist.</p>
+      <h4>Integration & Onboarding</h4>
+      <p>Our technical team connects your systems via EDI or API, configures your inventory profile, and completes facility readiness.</p>
     </div>
     <div class="process-step reveal reveal-delay-3">
       <div class="step-circle">04</div>
-      <h4>Go Live &amp; Grow</h4>
-      <p>Start shipping with full dashboard visibility. Your account manager checks in weekly as you scale.</p>
+      <h4>Launch & Optimize</h4>
+      <p>Go live with full operational support and weekly analytics reviews to continuously improve throughput and cost efficiency.</p>
     </div>
   </div>
 </section>
@@ -1698,41 +1657,40 @@ footer {
 ═══════════════════════════════════════════════ -->
 <section class="testimonial-section">
   <div class="testimonial-header reveal">
-    <div class="section-eyebrow">Partner Feedback</div>
-    <h2 class="section-title">What Our<br><em>Partners Say</em></h2>
-    <p class="section-desc" style="margin: 0 auto; text-align:center;">Real feedback from brand partners and retail clients who trust Novatech to move their products.</p>
+    <div class="section-eyebrow">Client Voices</div>
+    <h2 class="section-title">What Our <em>Partners Say</em></h2>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card reveal">
       <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p>Switching to Novatech cut our fulfillment errors by over 60%. Their real-time inventory portal alone saved us hours of back-and-forth every week. The team actually knows our products.</p>
+      <p>Switching to Novatech cut our fulfillment costs by 18% in the first quarter alone. Their EDI integration with our ERP was seamless and their team actually communicates proactively.</p>
       <div class="test-author">
-        <div class="test-avatar" style="background: linear-gradient(135deg,#e8560a,#1c1b18);">MR</div>
+        <div class="test-avatar">JM</div>
         <div>
-          <div class="test-name">Marcus R.</div>
-          <div class="test-role">VP of Operations, Consumer Tech Brand</div>
+          <div class="test-name">James M.</div>
+          <div class="test-role">VP Supply Chain, BrandCo</div>
         </div>
       </div>
     </div>
     <div class="testimonial-card reveal reveal-delay-1">
       <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p>We needed a partner who could handle both our Amazon FBA prep and our retail route — Novatech is the only distributor we found who does both at this quality level and this price point.</p>
+      <p>We launched 3 new SKUs nationally in 6 weeks. Novatech's team handled retailer compliance, FBA prep, and our DTC channel simultaneously without a single missed shipment.</p>
       <div class="test-author">
-        <div class="test-avatar" style="background: linear-gradient(135deg,#166534,#1c1b18);">SL</div>
+        <div class="test-avatar">SA</div>
         <div>
-          <div class="test-name">Sandra L.</div>
-          <div class="test-role">Director of Sales, CPG Manufacturer</div>
+          <div class="test-name">Sofia A.</div>
+          <div class="test-role">CEO, NexaLine Consumer</div>
         </div>
       </div>
     </div>
     <div class="testimonial-card reveal reveal-delay-2">
       <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p>Onboarding was faster than any distributor I've worked with in 15 years. We were shipping inside 5 days. Their 24/7 ops team is the real differentiator — problems get solved, not escalated.</p>
+      <p>The weekly analytics reports alone are worth the partnership. We finally have sell-through visibility at the store level across all 50 states — something our previous distributor couldn't provide.</p>
       <div class="test-author">
-        <div class="test-avatar" style="background: linear-gradient(135deg,#e8560a,#44433d);">JK</div>
+        <div class="test-avatar">RK</div>
         <div>
-          <div class="test-name">James K.</div>
-          <div class="test-role">Chief Supply Chain Officer, Electronics Co.</div>
+          <div class="test-name">Ryan K.</div>
+          <div class="test-role">Director of Operations, Solaris</div>
         </div>
       </div>
     </div>
@@ -1744,10 +1702,10 @@ footer {
 ═══════════════════════════════════════════════ -->
 <section class="contact-section" id="contact">
   <div class="contact-layout">
-    <div>
+    <div class="reveal">
       <div class="section-eyebrow">Get In Touch</div>
-      <h2 class="section-title">Let's Build<br><em>Together</em></h2>
-      <p class="section-desc">Ready to scale your distribution? Tell us about your business and we'll put together a custom operational plan — typically within 48 hours.</p>
+      <h2 class="section-title">Ready to <em>Scale?</em></h2>
+      <p class="section-desc">Tell us about your distribution needs and we'll respond with a custom proposal within 48 hours — no commitment required.</p>
       <div class="contact-details">
         <div class="contact-card">
           <div class="contact-card-icon">
@@ -1778,7 +1736,7 @@ footer {
         </div>
       </div>
     </div>
-    <div class="contact-form">
+    <div class="contact-form reveal reveal-delay-2">
       <div class="form-title">Request a Proposal</div>
       <div class="form-row">
         <div class="form-group">
@@ -1893,46 +1851,78 @@ footer {
 </footer>
 
 <script>
-/* ── Scroll nav ── */
-const nav = document.getElementById('nav');
+/* ═══════════════════════════════════════════════
+   HERO BAR CHART — build bars dynamically
+═══════════════════════════════════════════════ */
+(function buildBars() {
+  const heights = [55, 70, 45, 80, 90, 65, 75, 88, 60, 95, 78, 84];
+  const wrap = document.getElementById('heroBars');
+  if (!wrap) return;
+  heights.forEach((h, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'hero-bar' + (i === heights.length - 1 ? ' active' : '');
+    bar.style.height = h + '%';
+    wrap.appendChild(bar);
+  });
+})();
+
+/* ═══════════════════════════════════════════════
+   VIDEO — graceful fallback handling
+═══════════════════════════════════════════════ */
+(function handleVideo() {
+  const vid = document.querySelector('.hero-video-wrap video');
+  if (!vid) return;
+  vid.addEventListener('error', () => {
+    // Video failed — fallback gradient is already rendered behind it
+    vid.parentElement.style.display = 'none';
+  });
+  // If autoplay is blocked (e.g. some mobile browsers), video will just show poster
+})();
+
+/* ═══════════════════════════════════════════════
+   LOGO — swap to fallback if image fails
+═══════════════════════════════════════════════ */
+(function logoFallback() {
+  const img = document.querySelector('.logo-img');
+  const fallback = document.querySelector('.logo-img-fallback');
+  if (!img || !fallback) return;
+  img.addEventListener('error', () => {
+    img.style.display = 'none';
+    fallback.style.display = 'flex';
+  });
+  // Trigger immediately if already broken (cached failed state)
+  if (img.complete && img.naturalWidth === 0) {
+    img.style.display = 'none';
+    fallback.style.display = 'flex';
+  }
+})();
+
+/* ═══════════════════════════════════════════════
+   SCROLL NAV
+═══════════════════════════════════════════════ */
+const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
+  navEl.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-/* ── Reveal on scroll ── */
-const observer = new IntersectionObserver(entries => {
+/* ═══════════════════════════════════════════════
+   REVEAL ON SCROLL  (IntersectionObserver)
+═══════════════════════════════════════════════ */
+const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('in');
-      // trigger counter if applicable
-      const counter = e.target.querySelector('.counter');
-      if (counter && !counter.dataset.done) {
-        animateCounter(counter);
-        counter.dataset.done = '1';
-      }
+      revealObserver.unobserve(e.target); // fire once only
     }
   });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-/* Also observe num-items for counter */
-document.querySelectorAll('.num-item').forEach(el => {
-  const counter = el.querySelector('.counter');
-  if (counter) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting && !counter.dataset.done) {
-          animateCounter(counter);
-          counter.dataset.done = '1';
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.5 });
-    io.observe(el);
-  }
-});
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ── Animated counters ── */
+/* ═══════════════════════════════════════════════
+   ANIMATED COUNTERS  (separate observer so they
+   only trigger when fully visible)
+═══════════════════════════════════════════════ */
 function animateCounter(el) {
   const target = parseInt(el.dataset.target, 10);
   const duration = 1800;
@@ -1941,17 +1931,39 @@ function animateCounter(el) {
   let current = 0;
   const timer = setInterval(() => {
     current += increment;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
+    if (current >= target) { current = target; clearInterval(timer); }
     el.textContent = Math.floor(current).toLocaleString();
   }, step);
 }
 
-/* ── Form submit ── */
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const counter = e.target.querySelector('.counter');
+      if (counter && !counter.dataset.done) {
+        animateCounter(counter);
+        counter.dataset.done = '1';
+      }
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.num-item').forEach(el => counterObserver.observe(el));
+
+/* ═══════════════════════════════════════════════
+   FORM SUBMIT
+═══════════════════════════════════════════════ */
 function handleSubmit(btn) {
-  btn.textContent = 'Sending…';
+  // Basic validation
+  const form = btn.closest('.contact-form');
+  const email = form.querySelector('input[type="email"]');
+  if (email && !email.value.includes('@')) {
+    email.style.borderColor = 'rgba(239,68,68,0.6)';
+    email.focus();
+    return;
+  }
+  btn.innerHTML = 'Sending&hellip;';
   btn.disabled = true;
   setTimeout(() => {
     btn.innerHTML = '✓ Proposal Request Received — We\'ll be in touch within 48 hours.';
@@ -1960,7 +1972,9 @@ function handleSubmit(btn) {
   }, 1100);
 }
 
-/* ── Newsletter ── */
+/* ═══════════════════════════════════════════════
+   NEWSLETTER
+═══════════════════════════════════════════════ */
 document.querySelector('.newsletter-input-row button').addEventListener('click', function() {
   const input = this.previousElementSibling;
   if (input.value.includes('@')) {
@@ -1972,6 +1986,24 @@ document.querySelector('.newsletter-input-row button').addEventListener('click',
     this.disabled = true;
   }
 });
+
+/* ═══════════════════════════════════════════════
+   MOBILE MENU  (hamburger toggle)
+═══════════════════════════════════════════════ */
+const hamburger = document.querySelector('.nav-hamburger');
+const navUl = document.querySelector('nav ul');
+if (hamburger && navUl) {
+  hamburger.addEventListener('click', () => {
+    const open = navUl.style.display === 'flex';
+    navUl.style.cssText = open
+      ? ''
+      : 'display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:rgba(8,6,10,0.97); backdrop-filter:blur(22px); padding:16px 5vw 24px; gap:4px; border-top:1px solid rgba(255,255,255,0.06);';
+  });
+  // Close on link click
+  navUl.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { navUl.style.cssText = ''; });
+  });
+}
 </script>
 </body>
 </html>
