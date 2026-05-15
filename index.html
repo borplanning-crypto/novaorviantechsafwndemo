@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Orvian LLC — Premier U.S. Distribution Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0a0c10;
+    --ink2: #141720;
+    --ink3: #1e2230;
+    --gold: #c8a96e;
+    --gold2: #e8c98a;
+    --gold3: #f5dfa4;
+    --cream: #f4f0e8;
+    --muted: #9aa0b0;
+    --text: #e8e4da;
+    --white: #ffffff;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-label: 'Barlow Condensed', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--ink);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 5vw;
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,12,16,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,169,110,0.15);
+    transition: all 0.3s;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-mark span {
+    font-family: var(--font-label);
+    font-size: 13px; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.5px;
+  }
+  .logo-text {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .logo-text .company { font-family: var(--font-label); font-size: 16px; font-weight: 700; color: var(--white); letter-spacing: 2px; }
+  .logo-text .tagline-logo { font-size: 10px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; font-weight: 300; }
+
+  nav ul { list-style: none; display: flex; gap: 36px; align-items: center; }
+  nav a { font-family: var(--font-label); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+  nav a:hover { color: var(--gold2); }
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--ink) !important;
+    padding: 10px 22px !important;
+    border-radius: 2px !important;
+    transition: background 0.25s !important;
+    font-weight: 700 !important;
+  }
+  .nav-cta:hover { background: var(--gold2) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 5vw 80px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,169,110,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(200,169,110,0.04) 0%, transparent 50%),
+      linear-gradient(160deg, #0a0c10 0%, #111520 40%, #0e111a 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 70% at 60% 50%, black 0%, transparent 80%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-label); font-size: 12px; font-weight: 600;
+    letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 8vw, 110px);
+    font-weight: 300; line-height: 0.92;
+    color: var(--white);
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold2);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 17px; color: var(--muted);
+    max-width: 480px; line-height: 1.75;
+    margin: 28px 0 48px;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: var(--font-label); font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 16px 36px; border-radius: 2px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-label); font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 16px 36px; border-radius: 2px;
+    text-decoration: none;
+    border: 1px solid rgba(200,169,110,0.35);
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold2); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: absolute; bottom: 60px; right: 5vw;
+    display: flex; gap: 56px;
+    z-index: 2;
+  }
+  .hero-stat { text-align: right; }
+  .hero-stat .num {
+    font-family: var(--font-display); font-size: 52px; font-weight: 600;
+    color: var(--gold2); line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-family: var(--font-label); font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--muted);
+    margin-top: 4px;
+  }
+  .hero-line {
+    position: absolute; right: calc(5vw + 280px); bottom: 40px;
+    width: 1px; height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    opacity: 0.4;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 100px 5vw; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-label); font-size: 11px; font-weight: 700;
+    letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--gold);
+  }
+  h2.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 300; line-height: 1.05;
+    color: var(--white); margin-bottom: 20px;
+  }
+  h2.section-title em { font-style: italic; color: var(--gold2); }
+  .section-desc {
+    font-size: 16px; color: var(--muted); line-height: 1.8;
+    max-width: 560px; font-weight: 300;
+  }
+
+  /* ─── ABOUT / INTRO STRIP ─── */
+  .intro-strip {
+    background: var(--ink2);
+    border-top: 1px solid rgba(200,169,110,0.12);
+    border-bottom: 1px solid rgba(200,169,110,0.12);
+    padding: 48px 5vw;
+  }
+  .intro-strip-inner {
+    display: flex; align-items: center; gap: 80px; flex-wrap: wrap;
+  }
+  .intro-strip p {
+    font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 300; line-height: 1.5; color: var(--cream);
+    max-width: 700px; flex: 1; min-width: 260px;
+  }
+  .intro-strip p strong { color: var(--gold2); font-weight: 400; }
+  .intro-divider { width: 1px; height: 80px; background: rgba(200,169,110,0.25); flex-shrink: 0; }
+  .intro-badge {
+    flex-shrink: 0;
+    border: 1px solid rgba(200,169,110,0.3);
+    padding: 20px 28px;
+    border-radius: 2px;
+  }
+  .intro-badge .num {
+    font-family: var(--font-display); font-size: 44px; font-weight: 600;
+    color: var(--gold2); line-height: 1;
+  }
+  .intro-badge .lbl {
+    font-family: var(--font-label); font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--muted); margin-top: 4px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--ink); }
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 24px; margin-bottom: 64px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+  .service-card {
+    background: var(--ink2);
+    padding: 48px 40px;
+    border: 1px solid rgba(200,169,110,0.08);
+    position: relative; overflow: hidden;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .service-card:hover {
+    background: #1a1f2e;
+    border-color: rgba(200,169,110,0.25);
+    transform: translateY(-4px);
+    z-index: 2;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon {
+    width: 52px; height: 52px;
+    border: 1px solid rgba(200,169,110,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 28px; border-radius: 2px;
+    transition: background 0.3s;
+  }
+  .service-card:hover .service-icon { background: rgba(200,169,110,0.08); }
+  .service-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .service-card h3 {
+    font-family: var(--font-display); font-size: 26px; font-weight: 400;
+    color: var(--white); margin-bottom: 14px; line-height: 1.2;
+  }
+  .service-card p { font-size: 15px; color: var(--muted); line-height: 1.75; font-weight: 300; }
+  .service-num {
+    position: absolute; top: 28px; right: 32px;
+    font-family: var(--font-label); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; color: rgba(200,169,110,0.2);
+  }
+
+  /* ─── INDUSTRIES ─── */
+  .industries { background: var(--ink2); }
+  .industries-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+  .industries-list {
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid rgba(200,169,110,0.1);
+  }
+  .industry-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 28px;
+    border-bottom: 1px solid rgba(200,169,110,0.08);
+    cursor: default; transition: background 0.2s;
+    font-family: var(--font-label); font-size: 14px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  }
+  .industry-item:last-child { border-bottom: none; }
+  .industry-item:hover { background: rgba(200,169,110,0.05); color: var(--gold2); }
+  .industry-item span { font-size: 11px; color: rgba(200,169,110,0.4); letter-spacing: 0; text-transform: none; font-weight: 400; }
+
+  .industries-right {}
+  .industries-right .section-label { margin-top: 0; }
+  .industries-features {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px;
+  }
+  .feature-block {
+    padding: 28px 24px;
+    background: rgba(200,169,110,0.04);
+    border: 1px solid rgba(200,169,110,0.1);
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .feature-block:hover { background: rgba(200,169,110,0.08); }
+  .feature-block h4 {
+    font-family: var(--font-label); font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px;
+  }
+  .feature-block p { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+  /* ─── WHY US ─── */
+  .why-us { background: var(--ink); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; margin-top: 60px; }
+  .why-card {
+    padding: 0;
+    position: relative;
+  }
+  .why-card-inner {
+    border-top: 1px solid rgba(200,169,110,0.2);
+    padding-top: 24px;
+    transition: border-color 0.3s;
+  }
+  .why-card:hover .why-card-inner { border-color: var(--gold); }
+  .why-card h3 {
+    font-family: var(--font-display); font-size: 22px; font-weight: 400;
+    color: var(--white); margin-bottom: 12px;
+  }
+  .why-card p { font-size: 15px; color: var(--muted); line-height: 1.75; font-weight: 300; }
+  .why-num {
+    font-family: var(--font-label); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; color: rgba(200,169,110,0.3);
+    margin-bottom: 16px; display: block;
+  }
+
+  /* ─── NUMBERS BAND ─── */
+  .numbers-band {
+    background: var(--gold);
+    padding: 64px 5vw;
+  }
+  .numbers-inner {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0;
+  }
+  .number-item {
+    text-align: center; padding: 20px 16px;
+    border-right: 1px solid rgba(10,12,16,0.15);
+  }
+  .number-item:last-child { border-right: none; }
+  .number-item .big {
+    font-family: var(--font-display); font-size: 56px; font-weight: 600;
+    color: var(--ink); line-height: 1;
+  }
+  .number-item .lbl {
+    font-family: var(--font-label); font-size: 12px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(10,12,16,0.55); margin-top: 8px;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact { background: var(--ink2); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-info { }
+  .contact-info address {
+    font-style: normal; margin-top: 36px;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid rgba(200,169,110,0.25);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+  }
+  .contact-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .contact-item .label {
+    font-family: var(--font-label); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 4px; display: block;
+  }
+  .contact-item .value { font-size: 15px; color: var(--text); font-weight: 300; line-height: 1.6; }
+
+  .contact-form { }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; font-family: var(--font-label); font-size: 11px;
+    font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,169,110,0.2);
+    color: var(--text); font-family: var(--font-body); font-size: 15px;
+    padding: 14px 18px; border-radius: 2px; outline: none;
+    transition: border-color 0.25s, background 0.25s;
+    font-weight: 300;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold); background: rgba(200,169,110,0.04);
+  }
+  .form-group select option { background: var(--ink2); color: var(--text); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(200,169,110,0.1);
+    padding: 60px 5vw 32px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px; margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .footer-brand p {
+    font-size: 14px; color: var(--muted); line-height: 1.8;
+    font-weight: 300; margin-top: 16px; max-width: 280px;
+  }
+  .footer-col h4 {
+    font-family: var(--font-label); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a {
+    font-size: 14px; color: var(--muted); text-decoration: none;
+    font-weight: 300; transition: color 0.25s;
+  }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom {
+    border-top: 1px solid rgba(200,169,110,0.08);
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 13px; color: rgba(154,160,176,0.5); font-weight: 300; }
+  .footer-bottom .certifications {
+    display: flex; gap: 16px; align-items: center;
+  }
+  .cert-badge {
+    font-family: var(--font-label); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(200,169,110,0.4);
+    border: 1px solid rgba(200,169,110,0.15);
+    padding: 5px 10px; border-radius: 2px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.7s ease forwards; }
+  .hero h1 { animation: fadeUp 0.7s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-actions { animation: fadeUp 0.7s 0.3s ease both; }
+  .hero-stats { animation: fadeUp 0.7s 0.4s ease both; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    .hero-stats { position: static; flex-direction: row; margin-top: 60px; }
+    .hero-stat { text-align: left; }
+    .hero-line { display: none; }
+    .industries-layout { grid-template-columns: 1fr; gap: 48px; }
+    .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 48px; }
+    .intro-strip-inner { flex-direction: column; gap: 24px; }
+    .industries-features { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+
+  /* Scroll reveal placeholder */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ────── NAV ────── -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark"><span>NO</span></div>
+    <div class="logo-text">
+      <span class="company">NOVA ORVIAN</span>
+      <span class="tagline-logo">Distribution &nbsp;·&nbsp; LLC</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- ────── HERO ────── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">U.S. Distribution Partner</div>
+    <h1>
+      Moving America's
+      <em>Supply Chain</em>
+      Forward.
+    </h1>
+    <p class="hero-sub">
+      Nova Orvian LLC delivers end-to-end distribution solutions across the United States — connecting manufacturers, businesses, and communities with reliability, speed, and precision.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        Request a Quote
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#services" class="btn-secondary">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-line"></div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num">50+</div>
+      <div class="lbl">States Served</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">24/7</div>
+      <div class="lbl">Operations</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">99%</div>
+      <div class="lbl">On-Time Rate</div>
+    </div>
+  </div>
+</section>
+
+<!-- ────── INTRO STRIP ────── -->
+<div class="intro-strip">
+  <div class="intro-strip-inner">
+    <p>
+      We are <strong>Nova Orvian LLC</strong> — a full-service U.S. distributor built on relationships, powered by logistics, and driven by the commitment to deliver every time.
+    </p>
+    <div class="intro-divider"></div>
+    <div class="intro-badge">
+      <div class="num">2024</div>
+      <div class="lbl">Est. United States</div>
+    </div>
+  </div>
+</div>
+
+<!-- ────── SERVICES ────── -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Full-Spectrum<br><em>Distribution Services</em></h2>
+    </div>
+    <p class="section-desc">From first mile to last mile, our integrated distribution network ensures your products reach their destination — on time, every time.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <h3>Freight &amp; Logistics</h3>
+      <p>Comprehensive freight management with nationwide carrier relationships. LTL, FTL, and expedited shipping solutions tailored to your timeline and budget.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2M12 12v4M10 14h4"/></svg>
+      </div>
+      <h3>Warehousing &amp; Storage</h3>
+      <p>Strategically located fulfillment centers across the U.S. providing secure, climate-controlled storage with real-time inventory management and rapid dispatch.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Supply Chain Management</h3>
+      <p>End-to-end supply chain visibility with intelligent planning tools. We optimize every link in your chain — from vendor sourcing to final delivery.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 104.93 19.07"/><path d="M16 8l3-3M8 16l-3 3"/></svg>
+      </div>
+      <h3>Last-Mile Delivery</h3>
+      <p>Precision last-mile solutions ensuring seamless delivery to businesses and end consumers. Real-time tracking and proof of delivery on every shipment.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">05</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      </div>
+      <h3>Product Sourcing</h3>
+      <p>Leverage our national network of verified manufacturers and vendors to source products at competitive prices. We handle vetting, negotiation, and quality assurance.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">06</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <h3>Analytics &amp; Reporting</h3>
+      <p>Data-driven insights into your distribution performance. Custom dashboards and regular reporting help you make smarter, faster business decisions.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ────── INDUSTRIES ────── -->
+<section class="industries" id="industries">
+  <div class="industries-layout">
+    <div>
+      <div class="section-label reveal">Industries We Serve</div>
+      <div class="industries-list reveal">
+        <div class="industry-item">Food &amp; Beverage <span>Consumer Goods</span></div>
+        <div class="industry-item">Healthcare &amp; Pharma <span>Medical Supply</span></div>
+        <div class="industry-item">Industrial &amp; MRO <span>Manufacturing</span></div>
+        <div class="industry-item">Building &amp; Construction <span>Materials</span></div>
+        <div class="industry-item">Electrical &amp; Plumbing <span>Trades</span></div>
+        <div class="industry-item">Electronics &amp; Tech <span>Components</span></div>
+        <div class="industry-item">Retail &amp; E-Commerce <span>Fulfillment</span></div>
+        <div class="industry-item">Government &amp; Defense <span>Public Sector</span></div>
+      </div>
+    </div>
+    <div class="industries-right reveal">
+      <div class="section-label">Why Choose Nova Orvian</div>
+      <h2 class="section-title">Built for<br><em>Every Sector</em></h2>
+      <p class="section-desc">Our cross-industry expertise means we understand the compliance requirements, temperature sensitivities, and delivery urgencies unique to your field.</p>
+      <div class="industries-features">
+        <div class="feature-block">
+          <h4>FDA Compliance Ready</h4>
+          <p>Temperature-controlled facilities and chain-of-custody documentation for food and pharma clients.</p>
+        </div>
+        <div class="feature-block">
+          <h4>Hazmat Certified</h4>
+          <p>Trained and licensed to handle hazardous materials with full regulatory compliance.</p>
+        </div>
+        <div class="feature-block">
+          <h4>Custom EDI Integration</h4>
+          <p>Seamless Electronic Data Interchange connections with all major ERP and ordering platforms.</p>
+        </div>
+        <div class="feature-block">
+          <h4>Private Label &amp; OEM</h4>
+          <p>We support custom packaging, private labeling, and OEM product lines for our clients.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────── NUMBERS BAND ────── -->
+<div class="numbers-band">
+  <div class="numbers-inner reveal">
+    <div class="number-item">
+      <div class="big">50+</div>
+      <div class="lbl">States Covered</div>
+    </div>
+    <div class="number-item">
+      <div class="big">8</div>
+      <div class="lbl">Industries Served</div>
+    </div>
+    <div class="number-item">
+      <div class="big">99%</div>
+      <div class="lbl">On-Time Delivery</div>
+    </div>
+    <div class="number-item">
+      <div class="big">24/7</div>
+      <div class="lbl">Support &amp; Ops</div>
+    </div>
+    <div class="number-item">
+      <div class="big">1K+</div>
+      <div class="lbl">SKUs Managed</div>
+    </div>
+  </div>
+</div>
+
+<!-- ────── WHY US ────── -->
+<section class="why-us" id="about">
+  <div class="reveal">
+    <div class="section-label">Our Advantage</div>
+    <h2 class="section-title">The Nova Orvian<br><em>Difference</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-card-inner">
+        <span class="why-num">01 / Reliability</span>
+        <h3>We Deliver on Our Promise</h3>
+        <p>Industry-leading on-time delivery rate backed by redundant logistics networks and proactive exception management. Your supply chain never sleeps, and neither do we.</p>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-card-inner">
+        <span class="why-num">02 / Technology</span>
+        <h3>Real-Time Visibility</h3>
+        <p>Our proprietary tracking platform gives you live visibility into every shipment, order, and inventory position — accessible from any device, at any time.</p>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-card-inner">
+        <span class="why-num">03 / Relationships</span>
+        <h3>Dedicated Account Teams</h3>
+        <p>Every client is assigned a dedicated account manager who knows your business, your suppliers, and your customers. Real people, not call center scripts.</p>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-card-inner">
+        <span class="why-num">04 / Scale</span>
+        <h3>Nationwide Reach</h3>
+        <p>From a single pallet to a full truckload, coast to coast. Our nationwide infrastructure scales with your growth — no minimums, no caps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────── CONTACT ────── -->
+<section class="contact" id="contact">
+  <div class="contact-layout">
+    <div class="contact-info reveal">
+      <div class="section-label">Reach Us</div>
+      <h2 class="section-title">Let's Build<br><em>Together</em></h2>
+      <p class="section-desc">Ready to streamline your distribution? Tell us about your needs and we'll put together a custom solution — fast.</p>
+      <address>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 7.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 12a16 16 0 006 6l.54-.54a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <span class="label">Phone</span>
+            <span class="value">+1 (800) NOVA-OVN<br><small style="opacity:0.6">(Available 24/7)</small></span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <span class="label">Email</span>
+            <span class="value">info@novaorvian.com<br>sales@novaorvian.com</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <span class="label">Headquarters</span>
+            <span class="value">United States of America<br><small style="opacity:0.6">Operations: Nationwide</small></span>
+          </div>
+        </div>
+      </address>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Company</label>
+        <input type="text" placeholder="Your Company, Inc.">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="john@yourcompany.com">
+      </div>
+      <div class="form-group">
+        <label>Service Interest</label>
+        <select>
+          <option value="">— Select a Service —</option>
+          <option>Freight &amp; Logistics</option>
+          <option>Warehousing &amp; Storage</option>
+          <option>Supply Chain Management</option>
+          <option>Last-Mile Delivery</option>
+          <option>Product Sourcing</option>
+          <option>Full Distribution Partnership</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Us About Your Needs</label>
+        <textarea placeholder="Monthly volume, geography, product type, timeline..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="alert('Thank you! A Nova Orvian representative will be in touch within 24 hours.')">
+        Submit Inquiry
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ────── FOOTER ────── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="display:inline-flex">
+        <div class="logo-mark"><span>NO</span></div>
+        <div class="logo-text">
+          <span class="company">NOVA ORVIAN</span>
+          <span class="tagline-logo">Distribution &nbsp;·&nbsp; LLC</span>
+        </div>
+      </a>
+      <p>A premier U.S. distribution company delivering reliability, scale, and precision across every industry we serve.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Freight &amp; Logistics</a></li>
+        <li><a href="#services">Warehousing</a></li>
+        <li><a href="#services">Supply Chain</a></li>
+        <li><a href="#services">Last-Mile Delivery</a></li>
+        <li><a href="#services">Product Sourcing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Industries</h4>
+      <ul>
+        <li><a href="#industries">Food &amp; Beverage</a></li>
+        <li><a href="#industries">Healthcare</a></li>
+        <li><a href="#industries">Industrial</a></li>
+        <li><a href="#industries">Construction</a></li>
+        <li><a href="#industries">Retail</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Nova Orvian LLC. All rights reserved. Registered in the United States of America.</p>
+    <div class="certifications">
+      <span class="cert-badge">LLC Registered</span>
+      <span class="cert-badge">USA Distributor</span>
+      <span class="cert-badge">Nationwide</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(10,12,16,0.98)'
+      : 'rgba(10,12,16,0.92)';
+  });
+</script>
+</body>
+</html>
