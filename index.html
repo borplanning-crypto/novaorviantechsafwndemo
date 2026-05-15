@@ -10,33 +10,26 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* ── Page palette ── */
   --bg:       #f5f4f1;
   --bg2:      #eeece7;
   --bg3:      #e6e3dc;
   --dark:     #111210;
   --dark2:    #1c1b18;
   --dark3:    #28271f;
-
-  /* ── Accent: Emerald replaces deep-blue; warm Charcoal/Slate base ── */
-  --accent:   #10b981;   /* emerald-500  */
-  --accent2:  #34d399;   /* emerald-400  */
-  --accent3:  #6ee7b7;   /* emerald-300  */
-  --gold:     #d97706;   /* amber-600    */
-
+  --accent:   #10b981;
+  --accent2:  #34d399;
+  --accent3:  #6ee7b7;
+  --gold:     #d97706;
   --charcoal: #1e2022;
   --slate:    #44433d;
   --slate2:   #7a7870;
   --slate3:   #b0aea5;
   --white:    #ffffff;
-
   --border:   rgba(17,18,16,0.09);
   --border2:  rgba(16,185,129,0.18);
-
   --font-display: 'Fraunces', serif;
   --font-body:    'DM Sans', sans-serif;
   --font-mono:    'Syne', sans-serif;
-
   --shadow-sm: 0 2px 14px rgba(17,18,16,0.05);
   --shadow-md: 0 8px 32px rgba(17,18,16,0.09);
   --shadow-lg: 0 20px 56px rgba(17,18,16,0.10);
@@ -134,7 +127,6 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 @keyframes metricPulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
 @keyframes marquee     { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
-/* ── Ken Burns: slow cinematic scale + drift ── */
 @keyframes kenburns-1 {
   0%   { transform: scale(1.0)  translate(0%, 0%); }
   100% { transform: scale(1.15) translate(-2%, -1.5%); }
@@ -153,27 +145,29 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 }
 
 /* ═══════════════════════════════════════════════
-   HERO — CINEMATIC KEN BURNS SLIDER
+   HERO — FIX 1 & 2 APPLIED
+   · align-items: center  (was flex-end)
+   · min-height: 100vh + padding: 100px 0  (was height: 100vh)
 ═══════════════════════════════════════════════ */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 640px;
+  /* FIX 1: min-height instead of fixed height + vertical padding as safe zone */
+  min-height: 100vh;
+  padding: 100px 0;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  /* FIX 1: center content in the vertical safe zone */
+  align-items: center;
   justify-content: center;
 }
 
-/* ── Slider container ── */
 .hero-slider {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-/* ── Each slide: full-size image with Ken Burns running ── */
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -184,11 +178,14 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 }
 .hero-slide.active { opacity: 1; }
 
+/* FIX 2: Blur + darken applied directly to the image — NOT to the overlay.
+   This keeps the cinematic Ken Burns animation fully visible while
+   creating elegant depth-of-field. backdrop-filter removed from overlay. */
 .hero-slide img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
   transform-origin: center center;
-  /* Ken Burns animation is applied via JS on activation */
+  filter: blur(4px) brightness(0.7);
 }
 .hero-slide.active img {
   animation-duration: 20s;
@@ -201,28 +198,27 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 .hero-slide:nth-child(3).active img { animation-name: kenburns-3; }
 .hero-slide:nth-child(4).active img { animation-name: kenburns-4; }
 
-/* ── Dark overlay for text legibility ── */
+/* FIX 2: Overlay gradient opacity raised to 0.75 — no backdrop-filter here */
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
     linear-gradient(to bottom,
-      rgba(8,10,8,0.62) 0%,
-      rgba(8,10,8,0.30) 38%,
-      rgba(8,10,8,0.42) 62%,
-      rgba(8,10,8,0.88) 100%),
+      rgba(8,10,8,0.75) 0%,
+      rgba(8,10,8,0.35) 38%,
+      rgba(8,10,8,0.48) 62%,
+      rgba(8,10,8,0.92) 100%),
     linear-gradient(to right,
-      rgba(8,10,8,0.72) 0%,
+      rgba(8,10,8,0.78) 0%,
       rgba(8,10,8,0.0) 55%);
+  /* FIX 2: backdrop-filter REMOVED — was blocking the Ken Burns animation */
 }
 
-/* ── Film grain ── */
 .hero-grain {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
   opacity: 0.038;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ── Slide progress dots ── */
 .hero-dots {
   position: absolute; bottom: 44px; right: 5vw; z-index: 5;
   display: flex; gap: 8px; align-items: center;
@@ -238,47 +234,47 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   transform: scale(1.5);
 }
 
-/* ── Main content grid ── */
+/* FIX 1: Container capped at 1400px for enterprise-grade balance on wide screens */
 .hero-inner {
   position: relative; z-index: 3;
-  width: 100%; max-width: 1320px;
+  width: 100%; max-width: 1400px;
   margin: 0 auto;
-  padding: 0 5vw 104px;
-  padding-top: 160px;
+  padding: 0 5vw;
   display: grid;
   grid-template-columns: 1fr 420px;
   gap: 56px;
-  align-items: flex-end;
+  align-items: center;
 }
 
-/* ── Founder label ── */
+/* FIX 3: Founder label uses Emerald-400 for vibrancy */
 .hero-founder-label {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-mono); font-size: 10px; font-weight: 700;
   letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--accent2);
+  /* FIX 3: Emerald-400 (#34d399) for vibrant pop against dark warehouse */
+  color: #34d399;
   margin-bottom: 14px;
   animation: slideInLeft 0.6s 0s ease both;
 }
 .hero-founder-label::before {
   content: '';
   display: block; width: 20px; height: 1.5px;
-  background: var(--accent2);
+  background: #34d399;
 }
 
-/* ── Left column ── */
 .hero-left { position: relative; }
 
 .hero-chip {
   display: inline-flex; align-items: center; gap: 9px;
   background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: 100px; padding: 7px 18px 7px 9px;
   font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,0.78);
   letter-spacing: 0.6px; margin-bottom: 28px;
   animation: slideInLeft 0.7s 0.15s ease both;
+  /* backdrop-filter kept on chip as it's a small UI element, not a full-screen overlay */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 .hero-chip-dot {
   width: 22px; height: 22px; border-radius: 50%;
@@ -291,6 +287,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   animation: pulse 2.2s ease infinite;
 }
 
+/* FIX 3: H1 font-weight raised to 700 + stronger drop-shadow */
 .hero h1 {
   font-family: var(--font-display);
   font-size: clamp(46px, 5.8vw, 82px);
@@ -298,8 +295,11 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   color: var(--white);
   letter-spacing: -2px;
   margin-bottom: 26px;
-  font-weight: 300;
-  text-shadow: 0 4px 28px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.4);
+  /* FIX 3: Bold weight for maximum legibility at all zoom levels */
+  font-weight: 700;
+  /* FIX 3: Stronger drop-shadow for text clarity */
+  text-shadow: drop-shadow(0 4px 12px rgba(0,0,0,1));
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.95));
   animation: fadeUp 0.75s 0.25s ease both;
 }
 .hero h1 em {
@@ -308,16 +308,16 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   display: block;
 }
 .hero h1 strong {
-  font-weight: 600; font-style: normal;
-  background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.72) 100%);
+  font-weight: 700; font-style: normal;
+  background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.82) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .hero-desc {
-  font-size: 16.5px; color: rgba(255,255,255,0.64); line-height: 1.80;
+  font-size: 16.5px; color: rgba(255,255,255,0.72); line-height: 1.80;
   max-width: 520px; font-weight: 400; margin-bottom: 40px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
   animation: fadeUp 0.75s 0.36s ease both;
 }
 
@@ -357,7 +357,6 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   border-color: rgba(255,255,255,0.38);
 }
 
-/* ── Trust bar / Stats row ── */
 .hero-trust-bar {
   margin-top: 52px;
   display: grid;
@@ -369,7 +368,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   overflow: hidden;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: rgba(8,10,8,0.35);
+  background: rgba(8,10,8,0.55);
 }
 .trust-stat {
   padding: 20px 24px;
@@ -389,7 +388,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 .trust-stat .t-num span { color: var(--accent2); }
 .trust-stat .t-lbl {
   font-size: 10.5px;
-  color: rgba(255,255,255,0.38);
+  color: rgba(255,255,255,0.45);
   font-weight: 500;
   letter-spacing: 0.5px;
   margin-top: 4px;
@@ -397,21 +396,21 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   font-family: var(--font-mono);
 }
 
-/* ── Right column: glassmorphism dashboard card ── */
+/* FIX 4: Dashboard card — solid near-opaque background so metrics are crisp */
 .hero-right { animation: fadeUp 0.85s 0.34s ease both; }
 
 .hero-visual {
-  background: rgba(10,12,10,0.58);
-  backdrop-filter: blur(28px) saturate(1.4);
-  -webkit-backdrop-filter: blur(28px) saturate(1.4);
+  /* FIX 4: Solid rgba(6,8,10,0.95) stops the warehouse background bleeding through */
+  background: rgba(6, 8, 10, 0.95);
   border-radius: 24px;
   border: 1px solid rgba(255,255,255,0.1);
   padding: 36px 32px;
   position: relative; overflow: hidden;
   box-shadow:
-    0 32px 80px rgba(0,0,0,0.5),
+    0 32px 80px rgba(0,0,0,0.65),
     inset 0 1px 0 rgba(255,255,255,0.08);
   animation: borderPulse 4s ease infinite;
+  /* backdrop-filter removed — the solid background does the job more reliably */
 }
 .hero-visual::before {
   content: '';
@@ -442,8 +441,8 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px;
 }
 .hero-metric {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
   border-radius: 14px; padding: 16px 14px;
   transition: background 0.25s, transform 0.25s;
 }
@@ -457,20 +456,20 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 .hero-metric:nth-child(3) .m-val { animation-delay: 1.6s; }
 .hero-metric:nth-child(4) .m-val { animation-delay: 2.4s; }
 .hero-metric .m-lbl {
-  font-size: 10px; color: rgba(255,255,255,0.30);
+  font-size: 10px; color: rgba(255,255,255,0.38);
   font-weight: 500; margin-top: 5px; letter-spacing: 0.3px;
 }
 
 .hero-chart {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
   border-radius: 12px; padding: 14px;
   margin-bottom: 18px;
 }
 .hero-chart-label {
   font-size: 9.5px; font-family: var(--font-mono); font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,0.26); margin-bottom: 10px;
+  color: rgba(255,255,255,0.3); margin-bottom: 10px;
 }
 .hero-bars {
   display: flex; align-items: flex-end; gap: 5px; height: 44px;
@@ -498,22 +497,22 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 }
 .status-row { display: flex; align-items: center; gap: 8px; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse 2s ease infinite; flex-shrink: 0; }
-.status-text { font-size: 12px; color: rgba(255,255,255,0.38); font-weight: 500; }
+.status-text { font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 500; }
 .uptime-badge {
   font-family: var(--font-mono); font-size: 10px; font-weight: 700;
   background: rgba(16,185,129,0.15); color: var(--accent3);
   padding: 5px 11px; border-radius: 100px;
   border: 1px solid rgba(16,185,129,0.25); letter-spacing: 1px;
 }
+/* FIX 3: Live tag uses Emerald-400 (#34d399) for vibrance */
 .live-tag {
   display: inline-flex; align-items: center; gap: 5px;
   font-family: var(--font-mono); font-size: 9px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
-  color: #4ade80; margin-left: 8px;
+  color: #34d399; margin-left: 8px;
 }
-.live-tag span { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; animation: pulse 1.5s ease infinite; flex-shrink: 0; }
+.live-tag span { width: 5px; height: 5px; border-radius: 50%; background: #34d399; animation: pulse 1.5s ease infinite; flex-shrink: 0; }
 
-/* Scroll cue */
 .hero-scroll-cue {
   position: absolute; bottom: 44px; left: 50%;
   transform: translateX(-50%);
@@ -525,7 +524,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 .hero-scroll-cue span {
   font-family: var(--font-mono); font-size: 9px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.32);
 }
 .scroll-arrow {
   width: 28px; height: 28px; border-radius: 50%;
@@ -533,7 +532,7 @@ nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   display: flex; align-items: center; justify-content: center;
   animation: bounceY 2s ease infinite;
 }
-.scroll-arrow svg { stroke: rgba(255,255,255,0.45); }
+.scroll-arrow svg { stroke: rgba(255,255,255,0.5); }
 
 /* ═══════════════════════════════════════════════
    MARQUEE
@@ -1112,7 +1111,6 @@ footer {
   .process-steps::before { display: none; }
   .testimonials-grid { grid-template-columns: 1fr 1fr; }
   .about-banner-grid { grid-template-columns: 1fr; gap: 52px; }
-  /* Trust bar: 2×2 on tablets */
   .hero-trust-bar { grid-template-columns: repeat(2, 1fr); }
   .trust-stat:nth-child(2) { border-right: none; }
   .trust-stat:nth-child(1),
@@ -1129,7 +1127,6 @@ footer {
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .about-highlights { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
-  /* Trust bar: 2×2 on mobile */
   .hero-trust-bar { grid-template-columns: repeat(2, 1fr); max-width: 400px; }
 }
 @media (max-width: 600px) {
@@ -1150,9 +1147,7 @@ footer {
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     NAV
-═══════════════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="nav">
   <a href="#" class="logo">
     <img
@@ -1180,46 +1175,27 @@ footer {
   </button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════
-     HERO — CINEMATIC KEN BURNS IMAGE SLIDER
-═══════════════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero" id="home">
 
-  <!-- Ken Burns Image Slider -->
   <div class="hero-slider" id="heroSlider">
     <div class="hero-slide active" id="slide-0">
-      <img
-        src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&q=85&auto=format&fit=crop"
-        alt="Massive Logistics Warehouse"
-      >
+      <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&q=85&auto=format&fit=crop" alt="Massive Logistics Warehouse">
     </div>
     <div class="hero-slide" id="slide-1">
-      <img
-        src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=85&auto=format&fit=crop"
-        alt="Global Shipping Hub"
-      >
+      <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=85&auto=format&fit=crop" alt="Global Shipping Hub">
     </div>
     <div class="hero-slide" id="slide-2">
-      <img
-        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=85&auto=format&fit=crop"
-        alt="Automated Fulfillment Center"
-      >
+      <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=85&auto=format&fit=crop" alt="Automated Fulfillment Center">
     </div>
     <div class="hero-slide" id="slide-3">
-      <img
-        src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=85&auto=format&fit=crop"
-        alt="Distribution Network Operations"
-      >
+      <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=85&auto=format&fit=crop" alt="Distribution Network Operations">
     </div>
   </div>
 
-  <!-- Dark overlay -->
   <div class="hero-overlay"></div>
-
-  <!-- Film grain -->
   <div class="hero-grain"></div>
 
-  <!-- Slide indicator dots -->
   <div class="hero-dots" id="heroDots">
     <div class="hero-dot active" data-index="0"></div>
     <div class="hero-dot" data-index="1"></div>
@@ -1227,12 +1203,9 @@ footer {
     <div class="hero-dot" data-index="3"></div>
   </div>
 
-  <!-- Main content grid -->
   <div class="hero-inner">
 
-    <!-- Left column -->
     <div class="hero-left">
-      <!-- Founder attribution -->
       <div class="hero-founder-label">Founder @ Minorsoltech</div>
 
       <div class="hero-chip">
@@ -1261,7 +1234,6 @@ footer {
         </a>
       </div>
 
-      <!-- Trust bar: 4-up on desktop, 2×2 on mobile -->
       <div class="hero-trust-bar">
         <div class="trust-stat">
           <div class="t-num">500<span>+</span></div>
@@ -1282,7 +1254,6 @@ footer {
       </div>
     </div>
 
-    <!-- Right column: glassmorphism dashboard card -->
     <div class="hero-right">
       <div class="hero-visual">
         <div class="hero-visual-label">
@@ -1322,9 +1293,8 @@ footer {
       </div>
     </div>
 
-  </div><!-- /.hero-inner -->
+  </div>
 
-  <!-- Scroll cue -->
   <div class="hero-scroll-cue" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
     <span>Scroll</span>
     <div class="scroll-arrow">
@@ -1334,9 +1304,7 @@ footer {
 
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     MARQUEE
-═══════════════════════════════════════════════ -->
+<!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
     <span class="marquee-item">Wholesale Distribution</span>
@@ -1362,9 +1330,7 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SERVICES
-═══════════════════════════════════════════════ -->
+<!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-header">
     <div class="reveal">
@@ -1374,7 +1340,6 @@ footer {
     <p class="section-desc reveal reveal-delay-1">From purchase order through point-of-sale, our integrated capabilities cover every stage of your distribution journey — with the technology and scale that enterprise demands.</p>
   </div>
   <div class="services-grid">
-
     <div class="service-card reveal">
       <div class="service-num">01</div>
       <div class="service-icon-wrap">
@@ -1384,7 +1349,6 @@ footer {
       <p>National-scale wholesale operations with established carrier relationships, flexible MOQ structures, and automated purchase order processing across thousands of active SKUs.</p>
       <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num">02</div>
       <div class="service-icon-wrap">
@@ -1394,7 +1358,6 @@ footer {
       <p>Strategically placed fulfillment centers with real-time WMS integration, same-day pick and pack, climate-controlled storage, and carrier-agnostic shipping optimization.</p>
       <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-
     <div class="service-card featured reveal reveal-delay-2">
       <div class="service-num">03</div>
       <div class="service-icon-wrap">
@@ -1404,7 +1367,6 @@ footer {
       <p>End-to-end digital fulfillment built for Amazon, Walmart Marketplace, Shopify, and direct-to-consumer channels — including FBA prep, kitting, and returns management.</p>
       <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num">04</div>
       <div class="service-icon-wrap">
@@ -1414,7 +1376,6 @@ footer {
       <p>In-store execution and retail program management including planogram compliance, shelf replenishment, display builds, and retail audit reporting across major chains.</p>
       <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-
     <div class="service-card reveal reveal-delay-2">
       <div class="service-num">05</div>
       <div class="service-icon-wrap">
@@ -1424,7 +1385,6 @@ footer {
       <p>White-label and private label product development from concept to shelf — including sourcing, packaging design, compliance certification, and brand registry support.</p>
       <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-
     <div class="service-card reveal reveal-delay-3">
       <div class="service-num">06</div>
       <div class="service-icon-wrap">
@@ -1434,13 +1394,10 @@ footer {
       <p>Custom dashboards tracking sell-through rates, inventory velocity, carrier performance, and margin analytics — delivered weekly with actionable recommendations.</p>
       <a href="#contact" class="service-link">Explore service <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     INDUSTRIES
-═══════════════════════════════════════════════ -->
+<!-- INDUSTRIES -->
 <section class="industries" id="industries">
   <div class="industries-grid">
     <div>
@@ -1450,55 +1407,13 @@ footer {
         <p class="section-desc">Our operational model adapts to the unique compliance, velocity, and handling requirements of each vertical we serve.</p>
       </div>
       <div class="industry-tabs reveal">
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <span class="ind-name">Consumer Electronics</span>
-          </div>
-          <span class="ind-arrow">→</span>
-        </div>
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M9 2H1v6l11 13L23 8 12 2z"/></svg></div>
-            <span class="ind-name">Food &amp; Beverage</span>
-          </div>
-          <span class="ind-arrow">→</span>
-        </div>
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-            <span class="ind-name">Healthcare &amp; Medical</span>
-          </div>
-          <span class="ind-arrow">→</span>
-        </div>
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
-            <span class="ind-name">General Merchandise</span>
-          </div>
-          <span class="ind-arrow">→</span>
-        </div>
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-            <span class="ind-name">Health &amp; Beauty</span>
-          </div>
-          <span class="ind-arrow">→</span>
-        </div>
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-            <span class="ind-name">Home &amp; Garden</span>
-          </div>
-          <span class="ind-arrow">→</span>
-        </div>
-        <div class="ind-tab">
-          <div class="ind-tab-left">
-            <div class="ind-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-            <span class="ind-name">Industrial &amp; B2B</span>
-          </div>
-          <span class="ind-arrow">→</span>
-        </div>
+        <div class="ind-tab"><div class="ind-tab-left"><div class="ind-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><span class="ind-name">Consumer Electronics</span></div><span class="ind-arrow">→</span></div>
+        <div class="ind-tab"><div class="ind-tab-left"><div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M9 2H1v6l11 13L23 8 12 2z"/></svg></div><span class="ind-name">Food &amp; Beverage</span></div><span class="ind-arrow">→</span></div>
+        <div class="ind-tab"><div class="ind-tab-left"><div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="ind-name">Healthcare &amp; Medical</span></div><span class="ind-arrow">→</span></div>
+        <div class="ind-tab"><div class="ind-tab-left"><div class="ind-icon"><svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div><span class="ind-name">General Merchandise</span></div><span class="ind-arrow">→</span></div>
+        <div class="ind-tab"><div class="ind-tab-left"><div class="ind-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><span class="ind-name">Health &amp; Beauty</span></div><span class="ind-arrow">→</span></div>
+        <div class="ind-tab"><div class="ind-tab-left"><div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="ind-name">Home &amp; Garden</span></div><span class="ind-arrow">→</span></div>
+        <div class="ind-tab"><div class="ind-tab-left"><div class="ind-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><span class="ind-name">Industrial &amp; B2B</span></div><span class="ind-arrow">→</span></div>
       </div>
     </div>
     <div class="industry-cards-grid reveal">
@@ -1521,37 +1436,18 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     NUMBERS
-═══════════════════════════════════════════════ -->
+<!-- NUMBERS -->
 <div class="numbers-section">
   <div class="numbers-inner">
-    <div class="num-item reveal">
-      <div class="big"><span class="counter" data-target="1200">0</span><span class="suf">+</span></div>
-      <div class="lbl">Active SKUs</div>
-    </div>
-    <div class="num-item reveal reveal-delay-1">
-      <div class="big"><span class="counter" data-target="50">0</span><span class="suf">+</span></div>
-      <div class="lbl">States Served</div>
-    </div>
-    <div class="num-item reveal reveal-delay-2">
-      <div class="big"><span class="counter" data-target="99">0</span><span class="suf">%</span></div>
-      <div class="lbl">On-Time Rate</div>
-    </div>
-    <div class="num-item reveal reveal-delay-3">
-      <div class="big"><span class="counter" data-target="100">0</span><span class="suf">+</span></div>
-      <div class="lbl">Brand Partners</div>
-    </div>
-    <div class="num-item reveal reveal-delay-4">
-      <div class="big"><span class="counter" data-target="48">0</span><span class="suf">hr</span></div>
-      <div class="lbl">Avg Fulfillment</div>
-    </div>
+    <div class="num-item reveal"><div class="big"><span class="counter" data-target="1200">0</span><span class="suf">+</span></div><div class="lbl">Active SKUs</div></div>
+    <div class="num-item reveal reveal-delay-1"><div class="big"><span class="counter" data-target="50">0</span><span class="suf">+</span></div><div class="lbl">States Served</div></div>
+    <div class="num-item reveal reveal-delay-2"><div class="big"><span class="counter" data-target="99">0</span><span class="suf">%</span></div><div class="lbl">On-Time Rate</div></div>
+    <div class="num-item reveal reveal-delay-3"><div class="big"><span class="counter" data-target="100">0</span><span class="suf">+</span></div><div class="lbl">Brand Partners</div></div>
+    <div class="num-item reveal reveal-delay-4"><div class="big"><span class="counter" data-target="48">0</span><span class="suf">hr</span></div><div class="lbl">Avg Fulfillment</div></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     WHY CHOOSE US
-═══════════════════════════════════════════════ -->
+<!-- WHY CHOOSE US -->
 <section class="why-section" id="why">
   <div class="why-header">
     <div class="reveal">
@@ -1561,44 +1457,14 @@ footer {
     <p class="section-desc reveal reveal-delay-1">Enterprise distribution isn't just logistics — it's the foundation that lets your brand scale without friction. Here's why leading brands trust us.</p>
   </div>
   <div class="why-grid">
-    <div class="why-card reveal">
-      <div class="why-icon">
-        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
-      <div class="why-card-num">01</div>
-      <h3>Speed at Scale</h3>
-      <p>48-hour average fulfillment times backed by automated picking systems, real-time carrier rate shopping, and distributed inventory positioning across our national network.</p>
-    </div>
-    <div class="why-card dark reveal reveal-delay-1">
-      <div class="why-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div class="why-card-num">02</div>
-      <h3>Compliance-Ready Operations</h3>
-      <p>EDI-certified, FDA-registered storage facilities, and SOC 2-aligned data handling — purpose-built for regulated industries including healthcare, food, and consumer goods.</p>
-    </div>
-    <div class="why-card dark reveal reveal-delay-2">
-      <div class="why-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-      </div>
-      <div class="why-card-num">03</div>
-      <h3>Nationwide Reach</h3>
-      <p>From coastal metros to rural markets — our carrier partnerships and regional DC strategy give your brand the shelf presence to compete in every zip code across all 50 states.</p>
-    </div>
-    <div class="why-card reveal reveal-delay-3">
-      <div class="why-icon">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      </div>
-      <div class="why-card-num">04</div>
-      <h3>Data-Driven Decisions</h3>
-      <p>Weekly reporting dashboards, sell-through analytics, and demand forecasting tools give you the visibility to optimize inventory and reduce carrying costs by up to 23%.</p>
-    </div>
+    <div class="why-card reveal"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="why-card-num">01</div><h3>Speed at Scale</h3><p>48-hour average fulfillment times backed by automated picking systems, real-time carrier rate shopping, and distributed inventory positioning across our national network.</p></div>
+    <div class="why-card dark reveal reveal-delay-1"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="why-card-num">02</div><h3>Compliance-Ready Operations</h3><p>EDI-certified, FDA-registered storage facilities, and SOC 2-aligned data handling — purpose-built for regulated industries including healthcare, food, and consumer goods.</p></div>
+    <div class="why-card dark reveal reveal-delay-2"><div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="why-card-num">03</div><h3>Nationwide Reach</h3><p>From coastal metros to rural markets — our carrier partnerships and regional DC strategy give your brand the shelf presence to compete in every zip code across all 50 states.</p></div>
+    <div class="why-card reveal reveal-delay-3"><div class="why-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="why-card-num">04</div><h3>Data-Driven Decisions</h3><p>Weekly reporting dashboards, sell-through analytics, and demand forecasting tools give you the visibility to optimize inventory and reduce carrying costs by up to 23%.</p></div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     PARTNER LOGOS
-═══════════════════════════════════════════════ -->
+<!-- PARTNERS -->
 <section class="partners-section" id="partners">
   <div class="partners-intro reveal">
     <div class="section-eyebrow">Brand Partners</div>
@@ -1622,9 +1488,7 @@ footer {
   <p class="partners-note">Partner names are illustrative. Contact us to discuss your brand's distribution needs.</p>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     ABOUT
-═══════════════════════════════════════════════ -->
+<!-- ABOUT -->
 <div class="about-banner" id="about">
   <div class="about-banner-grid">
     <div class="reveal">
@@ -1632,153 +1496,55 @@ footer {
       <h2 class="section-title">Built for the <em>Long Haul</em></h2>
       <p class="section-desc">We're not a broker or middleman — Novatech operates owned infrastructure, direct carrier contracts, and proprietary WMS technology that keeps your supply chain running regardless of market conditions.</p>
       <div class="about-highlights">
-        <div class="about-hl">
-          <div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-          <h4>Owned Warehouses</h4>
-          <p>Strategically positioned across key logistics corridors in the U.S.</p>
-        </div>
-        <div class="about-hl">
-          <div class="about-hl-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <h4>Proprietary WMS</h4>
-          <p>Real-time inventory visibility with EDI and API integration capabilities.</p>
-        </div>
-        <div class="about-hl">
-          <div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-          <h4>Dedicated Teams</h4>
-          <p>Assigned account managers and ops specialists for every client partner.</p>
-        </div>
-        <div class="about-hl">
-          <div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h4>Fully Insured</h4>
-          <p>Cargo, liability, and product insurance across every warehouse location.</p>
-        </div>
+        <div class="about-hl"><div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><h4>Owned Warehouses</h4><p>Strategically positioned across key logistics corridors in the U.S.</p></div>
+        <div class="about-hl"><div class="about-hl-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h4>Proprietary WMS</h4><p>Real-time inventory visibility with EDI and API integration capabilities.</p></div>
+        <div class="about-hl"><div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h4>Dedicated Teams</h4><p>Assigned account managers and ops specialists for every client partner.</p></div>
+        <div class="about-hl"><div class="about-hl-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4>Fully Insured</h4><p>Cargo, liability, and product insurance across every warehouse location.</p></div>
       </div>
     </div>
     <div class="about-visual-side reveal reveal-delay-2">
       <div class="about-main-card">
         <h3>A History of <em>Reliable Execution</em></h3>
         <div class="about-timeline">
-          <div class="tl-item">
-            <div class="tl-year">2010</div>
-            <div class="tl-content">
-              <h5>Founded</h5>
-              <p>Novatech LLC established with a singular focus on technology-enabled distribution.</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-year">2014</div>
-            <div class="tl-content">
-              <h5>EDI Certification</h5>
-              <p>Achieved full EDI 850/855/856/810 compliance enabling big-box retailer integrations.</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-year">2017</div>
-            <div class="tl-content">
-              <h5>National Expansion</h5>
-              <p>Opened third fulfillment center, achieving coast-to-coast 2-day shipping capability.</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-year">2021</div>
-            <div class="tl-content">
-              <h5>eCommerce Division</h5>
-              <p>Launched dedicated DTC and marketplace fulfillment division with FBA prep capabilities.</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-year">2024</div>
-            <div class="tl-content">
-              <h5>AI-Enhanced Operations</h5>
-              <p>Deployed predictive inventory and demand forecasting tools across all fulfillment centers.</p>
-            </div>
-          </div>
+          <div class="tl-item"><div class="tl-year">2010</div><div class="tl-content"><h5>Founded</h5><p>Novatech LLC established with a singular focus on technology-enabled distribution.</p></div></div>
+          <div class="tl-item"><div class="tl-year">2014</div><div class="tl-content"><h5>EDI Certification</h5><p>Achieved full EDI 850/855/856/810 compliance enabling big-box retailer integrations.</p></div></div>
+          <div class="tl-item"><div class="tl-year">2017</div><div class="tl-content"><h5>National Expansion</h5><p>Opened third fulfillment center, achieving coast-to-coast 2-day shipping capability.</p></div></div>
+          <div class="tl-item"><div class="tl-year">2021</div><div class="tl-content"><h5>eCommerce Division</h5><p>Launched dedicated DTC and marketplace fulfillment division with FBA prep capabilities.</p></div></div>
+          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-content"><h5>AI-Enhanced Operations</h5><p>Deployed predictive inventory and demand forecasting tools across all fulfillment centers.</p></div></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PROCESS
-═══════════════════════════════════════════════ -->
+<!-- PROCESS -->
 <section class="process-section">
   <div class="reveal" style="max-width:600px;">
     <div class="section-eyebrow">How We Onboard</div>
     <h2 class="section-title">From Inquiry to<br><em>First Shipment</em></h2>
   </div>
   <div class="process-steps">
-    <div class="process-step reveal">
-      <div class="step-circle">01</div>
-      <h4>Discovery Call</h4>
-      <p>We learn about your product, volume, distribution goals, and current logistics setup in a focused 30-minute consultation.</p>
-    </div>
-    <div class="process-step reveal reveal-delay-1">
-      <div class="step-circle">02</div>
-      <h4>Custom Proposal</h4>
-      <p>Within 48 hours, you receive a tailored distribution proposal with transparent pricing, SLA commitments, and a launch timeline.</p>
-    </div>
-    <div class="process-step reveal reveal-delay-2">
-      <div class="step-circle">03</div>
-      <h4>Systems Integration</h4>
-      <p>Our technical team connects your systems via EDI or API, configures your inventory profile, and completes facility readiness.</p>
-    </div>
-    <div class="process-step reveal reveal-delay-3">
-      <div class="step-circle">04</div>
-      <h4>Launch &amp; Optimize</h4>
-      <p>Go live with full operational support and weekly analytics reviews to continuously improve throughput and cost efficiency.</p>
-    </div>
+    <div class="process-step reveal"><div class="step-circle">01</div><h4>Discovery Call</h4><p>We learn about your product, volume, distribution goals, and current logistics setup in a focused 30-minute consultation.</p></div>
+    <div class="process-step reveal reveal-delay-1"><div class="step-circle">02</div><h4>Custom Proposal</h4><p>Within 48 hours, you receive a tailored distribution proposal with transparent pricing, SLA commitments, and a launch timeline.</p></div>
+    <div class="process-step reveal reveal-delay-2"><div class="step-circle">03</div><h4>Systems Integration</h4><p>Our technical team connects your systems via EDI or API, configures your inventory profile, and completes facility readiness.</p></div>
+    <div class="process-step reveal reveal-delay-3"><div class="step-circle">04</div><h4>Launch &amp; Optimize</h4><p>Go live with full operational support and weekly analytics reviews to continuously improve throughput and cost efficiency.</p></div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     TESTIMONIALS
-═══════════════════════════════════════════════ -->
+<!-- TESTIMONIALS -->
 <section class="testimonial-section">
   <div class="testimonial-header reveal">
     <div class="section-eyebrow">Client Voices</div>
     <h2 class="section-title">What Our <em>Partners Say</em></h2>
   </div>
   <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p>Switching to Novatech cut our fulfillment costs by 18% in the first quarter alone. Their EDI integration with our ERP was seamless and their team actually communicates proactively.</p>
-      <div class="test-author">
-        <div class="test-avatar">JM</div>
-        <div>
-          <div class="test-name">James M.</div>
-          <div class="test-role">VP Supply Chain, BrandCo</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card reveal reveal-delay-1">
-      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p>We launched 3 new SKUs nationally in 6 weeks. Novatech's team handled retailer compliance, FBA prep, and our DTC channel simultaneously without a single missed shipment.</p>
-      <div class="test-author">
-        <div class="test-avatar">SA</div>
-        <div>
-          <div class="test-name">Sofia A.</div>
-          <div class="test-role">CEO, NexaLine Consumer</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card reveal reveal-delay-2">
-      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p>The weekly analytics reports alone are worth the partnership. We finally have sell-through visibility at the store level across all 50 states — something our previous distributor couldn't provide.</p>
-      <div class="test-author">
-        <div class="test-avatar">RK</div>
-        <div>
-          <div class="test-name">Ryan K.</div>
-          <div class="test-role">Director of Operations, Solaris</div>
-        </div>
-      </div>
-    </div>
+    <div class="testimonial-card reveal"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p>Switching to Novatech cut our fulfillment costs by 18% in the first quarter alone. Their EDI integration with our ERP was seamless and their team actually communicates proactively.</p><div class="test-author"><div class="test-avatar">JM</div><div><div class="test-name">James M.</div><div class="test-role">VP Supply Chain, BrandCo</div></div></div></div>
+    <div class="testimonial-card reveal reveal-delay-1"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p>We launched 3 new SKUs nationally in 6 weeks. Novatech's team handled retailer compliance, FBA prep, and our DTC channel simultaneously without a single missed shipment.</p><div class="test-author"><div class="test-avatar">SA</div><div><div class="test-name">Sofia A.</div><div class="test-role">CEO, NexaLine Consumer</div></div></div></div>
+    <div class="testimonial-card reveal reveal-delay-2"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p>The weekly analytics reports alone are worth the partnership. We finally have sell-through visibility at the store level across all 50 states — something our previous distributor couldn't provide.</p><div class="test-author"><div class="test-avatar">RK</div><div><div class="test-name">Ryan K.</div><div class="test-role">Director of Operations, Solaris</div></div></div></div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     CONTACT
-═══════════════════════════════════════════════ -->
+<!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="contact-layout">
     <div class="reveal">
@@ -1786,55 +1552,19 @@ footer {
       <h2 class="section-title">Ready to <em>Scale?</em></h2>
       <p class="section-desc">Tell us about your distribution needs and we'll respond with a custom proposal within 48 hours — no commitment required.</p>
       <div class="contact-details">
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 7.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 12a16 16 0 006 6l.54-.54a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          </div>
-          <div>
-            <span class="cc-label">Phone</span>
-            <span class="cc-val">+1 (800) NOVA-TCH<br><small style="opacity:0.55">Available 24/7 · Mon–Sun</small></span>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div>
-            <span class="cc-label">Email</span>
-            <span class="cc-val">info@novatechllc.com<br>sales@novatechllc.com</span>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <span class="cc-label">Headquarters</span>
-            <span class="cc-val">United States of America<br><small style="opacity:0.55">Nationwide Operations</small></span>
-          </div>
-        </div>
+        <div class="contact-card"><div class="contact-card-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 7.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 12a16 16 0 006 6l.54-.54a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><span class="cc-label">Phone</span><span class="cc-val">+1 (800) NOVA-TCH<br><small style="opacity:0.55">Available 24/7 · Mon–Sun</small></span></div></div>
+        <div class="contact-card"><div class="contact-card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><span class="cc-label">Email</span><span class="cc-val">info@novatechllc.com<br>sales@novatechllc.com</span></div></div>
+        <div class="contact-card"><div class="contact-card-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="cc-label">Headquarters</span><span class="cc-val">United States of America<br><small style="opacity:0.55">Nationwide Operations</small></span></div></div>
       </div>
     </div>
     <div class="contact-form reveal reveal-delay-2">
       <div class="form-title">Request a Proposal</div>
       <div class="form-row">
-        <div class="form-group">
-          <label>First Name</label>
-          <input type="text" placeholder="John">
-        </div>
-        <div class="form-group">
-          <label>Last Name</label>
-          <input type="text" placeholder="Smith">
-        </div>
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
       </div>
-      <div class="form-group">
-        <label>Company Name</label>
-        <input type="text" placeholder="Your Company, Inc.">
-      </div>
-      <div class="form-group">
-        <label>Business Email</label>
-        <input type="email" placeholder="john@yourcompany.com">
-      </div>
+      <div class="form-group"><label>Company Name</label><input type="text" placeholder="Your Company, Inc."></div>
+      <div class="form-group"><label>Business Email</label><input type="email" placeholder="john@yourcompany.com"></div>
       <div class="form-group">
         <label>Service Interest</label>
         <select>
@@ -1849,10 +1579,7 @@ footer {
           <option>Other</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Tell Us About Your Needs</label>
-        <textarea placeholder="Monthly volume, product categories, target geography, current distribution challenges, timeline..."></textarea>
-      </div>
+      <div class="form-group"><label>Tell Us About Your Needs</label><textarea placeholder="Monthly volume, product categories, target geography, current distribution challenges, timeline..."></textarea></div>
       <button class="form-submit" onclick="handleSubmit(this)">
         Submit Inquiry
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1861,82 +1588,29 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
       <a href="#" class="footer-logo">
         <div class="footer-logo-icon"><span>NT</span></div>
-        <div class="footer-logo-text">
-          <div class="name">Novatech</div>
-          <div class="sub">LLC · Distribution</div>
-        </div>
+        <div class="footer-logo-text"><div class="name">Novatech</div><div class="sub">LLC · Distribution</div></div>
       </a>
       <p class="footer-brand-text">A premier U.S. distribution company delivering technology-driven supply chain efficiency, enterprise-scale infrastructure, and operational reliability across every industry we serve.</p>
     </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="#services">Wholesale Distribution</a></li>
-        <li><a href="#services">Logistics &amp; Fulfillment</a></li>
-        <li><a href="#services">eCommerce Support</a></li>
-        <li><a href="#services">Retail Merchandising</a></li>
-        <li><a href="#services">Private Label</a></li>
-        <li><a href="#services">Analytics</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Industries</h4>
-      <ul>
-        <li><a href="#industries">Consumer Electronics</a></li>
-        <li><a href="#industries">Food &amp; Beverage</a></li>
-        <li><a href="#industries">Healthcare</a></li>
-        <li><a href="#industries">General Merchandise</a></li>
-        <li><a href="#industries">Health &amp; Beauty</a></li>
-        <li><a href="#industries">Industrial &amp; B2B</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#partners">Brand Partners</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#contact">Get a Quote</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-    <div class="footer-col footer-newsletter">
-      <h4>Stay Informed</h4>
-      <p>Industry updates, distribution insights, and partner announcements — delivered monthly.</p>
-      <div class="newsletter-input-row">
-        <input type="email" placeholder="your@email.com">
-        <button>Join</button>
-      </div>
-    </div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="#services">Wholesale Distribution</a></li><li><a href="#services">Logistics &amp; Fulfillment</a></li><li><a href="#services">eCommerce Support</a></li><li><a href="#services">Retail Merchandising</a></li><li><a href="#services">Private Label</a></li><li><a href="#services">Analytics</a></li></ul></div>
+    <div class="footer-col"><h4>Industries</h4><ul><li><a href="#industries">Consumer Electronics</a></li><li><a href="#industries">Food &amp; Beverage</a></li><li><a href="#industries">Healthcare</a></li><li><a href="#industries">General Merchandise</a></li><li><a href="#industries">Health &amp; Beauty</a></li><li><a href="#industries">Industrial &amp; B2B</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#partners">Brand Partners</a></li><li><a href="#contact">Contact</a></li><li><a href="#contact">Get a Quote</a></li><li><a href="#">Careers</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+    <div class="footer-col footer-newsletter"><h4>Stay Informed</h4><p>Industry updates, distribution insights, and partner announcements — delivered monthly.</p><div class="newsletter-input-row"><input type="email" placeholder="your@email.com"><button>Join</button></div></div>
   </div>
   <div class="footer-bottom">
     <p>&copy; 2025 Novatech LLC. All rights reserved. Registered in the United States of America.</p>
-    <div class="footer-badges">
-      <span class="f-badge">LLC Registered</span>
-      <span class="f-badge">USA Distributor</span>
-      <span class="f-badge">Nationwide</span>
-      <span class="f-badge">EDI Certified</span>
-    </div>
+    <div class="footer-badges"><span class="f-badge">LLC Registered</span><span class="f-badge">USA Distributor</span><span class="f-badge">Nationwide</span><span class="f-badge">EDI Certified</span></div>
   </div>
 </footer>
 
 <script>
-/* ═══════════════════════════════════════════════
-   KEN BURNS IMAGE SLIDER
-   - Rotates through 4 slides every 6 seconds
-   - Cross-fade via CSS opacity transition (1.6s)
-   - Each slide gets a distinct kenburns-N animation
-     applied fresh on activation (class reset trick)
-═══════════════════════════════════════════════ */
+/* ── KEN BURNS SLIDER ── */
 (function initSlider() {
   const slides = document.querySelectorAll('.hero-slide');
   const dots   = document.querySelectorAll('.hero-dot');
@@ -1944,33 +1618,21 @@ footer {
   let timer    = null;
 
   function goTo(index) {
-    // Remove active from old slide — re-trigger Ken Burns on the new one
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
-
     current = (index + slides.length) % slides.length;
-
     const slide = slides[current];
     const img   = slide.querySelector('img');
-
-    // Force animation restart: clone trick (remove + re-add animation)
     img.style.animation = 'none';
-    // Use void to flush style
     void img.offsetWidth;
     img.style.animation = '';
-
     slide.classList.add('active');
     dots[current].classList.add('active');
   }
 
-  function advance() {
-    goTo(current + 1);
-  }
-
-  // Auto-advance every 6 seconds
+  function advance() { goTo(current + 1); }
   timer = setInterval(advance, 6000);
 
-  // Dot click navigation
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       clearInterval(timer);
@@ -1979,15 +1641,12 @@ footer {
     });
   });
 
-  // Pause on hover
   const hero = document.querySelector('.hero');
   hero.addEventListener('mouseenter', () => clearInterval(timer));
   hero.addEventListener('mouseleave', () => { timer = setInterval(advance, 6000); });
 })();
 
-/* ═══════════════════════════════════════════════
-   HERO BAR CHART
-═══════════════════════════════════════════════ */
+/* ── HERO BAR CHART ── */
 (function buildBars() {
   const heights = [55, 70, 45, 80, 90, 65, 75, 88, 60, 95, 78, 84];
   const wrap = document.getElementById('heroBars');
@@ -2000,9 +1659,7 @@ footer {
   });
 })();
 
-/* ═══════════════════════════════════════════════
-   LOGO FALLBACK
-═══════════════════════════════════════════════ */
+/* ── LOGO FALLBACK ── */
 (function logoFallback() {
   const img      = document.querySelector('.logo-img');
   const fallback = document.querySelector('.logo-img-fallback');
@@ -2012,17 +1669,13 @@ footer {
   if (img.complete && img.naturalWidth === 0) show();
 })();
 
-/* ═══════════════════════════════════════════════
-   SCROLL NAV
-═══════════════════════════════════════════════ */
+/* ── SCROLL NAV ── */
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   navEl.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-/* ═══════════════════════════════════════════════
-   REVEAL ON SCROLL
-═══════════════════════════════════════════════ */
+/* ── REVEAL ON SCROLL ── */
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -2031,16 +1684,13 @@ const revealObserver = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ═══════════════════════════════════════════════
-   ANIMATED COUNTERS
-═══════════════════════════════════════════════ */
+/* ── ANIMATED COUNTERS ── */
 function animateCounter(el) {
-  const target    = parseInt(el.dataset.target, 10);
-  const duration  = 1800;
-  const step      = 16;
+  const target   = parseInt(el.dataset.target, 10);
+  const duration = 1800;
+  const step     = 16;
   const increment = target / (duration / step);
   let current = 0;
   const timer = setInterval(() => {
@@ -2049,7 +1699,6 @@ function animateCounter(el) {
     el.textContent = Math.floor(current).toLocaleString();
   }, step);
 }
-
 const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -2062,12 +1711,9 @@ const counterObserver = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.5 });
-
 document.querySelectorAll('.num-item').forEach(el => counterObserver.observe(el));
 
-/* ═══════════════════════════════════════════════
-   FORM SUBMIT
-═══════════════════════════════════════════════ */
+/* ── FORM SUBMIT ── */
 function handleSubmit(btn) {
   const form  = btn.closest('.contact-form');
   const email = form.querySelector('input[type="email"]');
@@ -2085,9 +1731,7 @@ function handleSubmit(btn) {
   }, 1100);
 }
 
-/* ═══════════════════════════════════════════════
-   NEWSLETTER
-═══════════════════════════════════════════════ */
+/* ── NEWSLETTER ── */
 document.querySelector('.newsletter-input-row button').addEventListener('click', function() {
   const input = this.previousElementSibling;
   if (input.value.includes('@')) {
@@ -2100,9 +1744,7 @@ document.querySelector('.newsletter-input-row button').addEventListener('click',
   }
 });
 
-/* ═══════════════════════════════════════════════
-   MOBILE MENU
-═══════════════════════════════════════════════ */
+/* ── MOBILE MENU ── */
 const hamburger = document.querySelector('.nav-hamburger');
 const navUl     = document.querySelector('nav ul');
 if (hamburger && navUl) {
