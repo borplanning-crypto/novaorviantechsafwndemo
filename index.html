@@ -8,18 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,600;0,700;1,300;1,400;1,600&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet">
 
 <style>
-/* ─────────────────────────────────────────────────────────────────────────────
-   IMPORTANT: Replace the 3 image URLs below with your GitHub raw URLs.
-   Pattern: https://raw.githubusercontent.com/USERNAME/REPO/BRANCH/FILENAME
-   Spaces in filenames must be encoded as %20
-   
-   IMG_1 = WhatsApp Image 2026-05-26 at 12.02.49 AM.jpeg  (wide warehouse shot)
-   IMG_2 = WhatsApp Image 2026-05-26 at 12.02.50 AM.jpeg  (operations detail)
-   IMG_3 = WhatsApp Image 2026-05-26 at 12.04.44 AM.jpeg  (third angle)
-   
-   Then find-and-replace: PLACEHOLDER_IMG_1, PLACEHOLDER_IMG_2, PLACEHOLDER_IMG_3
-   ───────────────────────────────────────────────────────────────────────────── */
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
@@ -38,9 +26,6 @@
 html{scroll-behavior:smooth;}
 body{font-family:var(--font-b);background:var(--bg);color:var(--off);overflow-x:hidden;line-height:1.6;}
 
-/* ══════════════════════════════════════════════════════
-   KEYFRAMES
-══════════════════════════════════════════════════════ */
 @keyframes kenBurns1{0%{transform:scale(1.0) translate(0%,0%);} 100%{transform:scale(1.18) translate(-3%,-2%);}}
 @keyframes kenBurns2{0%{transform:scale(1.08) translate(2%,1%);} 100%{transform:scale(1.22) translate(-4%,-3%);}}
 @keyframes kenBurns3{0%{transform:scale(1.05) translate(-1%,0.5%);} 100%{transform:scale(1.20) translate(3%,-2%);}}
@@ -70,15 +55,9 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--off);overflow-x:
 @keyframes floatB{0%,100%{transform:translateY(0) rotate(1deg);}50%{transform:translateY(-14px) rotate(-1deg);}}
 @keyframes floatC{0%,100%{transform:translateY(0) rotate(-0.5deg);}50%{transform:translateY(-22px) rotate(1.5deg);}}
 
-/* ══════════════════════════════════════════════════════
-   CUSTOM CURSOR
-══════════════════════════════════════════════════════ */
 .cursor-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(200,169,110,0.5);transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s,opacity .3s;}
 .cursor-dot{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;width:5px;height:5px;border-radius:50%;background:var(--em);transform:translate(-50%,-50%);}
 
-/* ══════════════════════════════════════════════════════
-   NAV
-══════════════════════════════════════════════════════ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:500;
   height:74px;display:flex;align-items:center;justify-content:space-between;
@@ -103,9 +82,6 @@ nav a:hover{color:var(--white);background:rgba(255,255,255,.06);}
 .nav-hbg{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;}
 .nav-hbg span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:2px;}
 
-/* ══════════════════════════════════════════════════════
-   SECTION UTILITIES
-══════════════════════════════════════════════════════ */
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--em);margin-bottom:14px;}
 .eyebrow::before{content:'';display:block;width:16px;height:1.5px;background:var(--em);border-radius:2px;box-shadow:0 0 6px var(--em);}
 .eyebrow-light{color:rgba(200,169,110,.8);}
@@ -121,13 +97,7 @@ h2.sec-title-light em{color:var(--em3);}
 .reveal.visible{opacity:1;transform:none;}
 .rd1{transition-delay:.1s;}.rd2{transition-delay:.2s;}.rd3{transition-delay:.3s;}.rd4{transition-delay:.4s;}
 
-/* ══════════════════════════════════════════════════════
-   CINEMATIC BASE LAYER — shared across multiple sections
-══════════════════════════════════════════════════════ */
-.cin-section{
-  position:relative;overflow:hidden;
-}
-/* Image layer */
+.cin-section{position:relative;overflow:hidden;}
 .cin-img-layer{
   position:absolute;inset:-8%;
   width:116%;height:116%;
@@ -137,26 +107,17 @@ h2.sec-title-light em{color:var(--em3);}
   will-change:transform;
   transition:filter 1.2s ease;
 }
-/* Dark overlay with subtle gradient animation */
 .cin-overlay{
   position:absolute;inset:0;z-index:2;
-  background:linear-gradient(
-    160deg,
-    rgba(7,9,13,0.88) 0%,
-    rgba(7,9,13,0.72) 40%,
-    rgba(7,9,13,0.80) 70%,
-    rgba(7,9,13,0.92) 100%
-  );
+  background:linear-gradient(160deg,rgba(7,9,13,0.88) 0%,rgba(7,9,13,0.72) 40%,rgba(7,9,13,0.80) 70%,rgba(7,9,13,0.92) 100%);
   animation:overlayPulse 8s ease infinite;
 }
-/* Film grain overlay */
 .cin-grain{
   position:absolute;inset:0;z-index:3;pointer-events:none;
   opacity:0.045;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation:filmGrain 4s ease infinite;
 }
-/* Scanning line effect */
 .cin-scan-h{
   position:absolute;left:0;right:0;z-index:4;pointer-events:none;
   height:1px;
@@ -164,10 +125,7 @@ h2.sec-title-light em{color:var(--em3);}
   animation:scanV 16s linear infinite;
   opacity:0.25;
 }
-/* Corner brackets / cinematic frame */
-.cin-frame{
-  position:absolute;inset:0;z-index:4;pointer-events:none;
-}
+.cin-frame{position:absolute;inset:0;z-index:4;pointer-events:none;}
 .cin-frame::before,.cin-frame::after{
   content:'';position:absolute;
   width:48px;height:48px;
@@ -176,16 +134,12 @@ h2.sec-title-light em{color:var(--em3);}
 }
 .cin-frame::before{top:28px;left:28px;border-width:1.5px 0 0 1.5px;}
 .cin-frame::after{bottom:28px;right:28px;border-width:0 1.5px 1.5px 0;}
-/* Gold accent line at top */
 .cin-topline{
   position:absolute;top:0;left:0;right:0;z-index:5;height:2px;
   background:linear-gradient(90deg,transparent 0%,var(--em) 30%,var(--em3) 70%,transparent 100%);
   opacity:0.35;
 }
-/* Content layer */
 .cin-content{position:relative;z-index:10;}
-
-/* Light leaks */
 .cin-leak-tl{
   position:absolute;top:-20%;left:-10%;z-index:2;pointer-events:none;
   width:500px;height:500px;border-radius:50%;
@@ -197,9 +151,6 @@ h2.sec-title-light em{color:var(--em3);}
   background:radial-gradient(circle,rgba(200,169,110,0.04) 0%,transparent 65%);
 }
 
-/* ══════════════════════════════════════════════════════
-   ★ SECTION 1: CINEMATIC HERO
-══════════════════════════════════════════════════════ */
 .hero-cin{
   position:relative;
   min-height:100vh;
@@ -208,11 +159,10 @@ h2.sec-title-light em{color:var(--em3);}
   overflow:hidden;
 }
 .hero-cin .cin-img-layer{
-  background-image:url('PLACEHOLDER_IMG_1');
+  background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic1');
   animation:kenBurnsHero 28s ease-in-out infinite alternate;
   filter:brightness(0.65) saturate(1.1);
 }
-/* Grid overlay for tech feel */
 .hero-grid-overlay{
   position:absolute;inset:0;z-index:3;pointer-events:none;
   background-image:
@@ -223,7 +173,6 @@ h2.sec-title-light em{color:var(--em3);}
   mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 100%);
   -webkit-mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 100%);
 }
-/* Particle canvas */
 #particleCanvas{position:absolute;inset:0;z-index:3;pointer-events:none;}
 
 .hero-layout{
@@ -234,7 +183,6 @@ h2.sec-title-light em{color:var(--em3);}
   width:100%;
 }
 
-/* Left content */
 .hero-left{display:flex;flex-direction:column;}
 .hero-badge{
   display:inline-flex;align-items:center;gap:10px;
@@ -276,7 +224,6 @@ h2.sec-title-light em{color:var(--em3);}
 }
 .hero-btns{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:52px;animation:fadeUp .75s .46s ease both;}
 
-/* Buttons */
 .btn-primary{
   display:inline-flex;align-items:center;gap:10px;
   background:var(--em);color:var(--bg);
@@ -301,7 +248,6 @@ h2.sec-title-light em{color:var(--em3);}
 }
 .btn-ghost:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.26);transform:translateY(-2px);}
 
-/* Stats bar */
 .stats-bar{
   display:grid;grid-template-columns:repeat(4,1fr);
   border:1px solid rgba(200,169,110,.15);border-radius:12px;overflow:hidden;
@@ -315,7 +261,6 @@ h2.sec-title-light em{color:var(--em3);}
 .stat-num span{color:var(--em);}
 .stat-lbl{font-family:var(--font-m);font-size:8.5px;color:var(--dim);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:5px;}
 
-/* Right side floating cards */
 .hero-right{
   display:flex;flex-direction:column;gap:16px;
   animation:fadeUp .9s .4s ease both;
@@ -338,7 +283,6 @@ h2.sec-title-light em{color:var(--em3);}
 .hfc-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-m);font-size:8px;font-weight:700;letter-spacing:1.5px;color:rgba(200,169,110,.7);text-transform:uppercase;}
 .hfc-live-dot{width:5px;height:5px;border-radius:50%;background:var(--em);animation:pulse 1.8s ease infinite;box-shadow:0 0 8px rgba(200,169,110,.6);}
 
-/* Scroll cue */
 .scroll-cue{
   position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
   z-index:20;display:flex;flex-direction:column;align-items:center;gap:7px;
@@ -348,9 +292,6 @@ h2.sec-title-light em{color:var(--em3);}
 .scroll-arrow{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,.11);display:flex;align-items:center;justify-content:center;animation:bounce 2.2s ease infinite;transition:border-color .3s;}
 .scroll-cue:hover .scroll-arrow{border-color:rgba(200,169,110,.4);}
 
-/* ══════════════════════════════════════════════════════
-   MARQUEE BAND
-══════════════════════════════════════════════════════ */
 .marquee-band{
   background:var(--bg2);
   border-top:1px solid var(--border);border-bottom:1px solid var(--border);
@@ -364,26 +305,18 @@ h2.sec-title-light em{color:var(--em3);}
 .marquee-item{font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:12px;}
 .marquee-item::after{content:'◆';font-size:6px;color:var(--em);opacity:.5;}
 
-/* ══════════════════════════════════════════════════════
-   ★ SECTION 2: CINEMATIC BRAND STATEMENT
-══════════════════════════════════════════════════════ */
 .brand-cin{
   min-height:65vh;
   display:flex;align-items:center;
   padding:100px 5vw;
 }
 .brand-cin .cin-img-layer{
-  background-image:url('PLACEHOLDER_IMG_2');
+  background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic2');
   animation:kenBurns2 32s ease-in-out infinite alternate;
   filter:brightness(0.55) saturate(1.15);
 }
 .brand-cin .cin-overlay{
-  background:linear-gradient(
-    135deg,
-    rgba(7,9,13,0.92) 0%,
-    rgba(7,9,13,0.65) 50%,
-    rgba(7,9,13,0.88) 100%
-  );
+  background:linear-gradient(135deg,rgba(7,9,13,0.92) 0%,rgba(7,9,13,0.65) 50%,rgba(7,9,13,0.88) 100%);
 }
 .brand-inner{
   display:grid;
@@ -415,9 +348,6 @@ h2.sec-title-light em{color:var(--em3);}
 .bss-text p{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.6;}
 .bss-divider{width:1px;align-self:stretch;background:linear-gradient(to bottom,transparent,rgba(200,169,110,.3),transparent);}
 
-/* ══════════════════════════════════════════════════════
-   STANDARD SECTION: OPERATIONS MOSAIC
-══════════════════════════════════════════════════════ */
 .mosaic-section{
   padding:100px 5vw 108px;
   background:var(--bg2);
@@ -471,16 +401,13 @@ h2.sec-title-light em{color:var(--em3);}
 .mosaic-cell:hover .cell-icon{background:rgba(200,169,110,.12);border-color:rgba(200,169,110,.38);}
 .cell-icon svg{width:14px;height:14px;stroke:var(--em3);fill:none;stroke-width:2;}
 
-/* ══════════════════════════════════════════════════════
-   ★ SECTION 3: INSIDE OUR OPERATIONS — full cinematic
-══════════════════════════════════════════════════════ */
 .ops-cin{
   min-height:100vh;
   display:flex;align-items:center;
   padding:100px 5vw;
 }
 .ops-cin .cin-img-layer{
-  background-image:url('PLACEHOLDER_IMG_2');
+  background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic2');
   animation:kenBurns1 34s ease-in-out infinite alternate;
   filter:brightness(0.45) saturate(1.2);
 }
@@ -502,7 +429,6 @@ h2.sec-title-light em{color:var(--em3);}
 .ops-heading h2 em{font-style:italic;color:var(--em3);}
 .ops-desc{font-size:15px;color:rgba(255,255,255,.52);line-height:1.85;margin-bottom:36px;max-width:440px;}
 
-/* Process timeline */
 .process-timeline{display:flex;flex-direction:column;gap:0;}
 .pt-item{
   display:flex;gap:20px;
@@ -530,7 +456,6 @@ h2.sec-title-light em{color:var(--em3);}
 .pt-item:hover .pt-icon{background:rgba(200,169,110,.14);border-color:rgba(200,169,110,.36);}
 .pt-icon svg{width:15px;height:15px;stroke:var(--em);fill:none;stroke-width:2;}
 
-/* Right side metrics panel */
 .ops-metrics{display:flex;flex-direction:column;gap:18px;}
 .ops-metric-card{
   background:rgba(7,9,13,.72);
@@ -551,9 +476,6 @@ h2.sec-title-light em{color:var(--em3);}
 .omc-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-top:2px;}
 .omc-bar-fill{height:100%;background:linear-gradient(90deg,var(--em2),var(--em3),var(--em4));border-radius:2px;animation:progressBar 2.5s 0.5s ease both;--pw:var(--w,80%);}
 
-/* ══════════════════════════════════════════════════════
-   SERVICES SECTION
-══════════════════════════════════════════════════════ */
 .services-section{padding:100px 5vw;background:var(--bg2);border-top:1px solid var(--border);}
 .services-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:64px;}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
@@ -574,22 +496,18 @@ h2.sec-title-light em{color:var(--em3);}
 .svc-card h3{font-family:var(--font-d);font-size:20px;font-weight:400;color:var(--off);margin-bottom:10px;line-height:1.25;}
 .svc-card p{font-size:13.5px;color:var(--muted);line-height:1.82;}
 
-/* ══════════════════════════════════════════════════════
-   ★ SECTION 4: SCALE / NUMBERS — cinematic
-══════════════════════════════════════════════════════ */
 .numbers-cin{
   min-height:72vh;
   display:flex;align-items:center;
   padding:100px 5vw;
 }
 .numbers-cin .cin-img-layer{
-  background-image:url('PLACEHOLDER_IMG_3');
+  background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic3');
   animation:kenBurns2 30s ease-in-out infinite alternate;
   filter:brightness(0.38) saturate(1.1);
 }
 .numbers-cin .cin-overlay{
-  background:
-    linear-gradient(180deg,rgba(7,9,13,0.85) 0%,rgba(7,9,13,0.5) 40%,rgba(7,9,13,0.82) 100%);
+  background:linear-gradient(180deg,rgba(7,9,13,0.85) 0%,rgba(7,9,13,0.5) 40%,rgba(7,9,13,0.82) 100%);
   animation:none;
 }
 .numbers-inner-cin{
@@ -635,9 +553,6 @@ h2.sec-title-light em{color:var(--em3);}
 .num-suf{font-size:clamp(26px,3vw,40px);color:var(--em3);font-weight:700;}
 .num-lbl{font-family:var(--font-m);font-size:9.5px;color:rgba(255,255,255,.32);font-weight:700;letter-spacing:2px;margin-top:10px;text-transform:uppercase;}
 
-/* ══════════════════════════════════════════════════════
-   INDUSTRIES SECTION
-══════════════════════════════════════════════════════ */
 .industries-section{padding:100px 5vw;background:var(--bg);border-top:1px solid var(--border);}
 .industries-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;}
 .industries-list{margin-top:40px;border-top:1px solid var(--border);}
@@ -654,9 +569,6 @@ h2.sec-title-light em{color:var(--em3);}
 .feature-block h4{font-family:var(--font-m);font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--off);margin-bottom:6px;}
 .feature-block p{font-size:12px;color:var(--muted);line-height:1.68;}
 
-/* ══════════════════════════════════════════════════════
-   WHY US
-══════════════════════════════════════════════════════ */
 .why-section{padding:100px 5vw;background:var(--bg2);border-top:1px solid var(--border);}
 .why-header{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:64px;}
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
@@ -667,9 +579,6 @@ h2.sec-title-light em{color:var(--em3);}
 .why-card h3{font-family:var(--font-d);font-size:clamp(17px,1.6vw,22px);font-weight:400;color:#fff;margin-bottom:12px;line-height:1.28;}
 .why-card p{font-size:13.5px;color:var(--muted);line-height:1.78;font-weight:300;}
 
-/* ══════════════════════════════════════════════════════
-   ★ SECTION 5: CTA FULL-BLEED CINEMATIC
-══════════════════════════════════════════════════════ */
 .cta-cin{
   min-height:70vh;
   display:flex;align-items:center;justify-content:center;
@@ -677,13 +586,12 @@ h2.sec-title-light em{color:var(--em3);}
   text-align:center;
 }
 .cta-cin .cin-img-layer{
-  background-image:url('PLACEHOLDER_IMG_3');
+  background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic3');
   animation:kenBurns3 28s ease-in-out infinite alternate;
   filter:brightness(0.35) saturate(1.05);
 }
 .cta-cin .cin-overlay{
-  background:
-    radial-gradient(ellipse 80% 80% at 50% 50%,rgba(7,9,13,0.4) 0%,rgba(7,9,13,0.9) 100%);
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(7,9,13,0.4) 0%,rgba(7,9,13,0.9) 100%);
   animation:none;
 }
 .cta-inner{max-width:760px;margin:0 auto;}
@@ -713,9 +621,6 @@ h2.sec-title-light em{color:var(--em3);}
 }
 .btn-ghost-lg:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28);transform:translateY(-3px);}
 
-/* ══════════════════════════════════════════════════════
-   CONTACT
-══════════════════════════════════════════════════════ */
 .contact-section{padding:100px 5vw;background:var(--bg3);border-top:1px solid var(--border);}
 .contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
 .contact-details{margin-top:40px;display:flex;flex-direction:column;gap:14px;}
@@ -741,9 +646,6 @@ h2.sec-title-light em{color:var(--em3);}
 .form-btn:hover::before{left:100%;}
 .form-btn:hover{background:var(--em3);transform:translateY(-2px);box-shadow:0 0 20px rgba(200,169,110,.25),0 0 0 3px rgba(200,169,110,.18),0 10px 32px rgba(200,169,110,.38);}
 
-/* ══════════════════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════════════════ */
 footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32px;}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
 .footer-brand{font-size:12.5px;color:rgba(244,240,232,.22);line-height:1.88;margin-top:16px;max-width:250px;}
@@ -756,9 +658,6 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
 .f-badges{display:flex;gap:8px;flex-wrap:wrap;}
 .f-badge{font-family:var(--font-m);font-size:8.5px;font-weight:700;letter-spacing:1.5px;color:rgba(244,240,232,.16);border:1px solid rgba(244,240,232,.07);padding:4px 10px;border-radius:5px;text-transform:uppercase;}
 
-/* ══════════════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════════════ */
 @media(max-width:1200px){
   .hero-layout{grid-template-columns:1fr;}
   .hero-right{display:none;}
@@ -833,32 +732,20 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
   </button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════════
-     ★ CINEMATIC HERO — warehouse image 1 as full-bleed backdrop
-═══════════════════════════════════════════════════════════ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero-cin cin-section" id="home">
-  <!-- Cinematic image layer with Ken Burns -->
   <div class="cin-img-layer" id="heroImgLayer"></div>
-  <!-- Dark overlay -->
   <div class="cin-overlay"></div>
-  <!-- Film grain -->
   <div class="cin-grain"></div>
-  <!-- Grid overlay -->
   <div class="hero-grid-overlay"></div>
-  <!-- Particle canvas -->
   <canvas id="particleCanvas"></canvas>
-  <!-- Scanning line -->
   <div class="cin-scan-h"></div>
-  <!-- Corner brackets -->
   <div class="cin-frame"></div>
-  <!-- Gold top accent -->
   <div class="cin-topline"></div>
-  <!-- Light leaks -->
   <div class="cin-leak-tl"></div>
   <div class="cin-leak-br"></div>
 
   <div class="cin-content hero-layout">
-    <!-- Left -->
     <div class="hero-left">
       <div class="hero-badge">
         <span>Premier U.S. Distribution Partner</span>
@@ -893,7 +780,6 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
       </div>
     </div>
 
-    <!-- Right: floating glass metric cards -->
     <div class="hero-right">
       <div class="hero-float-card" style="animation:floatA 14s ease-in-out infinite;">
         <div class="hfc-label">Live Network Status</div>
@@ -926,7 +812,7 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
   </div>
 </section>
 
-<!-- Marquee -->
+<!-- ═══ MARQUEE ═══ -->
 <div class="marquee-band">
   <div class="marquee-track">
     <span class="marquee-item">Wholesale Distribution</span>
@@ -954,11 +840,9 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     ★ CINEMATIC BRAND STATEMENT — warehouse image 2
-═══════════════════════════════════════════════════════════ -->
+<!-- ═══ BRAND STATEMENT ═══ -->
 <div class="brand-cin cin-section">
-  <div class="cin-img-layer" style="background-image:url('PLACEHOLDER_IMG_2');animation:kenBurns2 32s ease-in-out infinite alternate;filter:brightness(0.55) saturate(1.15);"></div>
+  <div class="cin-img-layer" style="background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic2');animation:kenBurns2 32s ease-in-out infinite alternate;filter:brightness(0.55) saturate(1.15);"></div>
   <div class="cin-overlay" style="background:linear-gradient(135deg,rgba(7,9,13,0.92) 0%,rgba(7,9,13,0.65) 50%,rgba(7,9,13,0.88) 100%);animation:none;"></div>
   <div class="cin-grain"></div>
   <div class="cin-frame"></div>
@@ -1056,11 +940,9 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     ★ INSIDE OUR OPERATIONS — warehouse image 2 full cinematic
-═══════════════════════════════════════════════════════════ -->
+<!-- ═══ INSIDE OUR OPERATIONS ═══ -->
 <section class="ops-cin cin-section" id="inside-ops">
-  <div class="cin-img-layer" style="background-image:url('PLACEHOLDER_IMG_2');animation:kenBurns1 34s ease-in-out infinite alternate;filter:brightness(0.40) saturate(1.2);"></div>
+  <div class="cin-img-layer" style="background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic2');animation:kenBurns1 34s ease-in-out infinite alternate;filter:brightness(0.40) saturate(1.2);"></div>
   <div class="cin-overlay" style="background:linear-gradient(90deg,rgba(7,9,13,0.97) 0%,rgba(7,9,13,0.62) 55%,rgba(7,9,13,0.42) 100%),linear-gradient(180deg,rgba(7,9,13,0.7) 0%,transparent 25%,transparent 75%,rgba(7,9,13,0.8) 100%);animation:none;"></div>
   <div class="cin-grain"></div>
   <div class="cin-frame"></div>
@@ -1069,7 +951,6 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
   <div class="cin-leak-tl"></div>
 
   <div class="cin-content ops-inner">
-    <!-- Left: heading + timeline -->
     <div>
       <div class="reveal">
         <div class="eyebrow">Inside Our Operations</div>
@@ -1104,7 +985,6 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
       </div>
     </div>
 
-    <!-- Right: metrics panel -->
     <div class="ops-metrics reveal rd2">
       <div class="ops-metric-card">
         <div class="omc-top">
@@ -1195,11 +1075,9 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     ★ NUMBERS BAND — warehouse image 3 full cinematic
-═══════════════════════════════════════════════════════════ -->
+<!-- ═══ NUMBERS BAND ═══ -->
 <div class="numbers-cin cin-section" id="scale">
-  <div class="cin-img-layer" style="background-image:url('PLACEHOLDER_IMG_3');animation:kenBurns2 30s ease-in-out infinite alternate;filter:brightness(0.35) saturate(1.1);"></div>
+  <div class="cin-img-layer" style="background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic3');animation:kenBurns2 30s ease-in-out infinite alternate;filter:brightness(0.35) saturate(1.1);"></div>
   <div class="cin-overlay" style="background:linear-gradient(180deg,rgba(7,9,13,0.88) 0%,rgba(7,9,13,0.48) 40%,rgba(7,9,13,0.85) 100%);animation:none;"></div>
   <div class="cin-grain"></div>
   <div class="cin-frame"></div>
@@ -1326,11 +1204,9 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     ★ CTA — warehouse image 3 full cinematic
-═══════════════════════════════════════════════════════════ -->
+<!-- ═══ CTA ═══ -->
 <div class="cta-cin cin-section">
-  <div class="cin-img-layer" style="background-image:url('PLACEHOLDER_IMG_1');animation:kenBurns3 28s ease-in-out infinite alternate;filter:brightness(0.32) saturate(1.08);"></div>
+  <div class="cin-img-layer" style="background-image:url('https://raw.githubusercontent.com/borplanning-crypto/novaorviantechsafwndemo/main/pic1');animation:kenBurns3 28s ease-in-out infinite alternate;filter:brightness(0.32) saturate(1.08);"></div>
   <div class="cin-overlay" style="background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(7,9,13,0.42) 0%,rgba(7,9,13,0.94) 100%);animation:none;"></div>
   <div class="cin-grain"></div>
   <div class="cin-frame"></div>
@@ -1466,34 +1342,6 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
 </footer>
 
 <script>
-/* ═══════════════════════════════════════════════════════
-   IMAGE URLs — SET YOUR GITHUB RAW URLS HERE
-   Replace the values below with your actual GitHub raw URLs.
-   Example: https://raw.githubusercontent.com/YourUser/YourRepo/main/WhatsApp%20Image%202026-05-26%20at%2012.02.49%20AM.jpeg
-═══════════════════════════════════════════════════════ */
-const IMG_URLS = {
-  img1: 'PLACEHOLDER_IMG_1',
-  img2: 'PLACEHOLDER_IMG_2',
-  img3: 'PLACEHOLDER_IMG_3',
-};
-/* Apply to all .cin-img-layer elements (replaces placeholder text in inline styles) */
-document.querySelectorAll('.cin-img-layer, .cin-section .cin-img-layer').forEach(el => {
-  const bg = el.style.backgroundImage || '';
-  el.style.backgroundImage = bg
-    .replace(/PLACEHOLDER_IMG_1/g, IMG_URLS.img1)
-    .replace(/PLACEHOLDER_IMG_2/g, IMG_URLS.img2)
-    .replace(/PLACEHOLDER_IMG_3/g, IMG_URLS.img3);
-});
-/* Also fix section background images set via inline style */
-document.querySelectorAll('[style]').forEach(el => {
-  if (el.style.backgroundImage && el.style.backgroundImage.includes('PLACEHOLDER')) {
-    el.style.backgroundImage = el.style.backgroundImage
-      .replace(/PLACEHOLDER_IMG_1/g, IMG_URLS.img1)
-      .replace(/PLACEHOLDER_IMG_2/g, IMG_URLS.img2)
-      .replace(/PLACEHOLDER_IMG_3/g, IMG_URLS.img3);
-  }
-});
-
 /* ═══ CUSTOM CURSOR ═══ */
 const ring = document.getElementById('cursorRing');
 const dot  = document.getElementById('cursorDot');
@@ -1529,11 +1377,8 @@ function onScroll() {
         const rect = section.getBoundingClientRect();
         const viewH = window.innerHeight;
         if (rect.bottom < 0 || rect.top > viewH) { ticking = false; return; }
-        /* Parallax: image moves up at 35% of scroll rate — very subtle */
         const progress = (viewH - rect.top) / (viewH + rect.height);
-        const shift = (progress - 0.5) * 28; /* max ±14px */
-        /* Combine with existing Ken Burns via CSS—we use translateY only */
-        /* Preserve the inline animation but add a parallax translateY */
+        const shift = (progress - 0.5) * 28;
         layer.style.transform = `translateY(${shift}px)`;
       });
       ticking = false;
