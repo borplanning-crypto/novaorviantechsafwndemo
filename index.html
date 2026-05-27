@@ -255,10 +255,19 @@ h2.sec-title-light em{color:var(--em3);}
 .marquee-item::after{content:'◆';font-size:6px;color:var(--em);opacity:.5;}
 
 /* ══════════════════════════════════════════════════════════
-   ★★★ PIC4 — REDESIGNED: Full-Bleed Cinematic Editorial
-   Wide landscape format, image takes visual priority.
-   Text overlays the bottom of the image on desktop,
-   stacks cleanly below on mobile.
+   ★★★ PIC4 — REDESIGNED: TRUE CINEMATIC SHOWCASE
+   
+   WHAT WAS BROKEN:
+   - Heavy bottom gradient (rgba 0.95) was blackening the entire image
+   - .pic4-overlay-content (position:absolute) was layering text ON TOP of
+     the image, causing content/image overlap
+   - img used inset:-5%, width:110%, height:110% causing viewport overflow
+   
+   FIX:
+   - Image fills stage with inset:0, width/height:100% — no overflow math
+   - Only subtle vignette overlay (NOT a text-legibility blackout gradient)
+   - ALL text content (headline, desc, stats, pillars) lives BELOW the image
+     in a clean separate .pic4-text-section — zero overlap
    ══════════════════════════════════════════════════════════ */
 .pic4-section {
   background: var(--bg);
@@ -267,7 +276,6 @@ h2.sec-title-light em{color:var(--em3);}
   position: relative;
 }
 
-/* Ambient glow behind section */
 .pic4-section::before {
   content: '';
   position: absolute;
@@ -277,16 +285,14 @@ h2.sec-title-light em{color:var(--em3);}
   z-index: 0;
 }
 
-/* ── Image stage: full-width, 16:7 cinematic ratio ── */
+/* Stage: full viewport width, clean 16:7 cinematic aspect */
 .pic4-stage {
   position: relative;
   width: 100%;
-  /* Cinematic widescreen: preserves landscape composition */
   aspect-ratio: 16 / 7;
   overflow: hidden;
   background: var(--bg3);
 }
-
 @media (max-width: 900px) {
   .pic4-stage { aspect-ratio: 16 / 9; }
 }
@@ -294,38 +300,36 @@ h2.sec-title-light em{color:var(--em3);}
   .pic4-stage { aspect-ratio: 4 / 3; }
 }
 
+/* ★ KEY FIX: Image fills stage with no overflow bleed math */
 .pic4-stage img {
   position: absolute;
-  inset: -5%;
-  width: 110%;
-  height: 110%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
   display: block;
-  filter: brightness(0.88) saturate(1.06) contrast(1.02);
+  filter: brightness(0.92) saturate(1.08) contrast(1.02);
   animation: kenBurnsSlow 38s ease-in-out infinite alternate;
   transition: filter .8s ease;
-  /* Prevent broken-image placeholder from showing a collapsed layout */
-  min-height: 100%;
 }
 .pic4-stage:hover img {
-  filter: brightness(0.94) saturate(1.10) contrast(1.03);
+  filter: brightness(0.97) saturate(1.12) contrast(1.03);
 }
 
-/* Cinematic overlay gradients on the image */
+/* ★ KEY FIX: Only subtle edge vignette — NOT a blackout for text legibility */
 .pic4-stage-overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 2;
-  /* Heavy bottom gradient for text legibility */
   background:
-    linear-gradient(to top,    rgba(7,9,13,0.95) 0%,   rgba(7,9,13,0.60) 28%, rgba(7,9,13,0.10) 55%, transparent 100%),
-    linear-gradient(to right,  rgba(7,9,13,0.55) 0%,   transparent 40%),
-    linear-gradient(to bottom, rgba(7,9,13,0.40) 0%,   transparent 30%);
+    linear-gradient(to bottom, rgba(7,9,13,0.30) 0%, transparent 18%, transparent 82%, rgba(7,9,13,0.38) 100%),
+    linear-gradient(to right, rgba(7,9,13,0.18) 0%, transparent 22%),
+    linear-gradient(to left, rgba(7,9,13,0.18) 0%, transparent 22%);
 }
 
-/* Top-left corner brackets */
+/* Corner brackets */
 .pic4-stage-frame {
   position: absolute;
   inset: 0;
@@ -336,43 +340,43 @@ h2.sec-title-light em{color:var(--em3);}
 .pic4-stage-frame::after {
   content: '';
   position: absolute;
-  width: 40px; height: 40px;
-  border-color: rgba(200,169,110,0.22);
+  width: 48px; height: 48px;
+  border-color: rgba(200,169,110,0.28);
   border-style: solid;
 }
-.pic4-stage-frame::before { top: 24px; left: 24px; border-width: 1.5px 0 0 1.5px; }
-.pic4-stage-frame::after  { bottom: 24px; right: 24px; border-width: 0 1.5px 1.5px 0; }
+.pic4-stage-frame::before { top: 28px; left: 28px; border-width: 2px 0 0 2px; }
+.pic4-stage-frame::after  { bottom: 28px; right: 28px; border-width: 0 2px 2px 0; }
 
-/* Gold line at top of image */
+/* Gold accent line at very top */
 .pic4-stage-topline {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
   background: linear-gradient(90deg, transparent 0%, var(--em) 30%, var(--em3) 70%, transparent 100%);
-  opacity: 0.32;
+  opacity: 0.38;
   z-index: 4;
   pointer-events: none;
 }
 
-/* Live badge overlaid on image */
+/* Live badge — top left corner of image */
 .pic4-stage-badge {
   position: absolute;
-  top: 24px; left: 28px;
+  top: 28px; left: 36px;
   z-index: 5;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(7,9,13,0.78);
+  background: rgba(7,9,13,0.72);
   backdrop-filter: blur(16px) saturate(1.4);
-  border: 1px solid rgba(200,169,110,0.24);
+  border: 1px solid rgba(200,169,110,0.28);
   border-radius: 8px;
-  padding: 8px 14px;
+  padding: 9px 16px;
 }
 .pic4-badge-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--em);
-  box-shadow: 0 0 8px rgba(200,169,110,.6);
+  box-shadow: 0 0 8px rgba(200,169,110,.7);
   animation: pulse 2.2s ease infinite;
   flex-shrink: 0;
 }
@@ -380,119 +384,116 @@ h2.sec-title-light em{color:var(--em3);}
   font-family: var(--font-m);
   font-size: 9px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(200,169,110,.88);
+  color: rgba(200,169,110,.92);
   white-space: nowrap;
 }
 
-/* Overlay content: overlaid on bottom of image on desktop */
+/* ★ REMOVED: No absolute overlay content on top of the image */
 .pic4-overlay-content {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  z-index: 5;
-  padding: clamp(24px,4vw,48px) clamp(20px,5vw,60px);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(24px,4vw,60px);
-  align-items: end;
+  display: none;
 }
 
-@media (max-width: 780px) {
-  .pic4-overlay-content {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
-
-.pic4-overlay-left {}
-
-.pic4-ol-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-m);
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--em);
-  margin-bottom: 10px;
-}
-.pic4-ol-label::before {
-  content: '';
-  display: block;
-  width: 14px; height: 1.5px;
-  background: var(--em);
-  border-radius: 2px;
-}
-
-.pic4-ol-h2 {
-  font-family: var(--font-d);
-  font-size: clamp(24px, 3.2vw, 48px);
-  font-weight: 300;
-  line-height: 1.06;
-  color: #fff;
-  letter-spacing: -.5px;
-  margin-bottom: 0;
-  text-shadow: 0 4px 32px rgba(0,0,0,.8);
-}
-.pic4-ol-h2 em { font-style: italic; color: var(--em3); }
-
-.pic4-overlay-right {}
-
-.pic4-ol-desc {
-  font-size: clamp(12px, 1.5vw, 14px);
-  color: rgba(244,240,232,0.70);
-  line-height: 1.78;
-  margin-bottom: 16px;
-  text-shadow: 0 2px 20px rgba(0,0,0,.7);
-  max-width: 440px;
-}
-
-/* Pill stats inside the overlay */
-.pic4-ol-stats {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-.pic4-ol-stat {
-  background: rgba(7,9,13,0.72);
-  border: 1px solid rgba(200,169,110,0.20);
-  backdrop-filter: blur(12px);
-  border-radius: 8px;
-  padding: 8px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  transition: border-color .3s;
-}
-.pic4-ol-stat:hover { border-color: rgba(200,169,110,0.40); }
-.pic4-ol-stat-num {
-  font-family: var(--font-d);
-  font-size: 18px; font-weight: 600;
-  color: #fff; line-height: 1;
-}
-.pic4-ol-stat-num span { color: var(--em3); font-size: .75em; }
-.pic4-ol-stat-lbl {
-  font-family: var(--font-m);
-  font-size: 7.5px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: rgba(200,169,110,.65);
-}
-
-/* ── Text content section BELOW the image ── */
+/* ── Content section: cleanly below the image ── */
 .pic4-text-section {
-  padding: clamp(36px,5vw,64px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);
+  padding: clamp(40px,5vw,68px) clamp(20px,5vw,60px) clamp(52px,6.5vw,84px);
   position: relative;
   z-index: 1;
   background: var(--bg);
 }
 
+/* Header row: headline LEFT, desc + stats RIGHT */
+.pic4-header-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px,4vw,64px);
+  align-items: start;
+  margin-bottom: clamp(32px,4vw,52px);
+}
+@media (max-width: 780px) {
+  .pic4-header-row { grid-template-columns: 1fr; gap: 20px; }
+}
+
+.pic4-header-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-m);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--em);
+  margin-bottom: 14px;
+}
+.pic4-header-label::before {
+  content: '';
+  display: block;
+  width: 16px; height: 1.5px;
+  background: var(--em);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--em);
+}
+
+.pic4-header-h2 {
+  font-family: var(--font-d);
+  font-size: clamp(28px, 3.4vw, 52px);
+  font-weight: 300;
+  line-height: 1.06;
+  color: #fff;
+  letter-spacing: -.5px;
+}
+.pic4-header-h2 em { font-style: italic; color: var(--em3); }
+
+.pic4-header-right {
+  padding-top: clamp(0px, 2vw, 28px);
+}
+
+.pic4-header-desc {
+  font-size: clamp(13px, 1.5vw, 14.5px);
+  color: rgba(244,240,232,0.58);
+  line-height: 1.84;
+  margin-bottom: 22px;
+  max-width: 480px;
+}
+
+/* Inline stat pills */
+.pic4-stat-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pic4-stat-pill {
+  background: rgba(200,169,110,0.07);
+  border: 1px solid rgba(200,169,110,0.22);
+  border-radius: 8px;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: border-color .3s, background .3s;
+}
+.pic4-stat-pill:hover {
+  border-color: rgba(200,169,110,0.42);
+  background: rgba(200,169,110,0.12);
+}
+.pic4-stat-pill-num {
+  font-family: var(--font-d);
+  font-size: 20px; font-weight: 600;
+  color: #fff; line-height: 1; letter-spacing: -.5px;
+}
+.pic4-stat-pill-num span { color: var(--em3); font-size: .75em; }
+.pic4-stat-pill-lbl {
+  font-family: var(--font-m);
+  font-size: 7.5px; font-weight: 700;
+  letter-spacing: 1.8px; text-transform: uppercase;
+  color: rgba(200,169,110,.65);
+}
+
+/* 4-pillar grid */
 .pic4-pillars-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 14px;
   margin-bottom: 36px;
 }
-
 @media (max-width: 960px)  { .pic4-pillars-row { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 480px)  { .pic4-pillars-row { grid-template-columns: 1fr; } }
 
@@ -542,9 +543,17 @@ h2.sec-title-light em{color:var(--em3);}
 }
 
 /* ══════════════════════════════════════════════════════════
-   ★★★ PIC5 — REDESIGNED: Split cinematic with tall image
-   Image is wide, fills its column completely.
-   Absolutely no portrait-card cramping.
+   ★★★ PIC5 — REDESIGNED: CLEAN 50/50 SPLIT, IMAGE CONTAINED
+   
+   WHAT WAS BROKEN:
+   - img used inset:-6%, width:112%, height:112% — caused the image
+     to bleed outside its container and overlap adjacent content
+   - The overflow bleed pushed layout, cramping text cards
+   
+   FIX:
+   - Image: inset:0, width:100%, height:100%, object-fit:cover
+   - Container: proper overflow:hidden containment, no bleed math
+   - Edge fades work correctly on properly contained image
    ══════════════════════════════════════════════════════════ */
 .pic5-section {
   background: var(--bg2);
@@ -561,15 +570,13 @@ h2.sec-title-light em{color:var(--em3);}
   pointer-events: none;
 }
 
-/* Full-width wrapper — no side padding so image bleeds edge-to-edge */
 .pic5-outer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: clamp(560px, 72vh, 860px);
+  min-height: clamp(580px, 74vh, 880px);
   position: relative;
   z-index: 1;
 }
-
 @media (max-width: 900px) {
   .pic5-outer {
     grid-template-columns: 1fr;
@@ -577,11 +584,10 @@ h2.sec-title-light em{color:var(--em3);}
   }
 }
 
-/* LEFT COLUMN: full-height image, no padding, no border-radius crop */
+/* LEFT COLUMN: properly contained image */
 .pic5-img-col {
   position: relative;
   overflow: hidden;
-  /* Slight aspect ratio on mobile when stacked */
 }
 @media (max-width: 900px) {
   .pic5-img-col {
@@ -590,27 +596,28 @@ h2.sec-title-light em{color:var(--em3);}
   }
 }
 
+/* ★ KEY FIX: Clean fill, no overflow bleed math */
 .pic5-img-col img {
   position: absolute;
-  inset: -6%;
-  width: 112%;
-  height: 112%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center 30%;  /* keeps industrial mid-section in frame */
+  object-position: center 30%;
   display: block;
-  filter: brightness(0.86) saturate(1.06) contrast(1.02);
+  filter: brightness(0.88) saturate(1.08) contrast(1.02);
   animation: kenBurnsSlow 44s ease-in-out infinite alternate;
   transition: filter .8s ease;
 }
 .pic5-img-col:hover img {
-  filter: brightness(0.94) saturate(1.10);
+  filter: brightness(0.96) saturate(1.12);
 }
 
-/* Right-edge gradient so image blends into text column */
+/* Edge blend into text column */
 .pic5-img-fade-r {
   position: absolute;
   top: 0; right: 0; bottom: 0;
-  width: 140px;
+  width: 100px;
   background: linear-gradient(to right, transparent 0%, var(--bg2) 100%);
   pointer-events: none;
   z-index: 2;
@@ -619,20 +626,19 @@ h2.sec-title-light em{color:var(--em3);}
   .pic5-img-fade-r { display: none; }
 }
 
-/* Top+bottom edge fades */
 .pic5-img-fade-t {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom, rgba(7,9,13,0.50) 0%, transparent 100%);
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(13,16,24,0.45) 0%, transparent 100%);
   pointer-events: none;
   z-index: 2;
 }
 .pic5-img-fade-b {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 180px;
-  background: linear-gradient(to top, rgba(7,9,13,0.70) 0%, transparent 100%);
+  height: 120px;
+  background: linear-gradient(to top, rgba(13,16,24,0.60) 0%, transparent 100%);
   pointer-events: none;
   z-index: 2;
 }
@@ -663,7 +669,7 @@ h2.sec-title-light em{color:var(--em3);}
   margin-top: 4px; white-space: nowrap;
 }
 
-/* Corner frame on image */
+/* Corner frame deco */
 .pic5-img-frame-deco {
   position: absolute;
   inset: 0;
@@ -689,7 +695,6 @@ h2.sec-title-light em{color:var(--em3);}
   justify-content: center;
   position: relative;
 }
-
 @media (max-width: 900px) {
   .pic5-text-col {
     order: 2;
@@ -781,7 +786,6 @@ h2.sec-title-light em{color:var(--em3);}
   letter-spacing: 1.5px; text-transform: uppercase;
   color: rgba(244,240,232,.40); margin-top: 4px;
 }
-
 
 /* ══════════════════════════════════════════════════════════
    BRAND STATEMENT
@@ -1057,7 +1061,6 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
   .cin-frame{display:none;}
   .cta-btns{flex-direction:column;align-items:center;}
   .hero-ops-strip{grid-template-columns:1fr;}
-  .pic4-overlay-content{position:static;padding:28px 20px;grid-template-columns:1fr;}
   .pic4-stage-badge{top:14px;left:16px;}
 }
 @media(min-width:481px) and (max-width:680px){.hero-cin{padding:100px 24px 80px;}}
@@ -1189,71 +1192,77 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     ★ PIC4 — REDESIGNED: Full-Bleed Cinematic Editorial Layout
-     Image fills viewport width at 16:7 ratio. Text overlays the
-     bottom. Four pillars sit in the content strip below.
+     ★ PIC4 — FIXED: Full-Bleed Cinematic Image + Clean Content Below
+     
+     WHAT CHANGED:
+     1. pic4-stage img: inset:0, width:100%, height:100% — no overflow math
+     2. pic4-stage-overlay: subtle vignette ONLY — not a blackout gradient
+     3. pic4-overlay-content: REMOVED from HTML (was causing text/image overlap)
+     4. NEW pic4-header-row: headline LEFT + desc/stats RIGHT, cleanly below image
      ═══════════════════════════════════════════════════════════════ -->
 <section class="pic4-section" id="showcase-distribution">
 
-  <!-- ── Full-width cinematic image stage ── -->
+  <!-- Full-width cinematic image stage — image is now FULLY VISIBLE -->
   <div class="pic4-stage reveal">
 
     <img
       src="./pic4"
       alt="Nationwide Industrial Distribution Infrastructure"
       loading="lazy"
-      onerror="this.style.opacity='0.08';this.style.filter='none';"
+      onerror="this.style.opacity='0.06';this.style.filter='none';"
     >
 
     <div class="pic4-stage-overlay"></div>
     <div class="pic4-stage-frame"></div>
     <div class="pic4-stage-topline"></div>
 
-    <!-- Live badge top-left -->
+    <!-- Live badge — top left, on image -->
     <div class="pic4-stage-badge">
       <div class="pic4-badge-dot"></div>
       <span class="pic4-badge-text">Active Distribution Network</span>
     </div>
 
-    <!-- Editorial overlay: headline left, desc + stats right -->
-    <div class="pic4-overlay-content">
+    <!-- pic4-overlay-content INTENTIONALLY REMOVED — was causing overlap -->
 
-      <div class="pic4-overlay-left reveal rd1">
-        <div class="pic4-ol-label">Distribution Excellence</div>
-        <h2 class="pic4-ol-h2">
+  </div>
+
+  <!-- ── All content cleanly below the image — zero overlap ── -->
+  <div class="pic4-text-section">
+
+    <!-- Header row: headline left, desc + stats right -->
+    <div class="pic4-header-row">
+      <div class="reveal">
+        <div class="pic4-header-label">Distribution Excellence</div>
+        <h2 class="pic4-header-h2">
           Nationwide Industrial<br><em>Distribution</em>
         </h2>
       </div>
-
-      <div class="pic4-overlay-right reveal rd2">
-        <p class="pic4-ol-desc">
+      <div class="pic4-header-right reveal rd1">
+        <p class="pic4-header-desc">
           Built to support enterprise-scale logistics, warehousing, and intelligent distribution infrastructure across strategic operational corridors — connecting manufacturers to markets with unmatched precision.
         </p>
-        <div class="pic4-ol-stats">
-          <div class="pic4-ol-stat">
-            <div class="pic4-ol-stat-num">50<span>+</span></div>
-            <div class="pic4-ol-stat-lbl">States</div>
+        <div class="pic4-stat-pills">
+          <div class="pic4-stat-pill">
+            <div class="pic4-stat-pill-num">50<span>+</span></div>
+            <div class="pic4-stat-pill-lbl">States</div>
           </div>
-          <div class="pic4-ol-stat">
-            <div class="pic4-ol-stat-num">99<span>%</span></div>
-            <div class="pic4-ol-stat-lbl">On-Time</div>
+          <div class="pic4-stat-pill">
+            <div class="pic4-stat-pill-num">99<span>%</span></div>
+            <div class="pic4-stat-pill-lbl">On-Time</div>
           </div>
-          <div class="pic4-ol-stat">
-            <div class="pic4-ol-stat-num">24<span>/7</span></div>
-            <div class="pic4-ol-stat-lbl">Uptime</div>
+          <div class="pic4-stat-pill">
+            <div class="pic4-stat-pill-num">24<span>/7</span></div>
+            <div class="pic4-stat-pill-lbl">Uptime</div>
           </div>
-          <div class="pic4-ol-stat">
-            <div class="pic4-ol-stat-num">200<span>+</span></div>
-            <div class="pic4-ol-stat-lbl">Carriers</div>
+          <div class="pic4-stat-pill">
+            <div class="pic4-stat-pill-num">200<span>+</span></div>
+            <div class="pic4-stat-pill-lbl">Carriers</div>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
 
-  <!-- ── 4 pillars + CTA below the image ── -->
-  <div class="pic4-text-section">
+    <!-- 4 pillars -->
     <div class="pic4-pillars-row">
       <div class="pic4-pillar reveal">
         <div class="pic4-pillar-num">01</div>
@@ -1276,6 +1285,7 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
         <p>Continuous operations with no scheduled downtime — every shift, every day, nationwide.</p>
       </div>
     </div>
+
     <div class="pic4-text-footer reveal">
       <p class="pic4-text-footer-desc">From inbound dock receiving to last-mile carrier handoff — our distribution infrastructure runs without interruption, at every scale your business demands.</p>
       <a href="#contact" class="btn-primary">
@@ -1288,22 +1298,26 @@ footer{background:#050608;border-top:1px solid var(--border);padding:72px 5vw 32
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     ★ PIC5 — REDESIGNED: True 50/50 Split, image column bleeds
-     to full height. No portrait-card crop. Image fills left half
-     edge-to-edge, right half carries all copy.
+     ★ PIC5 — FIXED: Clean 50/50 Split, Image Properly Contained
+     
+     WHAT CHANGED:
+     1. pic5-img-col img: inset:0, width:100%, height:100% — no bleed math
+     2. pic5-img-col: proper overflow:hidden, no inset:-6% overflow
+     3. Edge fades now work correctly on contained image
+     All text content and cards remain unchanged.
      ═══════════════════════════════════════════════════════════════ -->
 <section class="pic5-section" id="showcase-logistics">
 
   <div class="pic5-outer reveal">
 
-    <!-- LEFT: full-height image column -->
+    <!-- LEFT: full-height image column — properly contained -->
     <div class="pic5-img-col">
 
       <img
         src="./pic5"
         alt="Precision Logistics and Supply Chain Infrastructure"
         loading="lazy"
-        onerror="this.style.opacity='0.08';this.style.filter='none';"
+        onerror="this.style.opacity='0.06';this.style.filter='none';"
       >
 
       <div class="pic5-img-fade-t"></div>
@@ -1766,7 +1780,7 @@ document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; })
   ring.style.left = ox + 'px'; ring.style.top = oy + 'px';
   requestAnimationFrame(animCursor);
 })();
-document.querySelectorAll('a, button, .mosaic-cell, .svc-card, .why-card, .industry-item, .feature-block, .pt-item, .hos-item, .ops-metric-card, .num-cell, .pic4-pillar, .pic5-card-item, .pic5-metric, .pic4-ol-stat').forEach(el => {
+document.querySelectorAll('a, button, .mosaic-cell, .svc-card, .why-card, .industry-item, .feature-block, .pt-item, .hos-item, .ops-metric-card, .num-cell, .pic4-pillar, .pic5-card-item, .pic5-metric, .pic4-stat-pill').forEach(el => {
   el.addEventListener('mouseenter', () => { ring.style.width = '48px'; ring.style.height = '48px'; ring.style.borderColor = 'rgba(200,169,110,.85)'; });
   el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(200,169,110,.5)'; });
 });
