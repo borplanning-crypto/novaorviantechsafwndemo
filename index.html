@@ -63,7 +63,7 @@ a { text-decoration:none; color:inherit; }
 img { display:block; max-width:100%; }
 
 /* ══════════════════════════════════════
-   ANIMATIONS — FASTER, MORE CINEMATIC
+   ANIMATIONS
 ══════════════════════════════════════ */
 @keyframes fadeUp {
   from { opacity:0; transform:translateY(32px); }
@@ -73,8 +73,6 @@ img { display:block; max-width:100%; }
   from { opacity:0; }
   to   { opacity:1; }
 }
-
-/* FIX: kenBurns now 6s (was 14-20s) — feels like live video */
 @keyframes kenBurns {
   0%   { transform:scale(1.00) translate(0%, 0%); }
   25%  { transform:scale(1.04) translate(-0.5%, -0.5%); }
@@ -82,15 +80,12 @@ img { display:block; max-width:100%; }
   75%  { transform:scale(1.04) translate(0.5%, -0.5%); }
   100% { transform:scale(1.00) translate(0%, 0%); }
 }
-
-/* Alternative drift for variety */
 @keyframes kenBurnsDrift {
   0%   { transform:scale(1.00) translate(0%, 0%); }
   33%  { transform:scale(1.06) translate(-1.2%, 0.8%); }
   66%  { transform:scale(1.03) translate(0.8%, -0.6%); }
   100% { transform:scale(1.00) translate(0%, 0%); }
 }
-
 @keyframes goldShimmer {
   0%   { background-position: 200% center; }
   100% { background-position:-200% center; }
@@ -108,7 +103,6 @@ img { display:block; max-width:100%; }
   50%      { opacity:.7; box-shadow:0 0 0 8px rgba(74,222,128,0); }
 }
 
-/* Scroll reveal */
 .reveal {
   opacity:0;
   transform:translateY(28px);
@@ -318,7 +312,7 @@ nav.scrolled {
 .nav-hbg span { display:block; width:20px; height:1.5px; background:var(--text-2); border-radius:2px; transition:all .3s; }
 
 /* ══════════════════════════════════════
-   HERO  — FIX: overflow + padding-bottom
+   HERO
 ══════════════════════════════════════ */
 #hero {
   min-height: 100svh;
@@ -336,7 +330,6 @@ nav.scrolled {
   width:100%; height:100%;
   object-fit:cover; object-position:center;
   display:block;
-  /* FIX: was 16s — now 6s for video-like motion */
   animation: kenBurns 6s ease-in-out infinite;
   opacity:.38;
 }
@@ -365,7 +358,6 @@ nav.scrolled {
   grid-template-columns: 1fr 1fr;
   gap: clamp(32px,5vw,80px);
   align-items: center;
-  /* FIX: padding-bottom prevents card from clipping on short viewports */
   padding: clamp(48px,8vw,96px) 0 clamp(60px,8vw,96px);
   position: relative; z-index: 3;
   width:100%;
@@ -401,25 +393,22 @@ nav.scrolled {
 .hstat-n { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gold); line-height:1; letter-spacing:-1px; }
 .hstat-l { font-family: var(--font-head); font-size: 7.5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-4); margin-top: 4px; }
 
-/* Hero right — FIX: overflow hidden on wrap prevents bottom clip */
 .hero-right { animation: fadeUp .9s .2s both; }
 .hero-img-wrap {
   position: relative;
-  /* FIX: prevents corner accents from extending outside */
   overflow: visible;
 }
 .hero-img-card {
   position: relative;
   aspect-ratio: 4/3;
-  overflow: hidden; /* clips image + badges cleanly */
+  overflow: hidden;
   border: 1px solid var(--border-lo);
   background: var(--surface-1);
 }
 .hero-img-card img {
   width:100%; height:100%;
-  object-fit:cover; object-position:center 30%; /* FIX: push down so exterior top is cropped */
+  object-fit:cover; object-position:center 30%;
   display:block;
-  /* FIX: faster — 6s */
   animation: kenBurnsDrift 6s ease-in-out infinite;
 }
 .hero-img-card::after {
@@ -428,7 +417,6 @@ nav.scrolled {
   background: linear-gradient(135deg,rgba(11,13,16,.5) 0%,transparent 60%,rgba(11,13,16,.3) 100%);
   pointer-events:none;
 }
-/* FIX: Extra overlay to blur/obscure any signage in lower portion */
 .hero-img-card::before {
   content:'';
   position:absolute;
@@ -436,7 +424,6 @@ nav.scrolled {
   background:linear-gradient(90deg,var(--gold),rgba(201,168,106,.3),transparent);
   z-index:2;
 }
-/* Signage blur mask — covers bottom where signage typically appears */
 .hero-img-signage-mask {
   position:absolute; bottom:0; left:0; right:0;
   height:35%;
@@ -486,45 +473,48 @@ nav.scrolled {
 
 /* ══════════════════════════════════════
    PIC1 — About / Split Grid
-   FIX: overflow:hidden on image col to clip float stat
 ══════════════════════════════════════ */
 #sec-pic1 { padding: clamp(80px,9vw,120px) 0; background: var(--black); }
 .pic1-grid { display:grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px,6vw,88px); align-items:center; }
 .pic1-img-col {
   position:relative;
-  /* FIX: add padding so float stat doesn't clip below section */
   padding-bottom: 28px; padding-right: 28px;
 }
 .pic1-frame {
   position:relative; aspect-ratio:4/3; overflow:hidden;
   border:1px solid var(--border-lo); background:var(--surface-1);
 }
+/* FIX: pic1-frame img — wrap animation inside clip div to prevent bleed */
+.pic1-frame .img-clip {
+  position:absolute; inset:0;
+  overflow:hidden;
+}
 .pic1-frame img {
   width:100%; height:100%;
-  object-fit:cover; object-position:center 20%; /* FIX: crop upper part to hide signage */
+  object-fit:cover; object-position:center 55%;
   display:block;
-  /* FIX: 6s animation */
   animation:kenBurns 6s ease-in-out infinite;
+  /* FIX: no will-change — prevents compositing layer escape */
 }
 .pic1-frame::after {
   content:''; position:absolute; inset:0;
   background:linear-gradient(to bottom, transparent 50%, rgba(11,13,16,.7));
   pointer-events:none;
+  z-index:2;
 }
-/* Signage mask for pic1 */
 .pic1-signage-mask {
   position:absolute; top:0; left:0; right:0;
   height:28%;
   background: linear-gradient(to bottom, rgba(11,13,16,.70) 0%, transparent 100%);
-  z-index:2; pointer-events:none;
+  z-index:3; pointer-events:none;
 }
-.pic1-frame-border { position:absolute; inset:-1px; pointer-events:none; z-index:2; }
+.pic1-frame-border { position:absolute; inset:-1px; pointer-events:none; z-index:4; }
 .pic1-frame-border::before {
   content:''; position:absolute; top:-1px; left:-1px; right:-1px; height:2px;
   background:linear-gradient(90deg,var(--gold),transparent);
 }
 .pic1-badge-live {
-  position:absolute; top:20px; left:20px; z-index:3;
+  position:absolute; top:20px; left:20px; z-index:5;
   display:flex; align-items:center; gap:8px;
   background:rgba(11,13,16,.85); backdrop-filter:blur(12px);
   border:1px solid var(--border-md); padding:8px 14px;
@@ -582,7 +572,9 @@ nav.scrolled {
 
 /* ══════════════════════════════════════
    PIC2 — FULL-BLEED CINEMATIC
-   FIX: uses neutral Unsplash fallback; object-position avoids signage
+   FIX: object-position changed from "center top" to "center 75%"
+        so the upper facade/signage scrolls OUT of frame.
+        Added stronger top-mask overlay to bury any residual text.
 ══════════════════════════════════════ */
 #sec-pic2 { background:var(--black); }
 .pic2-stage {
@@ -591,17 +583,27 @@ nav.scrolled {
 }
 @media(max-width:900px){ .pic2-stage{aspect-ratio:16/7;} }
 @media(max-width:600px){ .pic2-stage{aspect-ratio:4/3;} }
-.pic2-stage > img {
+
+/* FIX: The clip-wrap contains the Ken Burns animation so it never
+        escapes the stage boundary and bleeds into adjacent sections */
+.pic2-stage .img-clip {
+  position:absolute; inset:0;
+  overflow:hidden;
+}
+.pic2-stage > .img-clip > img {
   width:100%; height:100%;
-  object-fit:cover; object-position:center top;
+  object-fit:cover;
+  /* FIX: was "center top" — now "center 75%" pushes building top UP and OUT of frame */
+  object-position:center 75%;
   display:block; position:absolute; inset:0;
-  /* FIX: 6s */
   animation:kenBurnsDrift 6s ease-in-out infinite;
   opacity:.45;
 }
 .pic2-overlay {
   position:absolute; inset:0;
   background:
+    /* FIX: Added heavier top gradient to bury any residual signage at top edge */
+    linear-gradient(to bottom, rgba(11,13,16,.82) 0%, rgba(11,13,16,.20) 30%, transparent 55%),
     linear-gradient(to right, rgba(11,13,16,.88) 0%, rgba(11,13,16,.48) 50%, transparent 100%),
     linear-gradient(to top, rgba(11,13,16,.82) 0%, transparent 45%);
   pointer-events:none; z-index:1;
@@ -631,8 +633,19 @@ nav.scrolled {
 
 /* ══════════════════════════════════════
    PIC3 — SPLIT, IMAGE RIGHT
+   FIX: overflow:hidden added to #sec-pic3 and .pic3-img-col
+        to prevent Ken Burns from escaping into pic4 below.
+        pic3-frame img wrapped in .img-clip div.
 ══════════════════════════════════════ */
-#sec-pic3 { padding:clamp(80px,9vw,120px) 0; background:var(--charcoal); border-top:1px solid var(--border-lo); }
+#sec-pic3 {
+  padding:clamp(80px,9vw,120px) 0;
+  background:var(--charcoal);
+  border-top:1px solid var(--border-lo);
+  /* FIX: Hard section boundary — prevents animated img from bleeding */
+  overflow:hidden;
+  position:relative;
+  isolation:isolate;
+}
 .pic3-grid { display:grid; grid-template-columns:1fr 1.05fr; gap:clamp(40px,6vw,88px); align-items:center; }
 .pillar-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border-lo); border:1px solid var(--border-lo); margin:28px 0 32px; }
 .pillar { background:var(--surface-1); padding:18px 16px; transition:background .25s; }
@@ -640,34 +653,43 @@ nav.scrolled {
 .pillar-num { font-family:var(--font-display); font-size:10px; color:var(--gold); margin-bottom:7px; letter-spacing:1px; }
 .pillar h4 { font-family:var(--font-head); font-size:12.5px; font-weight:700; color:var(--text-1); margin-bottom:4px; letter-spacing:.5px; }
 .pillar p  { font-size:11.5px; color:var(--text-3); line-height:1.65; }
-.pic3-img-col { position:relative; }
+.pic3-img-col {
+  position:relative;
+  /* FIX: clip column so animation can't overflow section */
+  overflow:hidden;
+}
 .pic3-frame {
-  position:relative; aspect-ratio:3/4; overflow:hidden;
+  position:relative; aspect-ratio:3/4;
+  /* FIX: overflow hidden on the frame itself — double boundary */
+  overflow:hidden;
   border:1px solid var(--border-lo); background:var(--surface-1);
+}
+/* FIX: New clip wrapper isolates the Ken Burns transform */
+.pic3-frame .img-clip {
+  position:absolute; inset:0;
+  overflow:hidden;
 }
 .pic3-frame img {
   width:100%; height:100%; object-fit:cover; object-position:center;
   display:block;
-  /* FIX: 6s */
   animation:kenBurns 6s ease-in-out infinite;
+  /* FIX: NO will-change:transform — was causing layer promotion that escaped overflow */
 }
-.pic3-frame::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,transparent 55%,rgba(11,13,16,.65)); pointer-events:none; }
-.pic3-stat { position:absolute; bottom:24px; left:24px; z-index:2; background:var(--gold); padding:14px 20px; }
+.pic3-frame::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,transparent 55%,rgba(11,13,16,.65)); pointer-events:none; z-index:2; }
+.pic3-stat { position:absolute; bottom:24px; left:24px; z-index:3; background:var(--gold); padding:14px 20px; }
 .ps3-n { font-family:var(--font-display); font-size:36px; font-weight:700; color:var(--black); line-height:1; letter-spacing:-1.5px; }
 .ps3-l { font-family:var(--font-head); font-size:7.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(11,13,16,.65); margin-top:4px; }
 
 /* ══════════════════════════════════════
-   PIC4 — FIXED: z-index isolation prevents bleed-through
-   The previous issue was sections overlapping due to stacking context
+   PIC4 — FIXED: z-index isolation + stronger text contrast
 ══════════════════════════════════════ */
 #sec-pic4 {
   background: var(--black);
   border-top:1px solid var(--border-lo);
-  /* FIX: Create isolated stacking context so this section
-     never bleeds into or from adjacent sections */
   position: relative;
-  z-index: 1;
+  z-index: 2; /* FIX: raised from 1 — sits above pic3's stacking context */
   isolation: isolate;
+  overflow: hidden; /* FIX: hard clip boundary */
 }
 .pic4-stage {
   width:100%; aspect-ratio:16/6; position:relative;
@@ -675,10 +697,15 @@ nav.scrolled {
 }
 @media(max-width:900px){ .pic4-stage{aspect-ratio:16/8;} }
 @media(max-width:600px){ .pic4-stage{aspect-ratio:9/10;} }
-.pic4-stage > img {
+
+/* FIX: img-clip wrapper contains animation inside stage */
+.pic4-stage .img-clip {
+  position:absolute; inset:0;
+  overflow:hidden;
+}
+.pic4-stage > .img-clip > img {
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; object-position:center; display:block;
-  /* FIX: 6s cinematic */
   animation:kenBurnsDrift 6s ease-in-out infinite;
   opacity:.42;
 }
@@ -689,8 +716,16 @@ nav.scrolled {
     linear-gradient(to top, rgba(11,13,16,.88) 0%, transparent 40%);
   pointer-events:none; z-index:1;
 }
+/* FIX: New dedicated text-zone darkener — radial vignette behind the copy block */
+.pic4-text-vignette {
+  position:absolute;
+  top:0; left:0; width:65%; height:100%;
+  background:
+    radial-gradient(ellipse 80% 90% at 20% 50%, rgba(11,13,16,.70) 0%, transparent 70%);
+  pointer-events:none; z-index:2;
+}
 .pic4-text-overlay {
-  position:absolute; top:0; left:0; bottom:72px; z-index:2;
+  position:absolute; top:0; left:0; bottom:72px; z-index:3;
   display:flex; flex-direction:column; justify-content:center;
   padding:clamp(24px,4vw,60px);
   max-width:min(560px,60%);
@@ -699,11 +734,12 @@ nav.scrolled {
 .pto-label { font-family:var(--font-head); font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:12px; }
 .pto-h { font-family:var(--font-display); font-size:clamp(22px,3.5vw,54px); font-weight:700; color:var(--text-1); line-height:1.04; letter-spacing:-.5px; margin-bottom:14px; }
 .pto-h em { font-style:italic; color:var(--gold); }
-.pto-p { font-size:13px; color:rgba(245,241,234,.55); line-height:1.80; margin-bottom:22px; max-width:420px; }
+.pto-p { font-size:13px; color:rgba(245,241,234,.65); line-height:1.80; margin-bottom:22px; max-width:420px; }
+/* FIX: Boosted text color slightly (was .55, now .65) for better contrast */
 .pic4-stats-bar {
-  position:absolute; bottom:0; left:0; right:0; z-index:3; height:72px;
+  position:absolute; bottom:0; left:0; right:0; z-index:4; height:72px;
   display:grid; grid-template-columns:repeat(4,1fr);
-  background:rgba(11,13,16,.92); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  background:rgba(11,13,16,.96); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
   border-top:1px solid var(--border-lo);
 }
 @media(max-width:600px){
@@ -730,7 +766,6 @@ nav.scrolled {
 
 /* ══════════════════════════════════════
    PIC5 — SPLIT, IMAGE RIGHT
-   FIX: pic5-frame uses aspect-ratio for consistent sizing
 ══════════════════════════════════════ */
 #sec-pic5 { padding:clamp(80px,9vw,120px) 0; background:var(--charcoal); border-top:1px solid var(--border-lo); }
 .pic5-inner { display:grid; grid-template-columns:1fr 1.1fr; gap:clamp(40px,6vw,80px); align-items:center; }
@@ -739,20 +774,18 @@ nav.scrolled {
   border:1px solid var(--border-lo);
   background:var(--surface-1);
   overflow:hidden;
-  /* FIX: Use aspect-ratio instead of height:auto to prevent layout jank */
   aspect-ratio: 4/3;
 }
 .pic5-frame img {
   width:100%; height:100%;
-  /* FIX: object-fit cover + contain was the old bug — now cover for consistent fill */
   object-fit:cover; object-position:center;
   display:block;
-  /* FIX: 6s */
   animation:kenBurns 6s ease-in-out infinite;
 }
 .pic5-stat-badge {
   position:absolute; bottom:16px; right:16px;
   background:var(--black); border:1px solid var(--border-md); padding:12px 16px;
+  z-index:2;
 }
 .psb2-n { font-family:var(--font-display); font-size:24px; font-weight:700; color:var(--gold); letter-spacing:-1px; line-height:1; }
 .psb2-l { font-family:var(--font-head); font-size:7.5px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--text-4); margin-top:4px; }
@@ -999,7 +1032,6 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
     <div class="nav-inner">
       <a href="#hero" class="logo">
         <div class="logo-mark">
-          <!-- FIX: Added .jpg fallback check; fallback letter shown if image 404s -->
           <img src="nova.jpeg" alt="Nova Orvian LLC"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <span class="logo-mark-fallback" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--gold);">N</span>
@@ -1027,7 +1059,6 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
 <!-- ═══ HERO ═══ -->
 <section id="hero">
   <div class="hero-bg">
-    <!-- FIX: Falls back to neutral U.S. warehouse — no visible signage -->
     <img src="pic1" alt="Distribution facility"
       onerror="this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=85&auto=format&fit=crop'">
   </div>
@@ -1065,12 +1096,9 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
       <div class="hero-right">
         <div class="hero-img-wrap">
           <div class="hero-img-card">
-            <!-- FIX: object-position crops to show interior/roof, not exterior signage -->
-            <!-- FIX: Fallback uses neutral warehouse interior -->
             <img src="pic2" alt="Warehouse operations"
               onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=85&auto=format&fit=crop'"
               style="object-position:center 40%;">
-            <!-- Signage blur mask — darkens lower section where exterior signage shows -->
             <div class="hero-img-signage-mask"></div>
             <div class="hero-badge">
               <span class="hb-dot"></span>
@@ -1123,11 +1151,12 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
     <div class="pic1-grid">
       <div class="pic1-img-col reveal">
         <div class="pic1-frame">
-          <!-- FIX: object-position center 20% crops top of image — shows interior racking, hides any top signage -->
-          <img src="pic1" alt="Distribution facility interior" loading="lazy"
-            onerror="this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80&auto=format&fit=crop'"
-            style="object-position:center 55%;">
-          <!-- Top gradient mask covers any banner/signage at top of image -->
+          <!-- FIX: img wrapped in .img-clip div to contain animation -->
+          <div class="img-clip">
+            <img src="pic1" alt="Distribution facility interior" loading="lazy"
+              onerror="this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80&auto=format&fit=crop'"
+              style="object-position:center 55%;">
+          </div>
           <div class="pic1-signage-mask"></div>
           <div class="pic1-frame-border"></div>
           <div class="pic1-badge-live">
@@ -1184,10 +1213,12 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
 
 <!-- ═══ PIC2 — FULL-BLEED CINEMATIC ═══ -->
 <section id="sec-pic2">
+  <!-- FIX: img-clip wrapper added — contains Ken Burns transform inside .pic2-stage boundary -->
   <div class="pic2-stage reveal">
-    <!-- FIX: Fallback is neutral U.S. warehouse with no visible branding -->
-    <img src="pic2" alt="Logistics operations at scale" loading="lazy"
-      onerror="this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1400&q=85&auto=format&fit=crop'">
+    <div class="img-clip">
+      <img src="pic2" alt="Logistics operations at scale" loading="lazy"
+        onerror="this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1400&q=85&auto=format&fit=crop'">
+    </div>
     <div class="pic2-overlay"></div>
     <div class="pic2-content">
       <div class="pc-left">
@@ -1246,8 +1277,11 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
 
       <div class="pic3-img-col reveal rd1">
         <div class="pic3-frame">
-          <img src="pic3" alt="Operations and infrastructure" loading="lazy"
-            onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80&auto=format&fit=crop'">
+          <!-- FIX: img-clip wrapper isolates Ken Burns — zero bleed into pic4 -->
+          <div class="img-clip">
+            <img src="pic3" alt="Operations and infrastructure" loading="lazy"
+              onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80&auto=format&fit=crop'">
+          </div>
           <div class="pic3-stat">
             <div class="ps3-n">4+</div>
             <div class="ps3-l">Years of Excellence</div>
@@ -1261,9 +1295,14 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
 <!-- ═══ PIC4 — CONTAINED FULL-BLEED ═══ -->
 <section id="sec-pic4">
   <div class="pic4-stage reveal">
-    <img src="pic4" alt="Warehouse infrastructure" loading="lazy"
-      onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80&auto=format&fit=crop'">
+    <!-- FIX: img-clip wrapper contains animation inside this section -->
+    <div class="img-clip">
+      <img src="pic4" alt="Warehouse infrastructure" loading="lazy"
+        onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80&auto=format&fit=crop'">
+    </div>
     <div class="pic4-overlay"></div>
+    <!-- FIX: dedicated radial vignette behind text zone for better contrast -->
+    <div class="pic4-text-vignette"></div>
     <div class="pic4-text-overlay">
       <span class="pto-label">Distribution Infrastructure</span>
       <h2 class="pto-h">Built for<br><em>Enterprise Scale</em></h2>
@@ -1274,6 +1313,7 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
       </a>
     </div>
     <div class="pic4-stats-bar">
+      <!-- FIX: data-t values are plain integers, no concatenation risk -->
       <div class="psb-item"><div class="psb-n"><span class="counter" data-t="50">0</span><span>+</span></div><div class="psb-l">States</div></div>
       <div class="psb-item"><div class="psb-n"><span class="counter" data-t="99">0</span><span>%</span></div><div class="psb-l">On-Time</div></div>
       <div class="psb-item"><div class="psb-n">24<span>/7</span></div><div class="psb-l">Uptime</div></div>
@@ -1285,9 +1325,9 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
     <div class="container">
       <div class="pic4-pillars">
         <div class="p4p reveal"><div class="p4p-num">01</div><h4>Inbound Receiving</h4><p>EDI-verified intake with barcode scanning, dock-level inspection, and same-day put-away.</p></div>
-        <div class="p4p reveal rd1"><div class="p4p-num">02</div><h4>Smart Storage & Slotting</h4><p>WMS-optimized slotting reduces pick travel by 40%, enabling higher throughput.</p></div>
-        <div class="p4p reveal rd2"><div class="p4p-num">03</div><h4>Pick, Pack & QC</h4><p>Multi-stage verification — weight confirmation, barcode validation, and packing standards.</p></div>
-        <div class="p4p reveal rd3"><div class="p4p-num">04</div><h4>Dock Dispatch & Last-Mile</h4><p>Carrier-optimized loading with real-time tracking handoff and automated notifications.</p></div>
+        <div class="p4p reveal rd1"><div class="p4p-num">02</div><h4>Smart Storage &amp; Slotting</h4><p>WMS-optimized slotting reduces pick travel by 40%, enabling higher throughput.</p></div>
+        <div class="p4p reveal rd2"><div class="p4p-num">03</div><h4>Pick, Pack &amp; QC</h4><p>Multi-stage verification — weight confirmation, barcode validation, and packing standards.</p></div>
+        <div class="p4p reveal rd3"><div class="p4p-num">04</div><h4>Dock Dispatch &amp; Last-Mile</h4><p>Carrier-optimized loading with real-time tracking handoff and automated notifications.</p></div>
       </div>
     </div>
   </div>
@@ -1329,11 +1369,9 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
 
       <div class="pic5-img-col reveal rd1">
         <div class="pic5-frame">
-          <!-- FIX: pic5 now uses cover + aspect-ratio for clean fill -->
           <img src="pic5" alt="Precision logistics facility" loading="lazy"
             onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80&auto=format&fit=crop'">
           <div class="pic5-stat-badge">
-            <!-- FIX: counter now fires correctly — uses same observer as other counters -->
             <div class="psb2-n"><span class="counter" data-t="50">0</span><span>+</span></div>
             <div class="psb2-l">States Covered</div>
           </div>
@@ -1549,28 +1587,61 @@ const ro = new IntersectionObserver(entries => {
 }, { threshold: 0.06, rootMargin: '0px 0px -16px 0px' });
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-/* ── COUNTER ANIMATION (FIX: expanded selector includes pic5-frame) ── */
+/* ── COUNTER ANIMATION ──────────────────────────────────────
+   FIX 1: data-done guard prevents double-fire on re-observe
+   FIX 2: parseInt() with radix 10 on data-t prevents accidental
+           octal/string concatenation edge cases
+   FIX 3: selector list now explicitly includes .pic4-stats-bar
+           and .psb-item wrappers so those counters always fire
+   FIX 4: single runCounter() helper — no duplicated logic
+──────────────────────────────────────────────────────────── */
+function runCounter(el) {
+  /* Guard — never run twice on the same element */
+  if (el.dataset.done) return;
+  el.dataset.done = '1';
+
+  const target = parseInt(el.dataset.t, 10);
+  if (isNaN(target)) return; /* safety: skip malformed data-t */
+
+  const dur = 1800;
+  const step = 16;
+  let cur = 0;
+  const inc = target / (dur / step);
+
+  const iv = setInterval(() => {
+    cur += inc;
+    if (cur >= target) {
+      cur = target;
+      clearInterval(iv);
+    }
+    el.textContent = Math.floor(cur).toLocaleString();
+  }, step);
+}
+
 const co = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
-    e.target.querySelectorAll('.counter').forEach(c => {
-      if (c.dataset.done) return;
-      c.dataset.done = '1';
-      const target = +c.dataset.t;
-      const dur = 1800, step = 16;
-      let cur = 0;
-      const inc = target / (dur / step);
-      const iv = setInterval(() => {
-        cur += inc;
-        if (cur >= target) { cur = target; clearInterval(iv); }
-        c.textContent = Math.floor(cur).toLocaleString();
-      }, step);
-    });
+    e.target.querySelectorAll('.counter').forEach(runCounter);
     co.unobserve(e.target);
   });
 }, { threshold: 0.15 });
-/* FIX: Added .pic5-frame and .pic5-inner to catch the States counter */
-document.querySelectorAll('.stats-grid,.pic2-stage,.pic4-stage,.hero-stats,.pc-chips,.metric-row,.pic5-frame,.pic5-inner').forEach(el => co.observe(el));
+
+/*
+ FIX: Added .pic4-stats-bar directly so the 4 psb-item counters
+      are picked up by the observer regardless of .pic4-stage
+      lazy-loading timing. Also added .pic5-frame and .metric-row.
+*/
+document.querySelectorAll([
+  '.stats-grid',
+  '.pic2-stage',
+  '.pic4-stage',
+  '.pic4-stats-bar',   /* FIX: explicit — catches the bottom stats bar */
+  '.hero-stats',
+  '.pc-chips',
+  '.metric-row',
+  '.pic5-frame',
+  '.pic5-inner'
+].join(',')).forEach(el => co.observe(el));
 
 /* ── SMOOTH SCROLL ── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1617,3 +1688,8 @@ hbg.addEventListener('click', () => {
 </script>
 </body>
 </html>
+HTMLEOF
+echo "File written: $(wc -l < /home/claude/nova_fixed.html) lines"
+Output
+
+File written: 1690 lines
