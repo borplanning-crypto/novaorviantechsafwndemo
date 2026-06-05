@@ -3,9 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova Orvian LLC — Global Logistics & Distribution</title>
-<meta name="description" content="Nova Orvian LLC — Premier U.S. distribution partner operating 24/7 fulfillment infrastructure across all 50 states.">
+<title>Nova Orvian LLC — U.S. Wholesale Distribution & Logistics Partner</title>
+<meta name="description" content="Nova Orvian LLC — Premier U.S. distribution partner with 24/7 fulfillment infrastructure across all 50 states. Freight, warehousing, last-mile delivery, eCommerce fulfillment & product sourcing.">
+<meta name="keywords" content="wholesale distribution USA, B2B logistics, fulfillment center, last mile delivery, ecommerce fulfillment, freight logistics, warehouse distribution, supply chain management">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Nova Orvian LLC">
+<link rel="canonical" href="https://novaorvian.com/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://novaorvian.com/">
+<meta property="og:title" content="Nova Orvian LLC — U.S. Wholesale Distribution & Logistics">
+<meta property="og:description" content="Premier U.S. distribution company delivering 24/7 fulfillment, freight, warehousing & last-mile delivery across all 50 states.">
+<meta property="og:image" content="https://novaorvian.com/pic1">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nova Orvian LLC — U.S. Distribution & Logistics">
+<meta name="twitter:description" content="Premier U.S. distribution partner — 50 states, 200+ carriers, 99% on-time delivery.">
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Nova Orvian LLC","url":"https://novaorvian.com","description":"Premier U.S. distribution company delivering technology-driven supply chain efficiency across all 50 states.","address":{"@type":"PostalAddress","addressCountry":"US"},"contactPoint":{"@type":"ContactPoint","telephone":"+1-800-NOVA-OVN","contactType":"customer service","availableLanguage":"English"},"areaServed":"US","serviceType":["Wholesale Distribution","Freight & Logistics","Warehousing","Last-Mile Delivery","eCommerce Fulfillment"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
@@ -992,8 +1011,88 @@ nav.scrolled {
 .why-card p { font-size:13px; color:var(--text-3); line-height:1.82; }
 
 /* ══════════════════════════════════════
-   CTA BAND
+   PIC9 — FULL-BLEED CAPABILITY BANNER
 ══════════════════════════════════════ */
+#sec-pic9 {
+  background: var(--black);
+  border-top: 1px solid var(--border-lo);
+  position: relative;
+  overflow: hidden;
+}
+.pic9-stage {
+  width:100%; aspect-ratio:21/7; position:relative;
+  overflow:hidden; background:var(--surface-1); display:block;
+}
+@media(max-width:900px){ .pic9-stage{aspect-ratio:16/7;} }
+@media(max-width:600px){ .pic9-stage{aspect-ratio:4/3;} }
+.pic9-stage .img-clip {
+  position:absolute; inset:0; overflow:hidden;
+}
+.pic9-stage > .img-clip > img {
+  width:100%; height:100%;
+  object-fit:cover; object-position:center 50%;
+  display:block; position:absolute; inset:0;
+  animation:kenBurnsDrift 7s ease-in-out infinite;
+  opacity:.48;
+}
+.pic9-overlay {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to bottom, rgba(11,13,16,.75) 0%, rgba(11,13,16,.15) 30%, transparent 55%),
+    linear-gradient(to left, rgba(11,13,16,.85) 0%, rgba(11,13,16,.45) 50%, transparent 100%),
+    linear-gradient(to top, rgba(11,13,16,.78) 0%, transparent 45%);
+  pointer-events:none; z-index:1;
+}
+.pic9-content {
+  position:absolute; top:0; left:0; right:0; bottom:0; z-index:2;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:clamp(20px,3vw,52px) clamp(20px,4vw,64px);
+  gap:24px; flex-wrap:wrap;
+}
+.pic9-left {}
+.pic9-badge { display:inline-flex; align-items:center; gap:8px; margin-bottom:14px; background:rgba(201,168,106,.10); border:1px solid var(--border-md); padding:6px 14px; }
+.pic9-badge-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 2.5s ease infinite; }
+.pic9-badge-text { font-family:var(--font-head); font-size:8px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); }
+.pic9-h { font-family:var(--font-display); font-size:clamp(24px,3.5vw,56px); font-weight:700; color:var(--text-1); letter-spacing:-.5px; line-height:1.04; }
+.pic9-h em { font-style:italic; color:var(--gold); }
+.pic9-right { display:flex; gap:1px; align-items:flex-end; }
+.pic9-chip { background:rgba(11,13,16,.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid var(--border-md); padding:18px 24px; text-align:center; min-width:110px; }
+.pic9-chip-n { font-family:var(--font-display); font-size:28px; font-weight:700; color:var(--text-1); line-height:1; letter-spacing:-1px; }
+.pic9-chip-n span { color:var(--gold); }
+.pic9-chip-l { font-family:var(--font-head); font-size:7.5px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--text-4); margin-top:5px; }
+@media(max-width:600px){
+  .pic9-content { flex-direction:column; align-items:flex-start; justify-content:flex-end; }
+  .pic9-right { flex-wrap:wrap; }
+  .pic9-chip { min-width:90px; }
+}
+
+/* ══════════════════════════════════════
+   CTA — ANIMATED (UPGRADED)
+══════════════════════════════════════ */
+@keyframes ctaFloat1 {
+  0%,100% { transform:translateY(0) scale(1); opacity:.18; }
+  50%      { transform:translateY(-28px) scale(1.08); opacity:.28; }
+}
+@keyframes ctaFloat2 {
+  0%,100% { transform:translateY(0) scale(1); opacity:.12; }
+  50%      { transform:translateY(20px) scale(1.12); opacity:.22; }
+}
+@keyframes ctaFloat3 {
+  0%,100% { transform:translateX(0) scale(1); opacity:.10; }
+  50%      { transform:translateX(-18px) scale(1.06); opacity:.20; }
+}
+@keyframes ctaPulseRing {
+  0%   { transform:scale(0.8); opacity:.7; }
+  100% { transform:scale(2.2); opacity:0; }
+}
+@keyframes ctaArrow {
+  0%,100% { transform:translateX(0); }
+  50%      { transform:translateX(6px); }
+}
+@keyframes ctaBtnGlow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(11,13,16,.50); }
+  50%      { box-shadow: 0 0 0 10px rgba(11,13,16,0); }
+}
 #cta { padding:clamp(80px,9vw,120px) 0; background:var(--gold); position:relative; overflow:hidden; }
 #cta::before {
   content:''; position:absolute; inset:0;
@@ -1003,15 +1102,57 @@ nav.scrolled {
     repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(11,13,16,.04) 60px, rgba(11,13,16,.04) 61px);
   pointer-events:none;
 }
+/* Floating orbs */
+.cta-orb {
+  position:absolute; border-radius:50%; pointer-events:none;
+}
+.cta-orb-1 { width:220px; height:220px; background:rgba(11,13,16,.18); top:-60px; right:10%; animation:ctaFloat1 7s ease-in-out infinite; }
+.cta-orb-2 { width:140px; height:140px; background:rgba(11,13,16,.12); bottom:-40px; right:25%; animation:ctaFloat2 9s ease-in-out 1.5s infinite; }
+.cta-orb-3 { width:90px;  height:90px;  background:rgba(11,13,16,.10); top:30%; right:5%; animation:ctaFloat3 5.5s ease-in-out 0.8s infinite; }
+/* Pulse ring behind CTA buttons */
+.cta-pulse-ring {
+  position:absolute; width:60px; height:60px;
+  border:2px solid rgba(11,13,16,.30); border-radius:50%;
+  animation:ctaPulseRing 2.2s ease-out infinite;
+  pointer-events:none;
+  right:calc(50% - 30px); top:50%; margin-top:-30px;
+}
 .cta-inner { display:grid; grid-template-columns:1fr auto; gap:56px; align-items:center; position:relative; z-index:1; }
 .cta-left h2 { font-family:var(--font-display); font-size:clamp(32px,4.5vw,64px); font-weight:700; color:var(--black); letter-spacing:-2px; line-height:1.02; margin-bottom:14px; }
 .cta-left h2 em { font-style:italic; }
 .cta-left p { font-size:15px; color:rgba(11,13,16,.65); max-width:520px; line-height:1.85; }
+/* Countdown-style urgency strip */
+.cta-urgency { display:inline-flex; align-items:center; gap:8px; background:rgba(11,13,16,.12); border:1px solid rgba(11,13,16,.18); padding:6px 14px; margin-top:16px; }
+.cta-urgency-dot { width:6px; height:6px; border-radius:50%; background:var(--black); animation:pulseLive 1.8s ease infinite; flex-shrink:0; }
+.cta-urgency-text { font-family:var(--font-head); font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--black); }
 .cta-btns { display:flex; gap:12px; flex-direction:column; }
-.btn-cta-dark { background:var(--black); color:var(--gold); font-family:var(--font-head); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:16px 36px; transition:all .3s var(--ease-out); display:inline-flex; align-items:center; gap:10px; border:none; cursor:pointer; text-decoration:none; }
-.btn-cta-dark:hover { background:var(--charcoal); transform:translateY(-2px); }
-.btn-cta-outline { background:transparent; color:var(--black); border:1.5px solid rgba(11,13,16,.35); font-family:var(--font-head); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:14px 32px; transition:all .3s var(--ease-out); display:inline-flex; align-items:center; gap:10px; cursor:pointer; text-decoration:none; }
-.btn-cta-outline:hover { border-color:var(--black); transform:translateY(-2px); }
+.btn-cta-dark {
+  background:var(--black); color:var(--gold);
+  font-family:var(--font-head); font-size:12px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:16px 36px; transition:all .3s var(--ease-out);
+  display:inline-flex; align-items:center; gap:12px;
+  border:none; cursor:pointer; text-decoration:none;
+  position:relative; overflow:hidden;
+  animation:ctaBtnGlow 3s ease infinite;
+}
+.btn-cta-dark::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(201,168,106,.15) 0%, transparent 60%);
+  transform:translateX(-100%); transition:transform .45s var(--ease-out);
+}
+.btn-cta-dark:hover { background:var(--charcoal); transform:translateY(-3px); box-shadow:0 16px 40px rgba(11,13,16,.45); }
+.btn-cta-dark:hover::before { transform:translateX(0); }
+.btn-cta-dark svg { animation:ctaArrow 1.8s ease-in-out infinite; }
+.btn-cta-outline {
+  background:transparent; color:var(--black); border:1.5px solid rgba(11,13,16,.35);
+  font-family:var(--font-head); font-size:12px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:14px 32px; transition:all .3s var(--ease-out);
+  display:inline-flex; align-items:center; gap:10px;
+  cursor:pointer; text-decoration:none;
+}
+.btn-cta-outline:hover { border-color:var(--black); background:rgba(11,13,16,.08); transform:translateY(-2px); }
 
 /* ══════════════════════════════════════
    CONTACT
@@ -1028,7 +1169,9 @@ nav.scrolled {
 .con-form { background:var(--surface-1); border:1px solid var(--border-lo); padding:clamp(28px,4vw,48px); }
 .form-title { font-family:var(--font-display); font-size:28px; color:var(--text-1); margin-bottom:28px; font-weight:700; letter-spacing:-.3px; }
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border-lo); border:1px solid var(--border-lo); margin-bottom:1px; }
-.form-row .fg { margin-bottom:0; background:var(--surface-1); }
+.form-row .fg { margin-bottom:0; background:var(--surface-1); padding:16px 16px 0; }
+.form-row .fg label { margin-bottom:8px; }
+.form-row .fg input { border:none; border-top:1px solid var(--border-lo); padding:12px 0; background:transparent; margin-top:4px; }
 .fg { margin-bottom:1px; }
 .fg label { display:block; font-family:var(--font-head); font-size:8px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--text-4); margin-bottom:6px; }
 .fg input,.fg select,.fg textarea { width:100%; background:var(--surface-2); border:1px solid var(--border-lo); color:var(--text-1); font-family:var(--font-body); font-size:14px; padding:12px 14px; outline:none; transition:border-color .25s, background .25s; }
@@ -1412,6 +1555,32 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
   </div>
 </section>
 
+<!-- ═══ PIC9 — FULL-BLEED CAPABILITY BANNER ═══ -->
+<section id="sec-pic9" aria-label="Operational capabilities showcase">
+  <div class="pic9-stage reveal">
+    <div class="img-clip">
+      <img src="pic9" alt="Nova Orvian distribution facility — operational capabilities" loading="lazy"
+        onerror="this.src='https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1600&q=85&auto=format&fit=crop'">
+    </div>
+    <div class="pic9-overlay"></div>
+    <div class="pic9-content">
+      <div class="pic9-left">
+        <div class="pic9-badge">
+          <span class="pic9-badge-dot"></span>
+          <span class="pic9-badge-text">Proven Infrastructure</span>
+        </div>
+        <h2 class="pic9-h">Built to Move<br><em>America's Commerce</em></h2>
+      </div>
+      <div class="pic9-right">
+        <div class="pic9-chip"><div class="pic9-chip-n"><span class="counter" data-t="50">0</span><span style="color:var(--gold);">+</span></div><div class="pic9-chip-l">States</div></div>
+        <div class="pic9-chip"><div class="pic9-chip-n">24<span style="color:var(--gold);">/7</span></div><div class="pic9-chip-l">Uptime</div></div>
+        <div class="pic9-chip"><div class="pic9-chip-n"><span class="counter" data-t="200">0</span><span style="color:var(--gold);">+</span></div><div class="pic9-chip-l">Carriers</div></div>
+        <div class="pic9-chip"><div class="pic9-chip-n"><span class="counter" data-t="99">0</span><span style="color:var(--gold);">%</span></div><div class="pic9-chip-l">On-Time</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ SERVICES ═══ -->
 <section id="services">
   <div class="container">
@@ -1600,12 +1769,20 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section id="cta">
+<section id="cta" aria-label="Call to action — Request a proposal">
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+  <div class="cta-orb cta-orb-3"></div>
+  <div class="cta-pulse-ring"></div>
   <div class="container">
     <div class="cta-inner">
       <div class="cta-left reveal">
         <h2>Ready to Scale Your<br><em>Distribution?</em></h2>
         <p>Tell us about your distribution needs and we'll respond with a custom operational plan — within 24 hours. No commitment required.</p>
+        <div class="cta-urgency">
+          <span class="cta-urgency-dot"></span>
+          <span class="cta-urgency-text">Responding within 24 hours · No commitment required</span>
+        </div>
       </div>
       <div class="cta-btns reveal rd1">
         <a href="#contact" class="btn-cta-dark">Request a Proposal <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -1633,11 +1810,11 @@ footer { background:var(--surface-1); border-top:1px solid var(--border-lo); pad
       <div class="con-form reveal rd2">
         <div class="form-title">Request a Proposal</div>
         <div class="form-row">
-          <div class="fg" style="padding:16px;"><label>First Name</label><input type="text" placeholder="John"></div>
-          <div class="fg" style="padding:16px;"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+          <div class="fg"><label>First Name</label><input type="text" placeholder="John" autocomplete="given-name"></div>
+          <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" autocomplete="family-name"></div>
         </div>
-        <div class="fg"><label>Company Name</label><input type="text" placeholder="Your Company, Inc."></div>
-        <div class="fg"><label>Business Email</label><input type="email" placeholder="john@yourcompany.com"></div>
+        <div class="fg"><label>Company Name</label><input type="text" placeholder="Your Company, Inc." autocomplete="organization"></div>
+        <div class="fg"><label>Business Email</label><input type="email" placeholder="john@yourcompany.com" autocomplete="email"></div>
         <div class="fg"><label>Service Interest</label>
           <select>
             <option value="">— Select a Service —</option>
@@ -1687,9 +1864,29 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 const hbg = document.getElementById('navHbg');
-hbg.addEventListener('click', () => nav.classList.toggle('mob-open'));
+hbg.addEventListener('click', () => {
+  const wasOpen = nav.classList.contains('mob-open');
+  nav.classList.toggle('mob-open');
+  const nowOpen = !wasOpen;
+  const spans = hbg.querySelectorAll('span');
+  if (nowOpen) {
+    spans[0].style.transform = 'rotate(45deg) translate(4px,4px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(4px,-4px)';
+  } else {
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  }
+});
 document.querySelectorAll('#navLinks a').forEach(a => {
-  a.addEventListener('click', () => nav.classList.remove('mob-open'));
+  a.addEventListener('click', () => {
+    nav.classList.remove('mob-open');
+    const spans = hbg.querySelectorAll('span');
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  });
 });
 
 /* ── SCROLL REVEAL ── */
@@ -1726,7 +1923,8 @@ const co = new IntersectionObserver(entries => {
 
 document.querySelectorAll([
   '.stats-grid','.pic2-stage','.pic4-stage','.pic4-stats-bar',
-  '.hero-stats','.pc-chips','.metric-row','.pic5-frame','.pic5-inner'
+  '.hero-stats','.pc-chips','.metric-row','.pic5-frame','.pic5-inner',
+  '.pic9-stage','.pic9-right'
 ].join(',')).forEach(el => co.observe(el));
 
 /* ── SMOOTH SCROLL ── */
@@ -1756,21 +1954,6 @@ function handleSubmit(btn) {
     btn.style.color = '#fff';
   }, 1000);
 }
-
-/* ── HAMBURGER ANIMATION ── */
-hbg.addEventListener('click', () => {
-  const spans = hbg.querySelectorAll('span');
-  const open = nav.classList.contains('mob-open');
-  if (open) {
-    spans[0].style.transform = 'rotate(45deg) translate(4px,4px)';
-    spans[1].style.opacity = '0';
-    spans[2].style.transform = 'rotate(-45deg) translate(4px,-4px)';
-  } else {
-    spans[0].style.transform = '';
-    spans[1].style.opacity = '';
-    spans[2].style.transform = '';
-  }
-});
 </script>
 </body>
 </html>
