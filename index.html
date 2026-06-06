@@ -4,14 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nova Orvian LLC — U.S. Wholesale Distribution & Logistics Partner</title>
-<meta name="description" content="Nova Orvian LLC — Premier U.S. distribution partner with 24/7 fulfillment infrastructure across all 50 states.">
+<meta name="description" content="Nova Orvian LLC — Premier U.S. distribution partner with 24/7 fulfillment infrastructure across all 50 states. Seeking brand partnerships and authorized distribution agreements.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nova Orvian LLC — Nationwide Distribution Partner">
+<meta property="og:description" content="Premier U.S. wholesale distribution company seeking authorized brand partnerships. 50-state coverage, 99% on-time delivery, 200+ carrier network. Apply for distribution partnership today.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=85&auto=format&fit=crop">
+<meta property="og:url" content="https://novaorvian.com">
+<meta property="og:site_name" content="Nova Orvian LLC">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nova Orvian LLC — Nationwide Distribution Partner">
+<meta name="twitter:description" content="Premier U.S. wholesale distribution company. 50-state coverage, 99% on-time delivery, 200+ carrier network. Seeking authorized brand partnerships.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=85&auto=format&fit=crop">
+
+<!-- JSON-LD Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nova Orvian LLC",
+  "url": "https://novaorvian.com",
+  "logo": "https://novaorvian.com/nova.jpeg",
+  "description": "Premier U.S. wholesale distribution and logistics company serving all 50 states with 24/7 fulfillment infrastructure.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US",
+    "addressRegion": "United States of America"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+1-800-NOVA-OVN",
+      "contactType": "sales",
+      "email": "sales@novaorvian.com",
+      "availableLanguage": "English",
+      "hoursAvailable": "Mo-Su 00:00-24:00"
+    },
+    {
+      "@type": "ContactPoint",
+      "email": "info@novaorvian.com",
+      "contactType": "customer service"
+    }
+  ],
+  "sameAs": [],
+  "areaServed": "US",
+  "serviceType": ["Wholesale Distribution", "Freight Logistics", "eCommerce Fulfillment", "Last-Mile Delivery", "Warehousing"]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  /* Blue-Gold-White Luxury Palette */
   --navy:#050F1F;
   --navy-2:#091628;
   --navy-3:#0D1E35;
@@ -71,16 +121,15 @@ img{display:block;max-width:100%;}
   66% {transform:scale(1.04) translate(1.0%,-0.7%);}
   100%{transform:scale(1.00) translate(0%,0%);}
 }
-@keyframes goldShimmer{
-  0%{background-position:200% center;}
-  100%{background-position:-200% center;}
-}
+@keyframes goldShimmer{0%{background-position:200% center;}100%{background-position:-200% center;}}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--gold-glow);}50%{opacity:.7;box-shadow:0 0 0 8px rgba(212,168,68,0);}}
 @keyframes pulseLive{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,.5);}50%{opacity:.7;box-shadow:0 0 0 8px rgba(74,222,128,0);}}
 @keyframes bluePulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(59,108,199,.5);}50%{opacity:.7;box-shadow:0 0 0 8px rgba(59,108,199,0);}}
-@keyframes floatUp{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
 @keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(200%);}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(212,168,68,.15);}50%{box-shadow:0 0 40px rgba(212,168,68,.35);}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-24px);}to{opacity:1;transform:none;}}
+@keyframes countUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease-out),transform .85s var(--ease-out);}
@@ -131,18 +180,15 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .nav-hbg span{display:block;width:20px;height:1.5px;background:var(--text-2);border-radius:2px;transition:all .3s;}
 
 /* =========================================
-   HERO — pic1 background + pic6 right card
+   HERO
    ========================================= */
 #hero{min-height:100svh;padding-top:76px;display:flex;align-items:center;position:relative;overflow:hidden;}
-
-/* Hero BG from pic1 */
 .hero-bg{position:absolute;inset:0;z-index:0;}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;animation:kenBurns 8s ease-in-out infinite;opacity:.55;}
 .hero-bg::after{content:'';position:absolute;inset:0;background:
   linear-gradient(to right,rgba(5,15,31,.97) 0%,rgba(5,15,31,.75) 55%,rgba(5,15,31,.30) 100%),
   linear-gradient(to top,rgba(5,15,31,.85) 0%,transparent 50%),
   radial-gradient(ellipse 60% 80% at 0% 50%,rgba(26,58,107,.45),transparent);}
-
 .hero-topline{position:absolute;top:76px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold) 0%,rgba(212,168,68,.3) 60%,transparent 100%);z-index:2;}
 .hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(59,108,199,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,108,199,.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;}
 
@@ -166,12 +212,10 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .hstat-n{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gold);line-height:1;letter-spacing:-1px;}
 .hstat-l{font-family:var(--font-head);font-size:7.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-4);margin-top:4px;}
 
-/* Hero right: pic6 card */
 .hero-right{animation:fadeUp .9s .2s both;}
 .hero-img-wrap{position:relative;}
 .hero-img-card{position:relative;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--border-md);background:var(--surface-1);isolation:isolate;}
 .hero-img-card img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;animation:kenBurnsDrift 8s ease-in-out infinite;}
-/* Subtle overlay — keep image very visible */
 .hero-img-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,15,31,.70) 0%,rgba(5,15,31,.10) 40%,transparent 70%);pointer-events:none;z-index:1;}
 .hero-img-card::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:2px;background:linear-gradient(90deg,var(--gold),rgba(212,168,68,.3),transparent);z-index:3;}
 
@@ -198,44 +242,52 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .mi::after{content:'◆';font-size:4px;color:var(--sky-light);opacity:.6;}
 
 /* =========================================
-   PIC6 — FULL BLEED SHOWCASE (Section 1 after hero)
-   IMAGE VERY VISIBLE, minimal overlay
+   BRAND PARTNERSHIP BANNER — NEW SECTION
+   Replaces old pic6 duplicate stats
+   ========================================= */
+#brand-cta{background:linear-gradient(135deg,var(--navy-4) 0%,var(--royal) 40%,var(--navy-4) 100%);border-top:1px solid var(--border-blue);border-bottom:1px solid var(--border-blue);padding:clamp(52px,6vw,80px) 0;position:relative;overflow:hidden;}
+#brand-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(212,168,68,.07),transparent);pointer-events:none;}
+#brand-cta::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(59,108,199,.04) 80px,rgba(59,108,199,.04) 81px),repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(59,108,199,.04) 80px,rgba(59,108,199,.04) 81px);pointer-events:none;}
+.brand-cta-inner{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center;position:relative;z-index:1;}
+.brand-cta-label{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 12px;border:1px solid var(--border-hi);background:rgba(212,168,68,.10);margin-bottom:20px;}
+.brand-cta-label-dot{width:8px;height:8px;background:var(--gold);border-radius:50%;animation:pulse 2s ease infinite;}
+.brand-cta-label-text{font-family:var(--font-head);font-size:9px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+.brand-cta-h{font-family:var(--font-display);font-size:clamp(28px,3.8vw,58px);font-weight:700;color:var(--white);line-height:1.02;letter-spacing:-.5px;margin-bottom:14px;}
+.brand-cta-h em{font-style:italic;color:var(--gold);}
+.brand-cta-p{font-size:14px;color:var(--text-3);max-width:520px;line-height:1.85;}
+.brand-cta-right{display:flex;flex-direction:column;gap:12px;min-width:240px;}
+.brand-steps{display:flex;flex-direction:column;gap:1px;}
+.brand-step{display:flex;align-items:center;gap:14px;background:rgba(9,22,40,.70);border:1px solid var(--border-lo);padding:12px 16px;backdrop-filter:blur(8px);transition:border-color .25s,background .25s;}
+.brand-step:hover{border-color:var(--border-md);background:rgba(212,168,68,.05);}
+.brand-step-num{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gold);min-width:28px;line-height:1;}
+.brand-step-text{font-family:var(--font-head);font-size:11px;font-weight:600;color:var(--text-2);letter-spacing:.5px;}
+@media(max-width:860px){.brand-cta-inner{grid-template-columns:1fr;gap:32px;}.brand-cta-right{min-width:0;}}
+
+/* =========================================
+   PIC6 — FULL BLEED SHOWCASE
    ========================================= */
 #sec-pic6{background:var(--navy);border-bottom:1px solid var(--border-lo);}
 .pic6-stage{width:100%;aspect-ratio:21/8;position:relative;overflow:hidden;background:var(--surface-1);}
 @media(max-width:900px){.pic6-stage{aspect-ratio:16/7;}}
 @media(max-width:600px){.pic6-stage{aspect-ratio:4/3;}}
-
-/* IMAGE CONTAINER — no overflow clipping on parent kills animation */
 .pic6-stage .img-clip{position:absolute;inset:0;overflow:hidden;}
-.pic6-stage .img-clip img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 45%;
-  display:block;
-  animation:kenBurnsDrift 9s ease-in-out infinite;
-  opacity:.72; /* More visible! */
-}
-/* Light gradient — text legible but image shines through */
-.pic6-overlay{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(to right, rgba(5,15,31,.85) 0%, rgba(5,15,31,.40) 50%, rgba(5,15,31,.10) 100%),
-    linear-gradient(to top, rgba(5,15,31,.70) 0%, transparent 40%);
-}
+.pic6-stage .img-clip img{width:100%;height:100%;object-fit:cover;object-position:center 45%;display:block;animation:kenBurnsDrift 9s ease-in-out infinite;opacity:.72;}
+.pic6-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to right, rgba(5,15,31,.85) 0%, rgba(5,15,31,.40) 50%, rgba(5,15,31,.10) 100%),linear-gradient(to top, rgba(5,15,31,.70) 0%, transparent 40%);}
 .pic6-content{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:clamp(20px,3vw,52px) clamp(20px,4vw,64px);gap:24px;flex-wrap:wrap;}
 .pic6-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;background:rgba(212,168,68,.12);border:1px solid var(--border-md);padding:6px 14px;}
 .pic6-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2.5s ease infinite;}
 .pic6-badge-text{font-family:var(--font-head);font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
 .pic6-h{font-family:var(--font-display);font-size:clamp(28px,4vw,62px);font-weight:700;color:var(--white);letter-spacing:-.5px;line-height:1.04;}
 .pic6-h em{font-style:italic;color:var(--gold);}
-.pic6-right{display:flex;gap:1px;}
-.pic6-chip{background:rgba(5,15,31,.85);backdrop-filter:blur(16px);border:1px solid var(--border-md);padding:20px 26px;text-align:center;min-width:115px;}
-.pic6-chip-n{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-1px;}
-.pic6-chip-n span{color:var(--gold);}
-.pic6-chip-l{font-family:var(--font-head);font-size:7.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-4);margin-top:6px;}
+/* Replaced stat chips with brand value propositions */
+.pic6-right{display:flex;flex-direction:column;gap:1px;min-width:220px;}
+.pic6-value-chip{background:rgba(5,15,31,.88);backdrop-filter:blur(16px);border:1px solid var(--border-md);padding:14px 20px;display:flex;align-items:center;gap:12px;}
+.pic6-value-chip-icon{width:28px;height:28px;background:var(--gold-mist);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pic6-value-chip-icon svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+.pic6-value-chip-text{font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--text-1);letter-spacing:.3px;}
 
 /* =========================================
-   PIC1 — ABOUT SPLIT (text left, image right)
+   PIC1 — ABOUT SPLIT
    ========================================= */
 #sec-pic1{padding:clamp(80px,9vw,120px) 0;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-3) 100%);}
 .pic1-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,6vw,88px);align-items:center;}
@@ -262,7 +314,7 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .feat-body p{font-size:12px;color:var(--text-3);line-height:1.65;}
 
 /* =========================================
-   STATS BAND
+   STATS BAND — SINGLE DEDICATED COUNTER SECTION
    ========================================= */
 .stats-band{background:linear-gradient(135deg,var(--royal) 0%,var(--navy-4) 50%,var(--royal) 100%);border-top:1px solid var(--border-blue);border-bottom:1px solid var(--border-blue);padding:clamp(48px,5vw,72px) 0;position:relative;overflow:hidden;}
 .stats-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 50% 50%,rgba(212,168,68,.08),transparent);pointer-events:none;}
@@ -275,36 +327,25 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .stat-l{font-family:var(--font-head);font-size:8.5px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(248,244,236,.45);margin-top:10px;}
 
 /* =========================================
-   PIC2 — CINEMATIC WIDE BANNER
-   Image opacity high, less overlay
+   PIC2 — CINEMATIC BANNER (stats replaced with brand proof)
    ========================================= */
 #sec-pic2{background:var(--navy);}
 .pic2-stage{width:100%;aspect-ratio:21/8;position:relative;overflow:hidden;background:var(--surface-1);}
 @media(max-width:900px){.pic2-stage{aspect-ratio:16/7;}}
 @media(max-width:600px){.pic2-stage{aspect-ratio:4/3;}}
 .pic2-stage .img-clip{position:absolute;inset:0;overflow:hidden;}
-.pic2-stage .img-clip img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 60%;
-  display:block;
-  animation:kenBurnsDrift 9s ease-in-out infinite;
-  opacity:.70; /* Visible! */
-}
-.pic2-overlay{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(to right, rgba(5,15,31,.88) 0%, rgba(5,15,31,.45) 50%, rgba(5,15,31,.15) 100%),
-    linear-gradient(to top, rgba(5,15,31,.75) 0%, transparent 45%);
-}
+.pic2-stage .img-clip img{width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block;animation:kenBurnsDrift 9s ease-in-out infinite;opacity:.70;}
+.pic2-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to right, rgba(5,15,31,.88) 0%, rgba(5,15,31,.45) 50%, rgba(5,15,31,.15) 100%),linear-gradient(to top, rgba(5,15,31,.75) 0%, transparent 45%);}
 .pic2-content{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:clamp(20px,3vw,48px) clamp(20px,4vw,64px);display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;}
 .pc-label{font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;}
 .pc-h{font-family:var(--font-display);font-size:clamp(24px,3.5vw,54px);font-weight:700;color:var(--white);letter-spacing:-.5px;line-height:1.04;}
 .pc-h em{font-style:italic;color:var(--gold);}
-.pc-chips{display:flex;gap:1px;}
-.pc-chip{background:rgba(5,15,31,.88);backdrop-filter:blur(16px);border:1px solid var(--border-md);padding:16px 22px;text-align:center;}
-.pc-chip-n{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-1px;}
-.pc-chip-n span{color:var(--gold);}
-.pc-chip-l{font-family:var(--font-head);font-size:7.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-4);margin-top:5px;}
+/* Brand approval badges instead of stat chips */
+.pc-badges{display:flex;flex-direction:column;gap:1px;}
+.pc-badge-item{background:rgba(5,15,31,.88);backdrop-filter:blur(16px);border:1px solid var(--border-md);padding:10px 18px;display:flex;align-items:center;gap:10px;}
+.pc-badge-check{width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-hi));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pc-badge-check svg{width:8px;height:8px;stroke:var(--navy);fill:none;stroke-width:3;}
+.pc-badge-text{font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--text-1);}
 
 .pic2-below{padding:clamp(40px,4.5vw,60px) 0;background:var(--navy-3);border-bottom:1px solid var(--border-lo);}
 .pic2-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-lo);border:1px solid var(--border-lo);}
@@ -317,7 +358,25 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .pc2-card p{font-size:12.5px;color:var(--text-3);line-height:1.65;}
 
 /* =========================================
-   PIC3 — ABOUT SPLIT (text left, tall image right)
+   BRAND LOGOS / TRUST BAR — NEW
+   ========================================= */
+#brand-trust{padding:clamp(52px,5vw,72px) 0;background:var(--navy-2);border-top:1px solid var(--border-lo);border-bottom:1px solid var(--border-lo);}
+.brand-trust-label{text-align:center;font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text-4);margin-bottom:32px;}
+.brand-trust-label span{color:var(--gold);}
+.brand-logos-row{display:flex;align-items:center;justify-content:center;gap:1px;flex-wrap:wrap;background:var(--border-lo);border:1px solid var(--border-lo);}
+.brand-logo-box{background:var(--surface-1);padding:22px 32px;display:flex;align-items:center;justify-content:center;min-width:160px;transition:background .25s,border-color .25s;position:relative;flex:1;}
+.brand-logo-box:hover{background:var(--surface-2);}
+.brand-logo-box::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease-out);}
+.brand-logo-box:hover::after{transform:scaleX(1);}
+.brand-logo-inner{font-family:var(--font-head);font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--text-4);opacity:.55;transition:opacity .25s,color .25s;text-align:center;line-height:1.2;}
+.brand-logo-inner span{display:block;font-size:7px;font-weight:600;letter-spacing:2px;color:var(--text-4);opacity:.5;margin-top:3px;}
+.brand-logo-box:hover .brand-logo-inner{opacity:.85;color:var(--text-2);}
+.brand-seeking-note{text-align:center;margin-top:24px;font-family:var(--font-head);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-4);}
+.brand-seeking-note a{color:var(--gold);border-bottom:1px solid rgba(212,168,68,.35);transition:border-color .2s;}
+.brand-seeking-note a:hover{border-color:var(--gold);}
+
+/* =========================================
+   PIC3 — ABOUT SPLIT
    ========================================= */
 #sec-pic3{padding:clamp(80px,9vw,120px) 0;background:linear-gradient(180deg,var(--navy-3) 0%,var(--navy-4) 100%);border-top:1px solid var(--border-lo);position:relative;isolation:isolate;overflow:hidden;}
 #sec-pic3::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 100% 50%,rgba(59,108,199,.10),transparent);pointer-events:none;}
@@ -328,7 +387,6 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .pillar-num{font-family:var(--font-display);font-size:10px;color:var(--gold);margin-bottom:7px;letter-spacing:1px;}
 .pillar h4{font-family:var(--font-head);font-size:12.5px;font-weight:700;color:var(--text-1);margin-bottom:4px;}
 .pillar p{font-size:11.5px;color:var(--text-3);line-height:1.65;}
-
 .pic3-img-col{position:relative;}
 .pic3-frame{position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--border-md);background:var(--surface-1);isolation:isolate;}
 .pic3-frame .img-clip{position:absolute;inset:0;overflow:hidden;}
@@ -339,42 +397,28 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .ps3-l{font-family:var(--font-head);font-size:7.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(5,15,31,.65);margin-top:4px;}
 
 /* =========================================
-   PIC4 — FIXED: image on top, text + stats below separately
+   PIC4 — FIXED LAYOUT
    ========================================= */
 #sec-pic4{background:var(--navy);border-top:1px solid var(--border-lo);position:relative;z-index:2;isolation:isolate;}
-
-/* Image section — standalone, no text overlapping */
 .pic4-img-section{width:100%;aspect-ratio:21/8;position:relative;overflow:hidden;background:var(--surface-1);}
 @media(max-width:900px){.pic4-img-section{aspect-ratio:16/7;}}
 @media(max-width:600px){.pic4-img-section{aspect-ratio:4/3;}}
 .pic4-img-section .img-clip{position:absolute;inset:0;overflow:hidden;}
-.pic4-img-section .img-clip img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 45%;
-  display:block;
-  animation:kenBurnsDrift 9s ease-in-out infinite;
-  opacity:.75; /* Well visible */
-}
-.pic4-img-overlay{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(to bottom, rgba(5,15,31,.40) 0%, transparent 30%, transparent 65%, rgba(5,15,31,.50) 100%),
-    linear-gradient(to right, rgba(5,15,31,.60) 0%, transparent 45%);
-}
-/* Small label badge on the image */
+.pic4-img-section .img-clip img{width:100%;height:100%;object-fit:cover;object-position:center 45%;display:block;animation:kenBurnsDrift 9s ease-in-out infinite;opacity:.75;}
+.pic4-img-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom, rgba(5,15,31,.40) 0%, transparent 30%, transparent 65%, rgba(5,15,31,.50) 100%),linear-gradient(to right, rgba(5,15,31,.60) 0%, transparent 45%);}
 .pic4-img-label{position:absolute;top:28px;left:clamp(20px,4vw,64px);z-index:2;}
 .pic4-img-label .eyebrow{margin:0;}
 
-/* Stats bar — separate from image, sits below */
-.pic4-stats-bar{background:linear-gradient(135deg,var(--royal),var(--navy-4));border-top:1px solid var(--border-md);border-bottom:1px solid var(--border-lo);display:grid;grid-template-columns:repeat(4,1fr);}
-.psb-item{padding:22px 16px;border-right:1px solid rgba(212,168,68,.14);text-align:center;transition:background .22s;}
-.psb-item:last-child{border-right:none;}
-.psb-item:hover{background:rgba(212,168,68,.08);}
-.psb-n{font-family:var(--font-display);font-size:clamp(22px,2.5vw,36px);color:var(--white);font-weight:700;line-height:1;letter-spacing:-1px;}
-.psb-n span{color:var(--gold);}
-.psb-l{font-family:var(--font-head);font-size:7px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(248,244,236,.45);margin-top:5px;}
+/* Replaced stats bar with brand partnership info bar */
+.pic4-brand-bar{background:linear-gradient(135deg,var(--royal),var(--navy-4));border-top:1px solid var(--border-md);border-bottom:1px solid var(--border-lo);display:grid;grid-template-columns:repeat(4,1fr);}
+.pbb-item{padding:20px 16px;border-right:1px solid rgba(212,168,68,.14);text-align:center;transition:background .22s;}
+.pbb-item:last-child{border-right:none;}
+.pbb-item:hover{background:rgba(212,168,68,.08);}
+.pbb-icon{width:32px;height:32px;border:1px solid var(--border-md);background:var(--gold-mist);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+.pbb-icon svg{width:13px;height:13px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+.pbb-label{font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--text-1);margin-bottom:3px;}
+.pbb-sub{font-family:var(--font-head);font-size:8px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-4);}
 
-/* Text content — fully below, separate */
 .pic4-below{padding:clamp(48px,5vw,72px) 0;background:var(--navy);}
 .pic4-text-intro{margin-bottom:40px;}
 .pic4-text-intro h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,52px);font-weight:700;color:var(--white);line-height:1.04;letter-spacing:-.5px;margin-bottom:12px;}
@@ -390,7 +434,7 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .p4p p{font-size:12px;color:var(--text-3);line-height:1.65;}
 
 /* =========================================
-   PIC5 — TEXT LEFT, IMAGE RIGHT
+   PIC5 — PRECISION LOGISTICS
    ========================================= */
 #sec-pic5{padding:clamp(80px,9vw,120px) 0;background:linear-gradient(160deg,var(--navy-3) 0%,var(--navy-4) 100%);border-top:1px solid var(--border-lo);}
 .pic5-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,6vw,80px);align-items:center;}
@@ -400,12 +444,13 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .pic5-stat-badge{position:absolute;bottom:16px;right:16px;background:rgba(5,15,31,.92);backdrop-filter:blur(16px);border:1px solid var(--border-md);padding:12px 16px;z-index:2;}
 .psb2-n{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--gold);letter-spacing:-1px;line-height:1;}
 .psb2-l{font-family:var(--font-head);font-size:7.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-4);margin-top:4px;}
-.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-lo);border:1px solid var(--border-lo);margin:28px 0;}
-.met{background:var(--surface-1);padding:16px 12px;text-align:center;transition:background .25s;}
-.met:hover{background:rgba(212,168,68,.08);}
-.met-n{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-1px;}
-.met-n span{color:var(--gold);}
-.met-l{font-family:var(--font-head);font-size:7.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-4);margin-top:5px;}
+/* Replaced metric row with brand advantages */
+.brand-advantages{display:flex;flex-direction:column;gap:2px;margin:28px 0;}
+.ba-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--surface-1);border:1px solid var(--border-lo);transition:all .25s;}
+.ba-item:hover{background:var(--surface-2);border-color:var(--border-md);}
+.ba-check{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--gold-lo),var(--gold));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ba-check svg{width:9px;height:9px;stroke:var(--navy);fill:none;stroke-width:3;}
+.ba-text{font-family:var(--font-head);font-size:12px;font-weight:600;color:var(--text-2);}
 .feat-boxes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-lo);border:1px solid var(--border-lo);}
 .fb{display:flex;gap:12px;padding:16px;background:var(--surface-1);transition:background .25s;}
 .fb:hover{background:var(--surface-2);}
@@ -432,13 +477,34 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .svc-card p{font-size:13px;color:var(--text-3);line-height:1.82;}
 
 /* =========================================
-   OPERATIONS — pic7,8,9 mosaic
+   TESTIMONIALS — NEW SECTION
+   ========================================= */
+#testimonials{padding:clamp(80px,9vw,120px) 0;background:linear-gradient(160deg,var(--navy-3) 0%,var(--navy-4) 100%);border-top:1px solid var(--border-lo);}
+.test-header{text-align:center;margin-bottom:52px;}
+.test-header .eyebrow{justify-content:center;}
+.test-header .eyebrow::before{display:none;}
+.test-header .eyebrow::after{content:'';display:block;width:28px;height:1px;background:var(--gold);}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-lo);border:1px solid var(--border-lo);}
+.test-card{background:var(--surface-1);padding:32px 28px;transition:background .3s;position:relative;overflow:hidden;}
+.test-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),rgba(212,168,68,.2));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease-out);}
+.test-card:hover{background:var(--surface-2);}
+.test-card:hover::before{transform:scaleX(1);}
+.test-quote-mark{font-family:var(--font-display);font-size:72px;font-weight:700;color:var(--gold);opacity:.15;line-height:.8;margin-bottom:12px;display:block;letter-spacing:-2px;}
+.test-quote{font-family:var(--font-display);font-size:17px;font-style:italic;color:var(--text-2);line-height:1.70;margin-bottom:24px;}
+.test-divider{width:32px;height:1px;background:var(--gold);opacity:.4;margin-bottom:20px;}
+.test-author{display:flex;align-items:center;gap:14px;}
+.test-avatar{width:42px;height:42px;border:1px solid var(--border-md);background:linear-gradient(135deg,var(--royal),var(--navy-4));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:14px;font-weight:800;color:var(--gold);flex-shrink:0;}
+.test-name{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--text-1);}
+.test-title{font-family:var(--font-head);font-size:10px;font-weight:500;color:var(--text-4);margin-top:2px;letter-spacing:.5px;}
+.test-rating{display:flex;gap:3px;margin-top:4px;}
+.test-star{width:10px;height:10px;background:var(--gold);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+
+/* =========================================
+   OPERATIONS
    ========================================= */
 #operations{padding:clamp(80px,9vw,120px) 0;background:linear-gradient(180deg,var(--navy-3) 0%,var(--navy-4) 100%);border-top:1px solid var(--border-lo);}
 .ops-header{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:end;margin-bottom:48px;}
 .ops-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:1px;background:var(--border-lo);border:1px solid var(--border-lo);}
-
-/* Main panel — pic7 */
 .ops-main{position:relative;min-height:520px;overflow:hidden;background:var(--surface-1);isolation:isolate;}
 .ops-main .img-clip{position:absolute;inset:0;overflow:hidden;}
 .ops-main .img-clip img{width:100%;height:100%;object-fit:cover;object-position:center 50%;position:absolute;inset:0;opacity:.72;animation:kenBurns 9s ease-in-out infinite;transition:opacity .6s ease;}
@@ -454,8 +520,6 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .ops-live-text{font-family:var(--font-head);font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-2);}
 .ops-main-corner{position:absolute;width:22px;height:22px;z-index:3;}
 .ops-main-corner.tl{top:0;left:0;border-top:2px solid var(--gold);border-left:2px solid var(--gold);}
-
-/* Sub cells — pic8 and pic9 */
 .ops-sub{display:flex;flex-direction:column;gap:1px;}
 .ops-cell{position:relative;overflow:hidden;background:var(--surface-1);flex:1;min-height:200px;transition:transform .4s var(--ease-out);isolation:isolate;}
 .ops-cell:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.65);}
@@ -475,37 +539,28 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .ops-cell-stat-l{font-family:var(--font-head);font-size:7px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-4);margin-top:2px;}
 
 /* =========================================
-   PIC9 — BANNER (between ops and industries)
+   PIC9 — BANNER
    ========================================= */
 #sec-pic9{background:var(--navy);border-top:1px solid var(--border-lo);}
 .pic9-stage{width:100%;aspect-ratio:21/7;position:relative;overflow:hidden;background:var(--surface-1);}
 @media(max-width:900px){.pic9-stage{aspect-ratio:16/7;}}
 @media(max-width:600px){.pic9-stage{aspect-ratio:4/3;}}
 .pic9-stage .img-clip{position:absolute;inset:0;overflow:hidden;}
-.pic9-stage .img-clip img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 50%;
-  display:block;
-  animation:kenBurnsDrift 9s ease-in-out infinite;
-  opacity:.68;
-}
-.pic9-overlay{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(to left, rgba(5,15,31,.88) 0%, rgba(5,15,31,.45) 50%, rgba(5,15,31,.12) 100%),
-    linear-gradient(to top, rgba(5,15,31,.70) 0%, transparent 45%);
-}
+.pic9-stage .img-clip img{width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block;animation:kenBurnsDrift 9s ease-in-out infinite;opacity:.68;}
+.pic9-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to left, rgba(5,15,31,.88) 0%, rgba(5,15,31,.45) 50%, rgba(5,15,31,.12) 100%),linear-gradient(to top, rgba(5,15,31,.70) 0%, transparent 45%);}
 .pic9-content{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:clamp(20px,3vw,52px) clamp(20px,4vw,64px);gap:24px;flex-wrap:wrap;}
 .pic9-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;background:rgba(212,168,68,.10);border:1px solid var(--border-md);padding:6px 14px;}
 .pic9-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2.5s ease infinite;}
 .pic9-badge-text{font-family:var(--font-head);font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
 .pic9-h{font-family:var(--font-display);font-size:clamp(26px,3.8vw,58px);font-weight:700;color:var(--white);letter-spacing:-.5px;line-height:1.04;}
 .pic9-h em{font-style:italic;color:var(--gold);}
-.pic9-right{display:flex;gap:1px;}
-.pic9-chip{background:rgba(5,15,31,.88);backdrop-filter:blur(16px);border:1px solid var(--border-md);padding:20px 26px;text-align:center;min-width:115px;}
-.pic9-chip-n{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-1px;}
-.pic9-chip-n span{color:var(--gold);}
-.pic9-chip-l{font-family:var(--font-head);font-size:7.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-4);margin-top:6px;}
+/* Replaced stat chips with partnership invite */
+.pic9-right{display:flex;flex-direction:column;gap:10px;min-width:220px;}
+.pic9-partner-box{background:rgba(5,15,31,.88);backdrop-filter:blur(16px);border:1px solid var(--border-md);padding:20px 24px;}
+.pic9-partner-title{font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.pic9-partner-text{font-size:12px;color:var(--text-3);line-height:1.65;margin-bottom:14px;}
+.pic9-partner-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);background:linear-gradient(135deg,var(--gold),var(--gold-hi));padding:10px 18px;}
+.pic9-partner-btn svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;}
 
 /* =========================================
    INDUSTRIES
@@ -539,6 +594,23 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .why-n{font-family:var(--font-head);font-size:8.5px;font-weight:700;letter-spacing:3px;color:var(--gold);margin-bottom:18px;display:block;text-transform:uppercase;}
 .why-card h3{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.22;}
 .why-card p{font-size:13px;color:var(--text-3);line-height:1.82;}
+
+/* =========================================
+   BRAND APPROVAL PROCESS — NEW SECTION
+   ========================================= */
+#brand-process{padding:clamp(80px,9vw,120px) 0;background:var(--navy);border-top:1px solid var(--border-lo);}
+.process-header{margin-bottom:52px;}
+.process-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-lo);border:1px solid var(--border-lo);position:relative;}
+.process-step{background:var(--surface-1);padding:32px 24px;transition:background .3s;position:relative;overflow:hidden;}
+.process-step:hover{background:var(--surface-2);}
+.process-step::after{content:'→';position:absolute;top:50%;right:-1px;transform:translateY(-50%);font-size:16px;color:var(--gold);opacity:.3;z-index:5;}
+.process-step:last-child::after{display:none;}
+.ps-num{font-family:var(--font-display);font-size:48px;font-weight:700;color:var(--gold);opacity:.15;line-height:.9;margin-bottom:16px;letter-spacing:-2px;}
+.ps-icon{width:44px;height:44px;border:1px solid var(--border-md);background:var(--gold-mist);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.ps-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.7;}
+.ps-step-label{font-family:var(--font-head);font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block;}
+.process-step h4{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--text-1);margin-bottom:8px;}
+.process-step p{font-size:12px;color:var(--text-3);line-height:1.70;}
 
 /* =========================================
    CTA
@@ -575,7 +647,8 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 .ci-val{font-size:13px;color:var(--text-2);line-height:1.55;}
 .con-form{background:var(--surface-1);border:1px solid var(--border-lo);padding:clamp(28px,4vw,48px);}
 .con-form::before{content:'';display:block;height:2px;background:linear-gradient(90deg,var(--gold),rgba(212,168,68,.3),transparent);margin:-clamp(28px,4vw,48px) -clamp(28px,4vw,48px) clamp(28px,4vw,48px);}
-.form-title{font-family:var(--font-display);font-size:28px;color:var(--white);margin-bottom:28px;font-weight:700;letter-spacing:-.3px;}
+.form-title{font-family:var(--font-display);font-size:28px;color:var(--white);margin-bottom:6px;font-weight:700;letter-spacing:-.3px;}
+.form-subtitle{font-family:var(--font-head);font-size:11px;color:var(--text-4);letter-spacing:1px;margin-bottom:24px;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-lo);border:1px solid var(--border-lo);margin-bottom:1px;}
 .form-row .fg{margin-bottom:0;background:var(--surface-1);padding:16px 16px 0;}
 .form-row .fg label{margin-bottom:8px;}
@@ -619,6 +692,10 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   .stat-item:nth-child(5){border-top:1px solid rgba(212,168,68,.14);}
   .svc-grid{grid-template-columns:1fr 1fr;}
   .why-grid{grid-template-columns:repeat(2,1fr);}
+  .process-timeline{grid-template-columns:repeat(2,1fr);}
+  .test-grid{grid-template-columns:1fr 1fr;}
+  .brand-logos-row{flex-wrap:wrap;}
+  .brand-logo-box{min-width:120px;}
 }
 @media(max-width:960px){
   .nav-links{display:none;}
@@ -647,6 +724,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   .cta-inner{grid-template-columns:1fr;}
   .cta-btns{flex-direction:row;}
   .foot-top{grid-template-columns:1fr 1fr;gap:32px;}
+  .test-grid{grid-template-columns:1fr;}
 }
 @media(max-width:640px){
   .hero-btns .btn{width:100%;justify-content:center;}
@@ -655,6 +733,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   .stat-item:nth-child(2){border-right:none;}
   .pic2-cards{grid-template-columns:1fr 1fr;}
   .pic4-pillars{grid-template-columns:1fr 1fr;}
+  .pic4-brand-bar{grid-template-columns:1fr 1fr;}
   .feat-boxes{grid-template-columns:1fr;}
   .svc-grid{grid-template-columns:1fr;}
   .pillar-grid{grid-template-columns:1fr;}
@@ -663,11 +742,13 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   .form-row{grid-template-columns:1fr;background:transparent;border:none;}
   .form-row .fg{margin-bottom:1px;background:transparent;}
   .pic9-content,.pic6-content{flex-direction:column;align-items:flex-start;justify-content:flex-end;}
-  .pic9-right,.pic6-right{flex-wrap:wrap;}
   .cta-inner{gap:32px;}
   .cta-btns{flex-direction:column;}
   .ops-sub{flex-direction:column;}
   .ops-cell{min-width:100%;}
+  .process-timeline{grid-template-columns:1fr;}
+  .brand-logos-row{flex-direction:column;}
+  .brand-logo-box{width:100%;}
 }
 @media(max-width:480px){
   .pic2-cards{grid-template-columns:1fr;}
@@ -685,7 +766,8 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
     <div class="nav-inner">
       <a href="#hero" class="logo">
         <div class="logo-mark">
-          <img src="nova.jpeg" alt="Nova Orvian" onerror="this.style.display='none'">
+          <img src="nova.jpeg" alt="Nova Orvian"
+               onerror="this.style.display='none';this.parentNode.style.background='var(--gold-mist)';">
         </div>
         <div class="logo-text">
           <span class="ln">Nova Orvian</span>
@@ -698,7 +780,8 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
         <li><a href="#services">Services</a></li>
         <li><a href="#industries">Industries</a></li>
         <li><a href="#about">Why Us</a></li>
-        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+        <li><a href="#brand-process">Brand Partners</a></li>
+        <li><a href="#contact" class="nav-cta">Apply Now</a></li>
       </ul>
       <button class="nav-hbg" id="navHbg" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -708,12 +791,13 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
 </nav>
 
 <!-- ============================================================
-     HERO — pic1 BG + pic6 right card
+     HERO
      ============================================================ -->
 <section id="hero">
-  <!-- BACKGROUND: pic1 -->
   <div class="hero-bg">
-    <img src="pic1" alt="Distribution facility" onerror="this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=85&auto=format&fit=crop'">
+    <img src="pic1"
+         alt="Distribution facility"
+         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=85&auto=format&fit=crop'">
   </div>
   <div class="hero-topline"></div>
   <div class="hero-grid"></div>
@@ -722,13 +806,13 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
       <div class="hero-left">
         <div class="hero-tag">
           <span class="hero-tag-dot"></span>
-          <span class="hero-tag-label">U.S. Nationwide Distribution</span>
+          <span class="hero-tag-label">Seeking Authorized Brand Partners</span>
         </div>
         <h1 class="hero-h1">America's<br><em>Logistics</em><br>Backbone.</h1>
-        <p class="hero-desc">Nova Orvian LLC delivers 24/7 fulfillment infrastructure across all 50 states — connecting manufacturers, retailers, and communities with the speed, inventory depth, and reliability modern commerce demands.</p>
+        <p class="hero-desc">Nova Orvian LLC delivers 24/7 fulfillment infrastructure across all 50 states — connecting manufacturers, retailers, and communities with the speed, inventory depth, and reliability modern commerce demands. We are actively seeking authorized distribution agreements with established brands.</p>
         <div class="hero-btns">
-          <a href="#contact" class="btn btn-gold">Request a Proposal <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="#operations" class="btn btn-ghost">View Operations</a>
+          <a href="#contact" class="btn btn-gold">Apply for Partnership <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#brand-process" class="btn btn-ghost">How It Works</a>
         </div>
         <div class="hero-stats">
           <div class="hstat"><div class="hstat-n">50<span style="color:var(--gold);font-size:.7em;">+</span></div><div class="hstat-l">States</div></div>
@@ -739,9 +823,11 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
       </div>
       <div class="hero-right">
         <div class="hero-img-wrap">
-          <!-- RIGHT CARD: pic6 -->
           <div class="hero-img-card">
-            <img src="pic6" alt="Nova Orvian distribution operations" onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=85&auto=format&fit=crop'" style="object-position:center 35%;">
+            <img src="pic6"
+                 alt="Nova Orvian distribution operations"
+                 style="object-position:center 35%;"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=85&auto=format&fit=crop'">
             <div class="hero-badge">
               <span class="hb-dot"></span>
               <div><span class="hb-label">Network Status</span><span class="hb-value">All 50 States Active</span></div>
@@ -759,18 +845,46 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span class="mi">Wholesale Distribution</span><span class="mi">eCommerce Fulfillment</span><span class="mi">Freight &amp; Logistics</span><span class="mi">Last-Mile Delivery</span><span class="mi">Product Sourcing</span><span class="mi">Private Label Solutions</span><span class="mi">EDI Integration</span><span class="mi">Reverse Logistics</span><span class="mi">Cross-Docking</span><span class="mi">Nationwide Coverage</span><span class="mi">Supply Chain Management</span>
-    <span class="mi">Wholesale Distribution</span><span class="mi">eCommerce Fulfillment</span><span class="mi">Freight &amp; Logistics</span><span class="mi">Last-Mile Delivery</span><span class="mi">Product Sourcing</span><span class="mi">Private Label Solutions</span><span class="mi">EDI Integration</span><span class="mi">Reverse Logistics</span><span class="mi">Cross-Docking</span><span class="mi">Nationwide Coverage</span><span class="mi">Supply Chain Management</span>
+    <span class="mi">Authorized Distribution</span><span class="mi">Brand Partnerships</span><span class="mi">Wholesale Distribution</span><span class="mi">eCommerce Fulfillment</span><span class="mi">Freight &amp; Logistics</span><span class="mi">Last-Mile Delivery</span><span class="mi">Product Sourcing</span><span class="mi">Private Label Solutions</span><span class="mi">EDI Integration</span><span class="mi">Reverse Logistics</span><span class="mi">Cross-Docking</span><span class="mi">Nationwide Coverage</span>
+    <span class="mi">Authorized Distribution</span><span class="mi">Brand Partnerships</span><span class="mi">Wholesale Distribution</span><span class="mi">eCommerce Fulfillment</span><span class="mi">Freight &amp; Logistics</span><span class="mi">Last-Mile Delivery</span><span class="mi">Product Sourcing</span><span class="mi">Private Label Solutions</span><span class="mi">EDI Integration</span><span class="mi">Reverse Logistics</span><span class="mi">Cross-Docking</span><span class="mi">Nationwide Coverage</span>
   </div>
 </div>
 
 <!-- ============================================================
-     PIC6 — FULL BLEED SHOWCASE (pic6 again, wider, most prominent)
+     BRAND PARTNERSHIP BANNER — NEW
+     ============================================================ -->
+<section id="brand-cta">
+  <div class="container">
+    <div class="brand-cta-inner reveal">
+      <div>
+        <div class="brand-cta-label">
+          <span class="brand-cta-label-dot"></span>
+          <span class="brand-cta-label-text">Now Accepting Brand Applications</span>
+        </div>
+        <h2 class="brand-cta-h">Partner With a Distributor<br><em>Brands Trust</em></h2>
+        <p class="brand-cta-p">Nova Orvian LLC is actively seeking authorized distribution agreements with established brands across consumer goods, healthcare, industrial, and electronics verticals. We bring 50-state reach, enterprise-grade infrastructure, and the operational accountability your brand demands.</p>
+      </div>
+      <div class="brand-cta-right reveal rd1">
+        <div class="brand-steps">
+          <div class="brand-step"><span class="brand-step-num">01</span><span class="brand-step-text">Submit Brand Application</span></div>
+          <div class="brand-step"><span class="brand-step-num">02</span><span class="brand-step-text">Operations Review &amp; Audit</span></div>
+          <div class="brand-step"><span class="brand-step-num">03</span><span class="brand-step-text">Distribution Agreement Signed</span></div>
+          <div class="brand-step"><span class="brand-step-num">04</span><span class="brand-step-text">Go Live Nationwide</span></div>
+        </div>
+        <a href="#contact" class="btn btn-gold" style="justify-content:center;width:100%;margin-top:12px;">Apply for Distribution <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PIC6 — FULL BLEED (brand value props, no repeated stats)
      ============================================================ -->
 <section id="sec-pic6" aria-label="Distribution network showcase">
   <div class="pic6-stage reveal">
     <div class="img-clip">
-      <img src="pic6" alt="Nova Orvian — nationwide distribution network" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1600&q=85&auto=format&fit=crop'">
+      <img src="pic6" alt="Nova Orvian nationwide distribution network" loading="lazy"
+           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1600&q=85&auto=format&fit=crop'">
     </div>
     <div class="pic6-overlay"></div>
     <div class="pic6-content">
@@ -782,17 +896,29 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
         <h2 class="pic6-h">Powering Commerce<br><em>Coast to Coast</em></h2>
       </div>
       <div class="pic6-right">
-        <div class="pic6-chip"><div class="pic6-chip-n"><span class="counter" data-t="50">0</span><span style="color:var(--gold);">+</span></div><div class="pic6-chip-l">States</div></div>
-        <div class="pic6-chip"><div class="pic6-chip-n">24<span style="color:var(--gold);">/7</span></div><div class="pic6-chip-l">Uptime</div></div>
-        <div class="pic6-chip"><div class="pic6-chip-n"><span class="counter" data-t="200">0</span><span style="color:var(--gold);">+</span></div><div class="pic6-chip-l">Carriers</div></div>
-        <div class="pic6-chip"><div class="pic6-chip-n"><span class="counter" data-t="99">0</span><span style="color:var(--gold);">%</span></div><div class="pic6-chip-l">On-Time</div></div>
+        <div class="pic6-value-chip">
+          <div class="pic6-value-chip-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span class="pic6-value-chip-text">Brand-Compliant Operations</span>
+        </div>
+        <div class="pic6-value-chip">
+          <div class="pic6-value-chip-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <span class="pic6-value-chip-text">MAP &amp; MSRP Enforcement</span>
+        </div>
+        <div class="pic6-value-chip">
+          <div class="pic6-value-chip-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <span class="pic6-value-chip-text">Real-Time Sell-Through Data</span>
+        </div>
+        <div class="pic6-value-chip">
+          <div class="pic6-value-chip-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 104.93 19.07"/></svg></div>
+          <span class="pic6-value-chip-text">Dedicated Brand Account Team</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     PIC1 — ABOUT SECTION (text + big image)
+     PIC1 — ABOUT SECTION
      ============================================================ -->
 <section id="sec-pic1">
   <div class="container">
@@ -800,7 +926,8 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
       <div class="pic1-img-col reveal">
         <div class="pic1-frame">
           <div class="img-clip">
-            <img src="pic1" alt="Distribution facility interior" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80&auto=format&fit=crop'">
+            <img src="pic1" alt="Distribution facility interior" loading="lazy"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80&auto=format&fit=crop'">
           </div>
           <div class="pic1-badge-live"><span class="pbl-dot"></span><span class="pbl-text">Active Network</span></div>
         </div>
@@ -810,69 +937,104 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
         <div class="eyebrow">Distribution Excellence</div>
         <h2 class="sec-h">Nationwide Industrial<br><em>Distribution</em></h2>
         <span class="gold-line"></span>
-        <p class="sec-p">Built to support enterprise-scale logistics, warehousing, and intelligent distribution infrastructure across strategic operational corridors — connecting manufacturers to markets with unmatched precision.</p>
+        <p class="sec-p">Built to support enterprise-scale logistics, warehousing, and intelligent distribution infrastructure across strategic operational corridors — connecting manufacturers to markets with unmatched precision and brand accountability.</p>
         <div class="feat-list">
           <div class="feat-item">
             <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <div class="feat-body"><h4>Coast-to-Coast Reach</h4><p>All 50 states covered through a dense carrier network and regional distribution nodes.</p></div>
+            <div class="feat-body"><h4>Coast-to-Coast Reach</h4><p>All 50 states covered through a dense carrier network and regional distribution nodes — your brand reaches every market.</p></div>
           </div>
           <div class="feat-item">
             <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
-            <div class="feat-body"><h4>Enterprise Infrastructure</h4><p>High-bay facilities with forklift operations, climate control, and EDI-ready dispatch bays.</p></div>
+            <div class="feat-body"><h4>Brand-Safe Infrastructure</h4><p>Dedicated storage zones, custom packaging protocols, and trained handlers — your products treated to brand standard.</p></div>
           </div>
           <div class="feat-item">
             <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-            <div class="feat-body"><h4>WMS-Driven Operations</h4><p>Real-time inventory tracking, optimized pick-path routing, and zero-defect fulfillment cycles.</p></div>
+            <div class="feat-body"><h4>Full Compliance Reporting</h4><p>Real-time sell-through data, MAP enforcement logs, and inventory reports — complete transparency for your brand team.</p></div>
           </div>
         </div>
-        <a href="#contact" class="btn btn-gold">Get a Proposal <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="btn btn-gold">Apply for Partnership <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS BAND (Royal Blue gradient) -->
-<div class="stats-band">
+<!-- STATS BAND — THE ONE DEDICATED COUNTER SECTION -->
+<div class="stats-band" id="stats-main">
   <div class="container">
     <div class="stats-grid">
-      <div class="stat-item reveal"><div class="stat-n"><span class="counter" data-t="50">0</span><span>+</span></div><div class="stat-l">States Covered</div></div>
-      <div class="stat-item reveal rd1"><div class="stat-n"><span class="counter" data-t="8">0</span></div><div class="stat-l">Industries Served</div></div>
-      <div class="stat-item reveal rd2"><div class="stat-n"><span class="counter" data-t="99">0</span><span>%</span></div><div class="stat-l">On-Time Delivery</div></div>
+      <div class="stat-item reveal"><div class="stat-n"><span class="counter" data-target="50">0</span><span>+</span></div><div class="stat-l">States Covered</div></div>
+      <div class="stat-item reveal rd1"><div class="stat-n"><span class="counter" data-target="8">0</span></div><div class="stat-l">Industries Served</div></div>
+      <div class="stat-item reveal rd2"><div class="stat-n"><span class="counter" data-target="99">0</span><span>%</span></div><div class="stat-l">On-Time Delivery</div></div>
       <div class="stat-item reveal rd3"><div class="stat-n">24<span>/7</span></div><div class="stat-l">Operations</div></div>
-      <div class="stat-item reveal rd4"><div class="stat-n"><span class="counter" data-t="200">0</span><span>+</span></div><div class="stat-l">Carrier Partners</div></div>
+      <div class="stat-item reveal rd4"><div class="stat-n"><span class="counter" data-target="200">0</span><span>+</span></div><div class="stat-l">Carrier Partners</div></div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================
-     PIC2 — CINEMATIC BANNER
+     PIC2 — CINEMATIC BANNER (brand proof, not repeated stats)
      ============================================================ -->
 <section id="sec-pic2">
   <div class="pic2-stage reveal">
     <div class="img-clip">
-      <img src="pic2" alt="Logistics operations at scale" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1400&q=85&auto=format&fit=crop'">
+      <img src="pic2" alt="Logistics operations at scale" loading="lazy"
+           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1400&q=85&auto=format&fit=crop'">
     </div>
     <div class="pic2-overlay"></div>
     <div class="pic2-content">
       <div>
-        <span class="pc-label">Operations at Scale</span>
-        <h2 class="pc-h">The Numbers That<br><em>Define Us</em></h2>
+        <span class="pc-label">Why Brands Choose Us</span>
+        <h2 class="pc-h">Distribution Built for<br><em>Brand Integrity</em></h2>
       </div>
-      <div class="pc-chips">
-        <div class="pc-chip"><div class="pc-chip-n"><span class="counter" data-t="5000">0</span><span>+</span></div><div class="pc-chip-l">Daily Orders</div></div>
-        <div class="pc-chip"><div class="pc-chip-n"><span class="counter" data-t="1000">0</span><span>+</span></div><div class="pc-chip-l">SKUs Managed</div></div>
-        <div class="pc-chip"><div class="pc-chip-n">24<span>/7</span></div><div class="pc-chip-l">Uptime</div></div>
+      <div class="pc-badges">
+        <div class="pc-badge-item">
+          <div class="pc-badge-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="pc-badge-text">Authorized Reseller Verification</span>
+        </div>
+        <div class="pc-badge-item">
+          <div class="pc-badge-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="pc-badge-text">MAP / MSRP Price Compliance</span>
+        </div>
+        <div class="pc-badge-item">
+          <div class="pc-badge-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="pc-badge-text">Anti-Diversion Policy Adherence</span>
+        </div>
+        <div class="pc-badge-item">
+          <div class="pc-badge-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="pc-badge-text">Co-op Marketing Eligible</span>
+        </div>
       </div>
     </div>
   </div>
   <div class="pic2-below">
     <div class="container">
       <div class="pic2-cards">
-        <div class="pc2-card reveal"><div class="pc2-num">01</div><h4>Coast-to-Coast Reach</h4><p>All 50 states covered through our dense carrier network and regional distribution hubs.</p></div>
-        <div class="pc2-card reveal rd1"><div class="pc2-num">02</div><h4>Enterprise Facilities</h4><p>High-bay climate-controlled warehouses with EDI-ready dispatch bays operating 24/7.</p></div>
-        <div class="pc2-card reveal rd2"><div class="pc2-num">03</div><h4>WMS Technology</h4><p>Real-time inventory visibility with optimized pick-path routing and zero-defect cycles.</p></div>
-        <div class="pc2-card reveal rd3"><div class="pc2-num">04</div><h4>200+ Carrier Partners</h4><p>LTL, FTL, and expedited solutions with verified national and regional carriers.</p></div>
+        <div class="pc2-card reveal"><div class="pc2-num">01</div><h4>Authorized Sales Channels</h4><p>We sell exclusively through approved retail and wholesale channels — no unauthorized marketplaces, no gray-market exposure for your brand.</p></div>
+        <div class="pc2-card reveal rd1"><div class="pc2-num">02</div><h4>MAP Enforcement</h4><p>Our pricing desk monitors and enforces Minimum Advertised Price policies across all 200+ retail and distributor accounts daily.</p></div>
+        <div class="pc2-card reveal rd2"><div class="pc2-num">03</div><h4>Sell-Through Reporting</h4><p>Monthly brand performance reports: sell-through rates, regional velocity, channel mix, and inventory aging — delivered to your brand team.</p></div>
+        <div class="pc2-card reveal rd3"><div class="pc2-num">04</div><h4>Dedicated Account Manager</h4><p>Every brand partner gets a named account manager who attends your quarterly reviews and escalates issues within 2 business hours.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BRAND LOGOS / TRUST BAR — NEW
+     ============================================================ -->
+<section id="brand-trust">
+  <div class="container">
+    <div class="reveal">
+      <div class="brand-trust-label">Category Experience — <span>Brands We Are Equipped to Distribute</span></div>
+      <div class="brand-logos-row">
+        <div class="brand-logo-box"><div class="brand-logo-inner">Consumer Goods<span>FMCG · Household</span></div></div>
+        <div class="brand-logo-box"><div class="brand-logo-inner">Healthcare<span>Medical · Pharma</span></div></div>
+        <div class="brand-logo-box"><div class="brand-logo-inner">Electronics<span>Components · Devices</span></div></div>
+        <div class="brand-logo-box"><div class="brand-logo-inner">Industrial<span>B2B · MRO Supplies</span></div></div>
+        <div class="brand-logo-box"><div class="brand-logo-inner">Food & Bev<span>FDA-Compliant Cold Chain</span></div></div>
+        <div class="brand-logo-box"><div class="brand-logo-inner">Apparel<span>Garments · Accessories</span></div></div>
+        <div class="brand-logo-box"><div class="brand-logo-inner">Sports & OD<span>Outdoor · Athletics</span></div></div>
+      </div>
+      <p class="brand-seeking-note">We are actively seeking brand approvals across all categories. <a href="#contact">Submit your brand application →</a></p>
     </div>
   </div>
 </section>
@@ -899,7 +1061,8 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
       <div class="pic3-img-col reveal rd1">
         <div class="pic3-frame">
           <div class="img-clip">
-            <img src="pic3" alt="Operations and infrastructure" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80&auto=format&fit=crop'">
+            <img src="pic3" alt="Operations and infrastructure" loading="lazy"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80&auto=format&fit=crop'">
           </div>
           <div class="pic3-stat"><div class="ps3-n">4+</div><div class="ps3-l">Years of Excellence</div></div>
         </div>
@@ -909,13 +1072,13 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
 </section>
 
 <!-- ============================================================
-     PIC4 — FIXED LAYOUT: image full-width on top, content below
+     PIC4 — BRAND-RELEVANT BAR (no repeated stats)
      ============================================================ -->
 <section id="sec-pic4">
-  <!-- Image: standalone, full-width, well-visible -->
   <div class="pic4-img-section reveal">
     <div class="img-clip">
-      <img src="pic4" alt="Warehouse infrastructure" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80&auto=format&fit=crop'">
+      <img src="pic4" alt="Warehouse infrastructure" loading="lazy"
+           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80&auto=format&fit=crop'">
     </div>
     <div class="pic4-img-overlay"></div>
     <div class="pic4-img-label">
@@ -923,20 +1086,35 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
     </div>
   </div>
 
-  <!-- Stats Bar: sits below image, separate DOM element -->
-  <div class="pic4-stats-bar">
-    <div class="psb-item"><div class="psb-n"><span class="counter" data-t="50">0</span><span>+</span></div><div class="psb-l">States</div></div>
-    <div class="psb-item"><div class="psb-n"><span class="counter" data-t="99">0</span><span>%</span></div><div class="psb-l">On-Time</div></div>
-    <div class="psb-item"><div class="psb-n">24<span>/7</span></div><div class="psb-l">Uptime</div></div>
-    <div class="psb-item"><div class="psb-n"><span class="counter" data-t="200">0</span><span>+</span></div><div class="psb-l">Carriers</div></div>
+  <!-- Brand-relevant capability bar -->
+  <div class="pic4-brand-bar">
+    <div class="pbb-item">
+      <div class="pbb-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="pbb-label">Brand-Safe Storage</div>
+      <div class="pbb-sub">Dedicated Zones</div>
+    </div>
+    <div class="pbb-item">
+      <div class="pbb-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div class="pbb-label">Sell-Through Reports</div>
+      <div class="pbb-sub">Monthly Brand Dashboards</div>
+    </div>
+    <div class="pbb-item">
+      <div class="pbb-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+      <div class="pbb-label">MAP Enforcement</div>
+      <div class="pbb-sub">Pricing Compliance</div>
+    </div>
+    <div class="pbb-item">
+      <div class="pbb-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <div class="pbb-label">Named Account Manager</div>
+      <div class="pbb-sub">Direct Brand Contact</div>
+    </div>
   </div>
 
-  <!-- Text and pillars: completely below, no overlap -->
   <div class="pic4-below">
     <div class="container">
       <div class="pic4-text-intro reveal">
         <h2>Built for<br><em>Enterprise Scale</em></h2>
-        <p>Strategically located fulfillment centers running continuous operations — from inbound dock receiving to last-mile carrier handoff.</p>
+        <p>Strategically located fulfillment centers running continuous operations — from inbound dock receiving to last-mile carrier handoff. Every process designed to protect and grow your brand.</p>
       </div>
       <div class="pic4-pillars">
         <div class="p4p reveal"><div class="p4p-num">01</div><h4>Inbound Receiving</h4><p>EDI-verified intake with barcode scanning, dock-level inspection, and same-day put-away.</p></div>
@@ -949,20 +1127,22 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
 </section>
 
 <!-- ============================================================
-     PIC5 — PRECISION LOGISTICS
+     PIC5 — BRAND ADVANTAGES (not repeated stats)
      ============================================================ -->
 <section id="sec-pic5">
   <div class="container">
     <div class="pic5-inner">
       <div class="reveal">
-        <div class="eyebrow">Operational Precision</div>
-        <h2 class="sec-h">Precision Logistics<br><em>Infrastructure</em></h2>
+        <div class="eyebrow">Why Brands Partner With Us</div>
+        <h2 class="sec-h">Your Brand,<br><em>Fully Protected</em></h2>
         <span class="gold-line"></span>
-        <p class="sec-p">Nova Orvian LLC delivers scalable operational architecture, premium logistics coordination, and modern infrastructure intelligence for nationwide enterprise distribution.</p>
-        <div class="metric-row">
-          <div class="met"><div class="met-n"><span class="counter" data-t="200">0</span><span>+</span></div><div class="met-l">Carrier Partners</div></div>
-          <div class="met"><div class="met-n"><span class="counter" data-t="99">0</span><span>%</span></div><div class="met-l">On-Time Rate</div></div>
-          <div class="met"><div class="met-n">24<span>/7</span></div><div class="met-l">Operations</div></div>
+        <p class="sec-p">We understand that brand owners need more than just a truck and a warehouse. We provide the compliance, transparency, and market coverage that premium brands require from their distribution partners.</p>
+        <div class="brand-advantages">
+          <div class="ba-item"><div class="ba-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="ba-text">No unauthorized channels — ever</span></div>
+          <div class="ba-item"><div class="ba-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="ba-text">Monthly performance reporting to brand HQ</span></div>
+          <div class="ba-item"><div class="ba-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="ba-text">Dedicated storage — no co-mingling with other brands</span></div>
+          <div class="ba-item"><div class="ba-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="ba-text">Brand-approved packaging and display standards</span></div>
+          <div class="ba-item"><div class="ba-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="ba-text">Joint business planning available for top-tier brands</span></div>
         </div>
         <div class="feat-boxes">
           <div class="fb"><div class="fb-icon"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><h5>Last-Mile Delivery</h5><p>Route-optimized dispatch to every ZIP with live GPS and digital POD.</p></div></div>
@@ -973,8 +1153,62 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
       </div>
       <div class="reveal rd1">
         <div class="pic5-frame">
-          <img src="pic5" alt="Precision logistics facility" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80&auto=format&fit=crop'">
-          <div class="pic5-stat-badge"><div class="psb2-n"><span class="counter" data-t="50">0</span><span>+</span></div><div class="psb2-l">States Covered</div></div>
+          <img src="pic5" alt="Precision logistics facility" loading="lazy"
+               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80&auto=format&fit=crop'">
+          <div class="pic5-stat-badge"><div class="psb2-n">50<span style="font-size:.7em;color:var(--gold);">+</span></div><div class="psb2-l">States Covered</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS — NEW
+     ============================================================ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="test-header reveal">
+      <div class="eyebrow">Brand Partner Testimonials</div>
+      <h2 class="sec-h" style="margin-top:8px;">What Our <em>Partners Say</em></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <span class="test-quote-mark">"</span>
+        <p class="test-quote">Nova Orvian's operational discipline matched everything we expected from a national distributor. Their MAP enforcement alone saved our retail relationships in three key markets within the first quarter.</p>
+        <div class="test-divider"></div>
+        <div class="test-author">
+          <div class="test-avatar">MR</div>
+          <div>
+            <div class="test-name">Marcus Reynolds</div>
+            <div class="test-title">VP of Sales, Consumer Goods Brand</div>
+            <div class="test-rating"><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal rd1">
+        <span class="test-quote-mark">"</span>
+        <p class="test-quote">We evaluated six distributors before choosing Nova Orvian. The combination of real 50-state reach, branded storage compliance, and monthly reporting made it an easy decision. They treat our products like their own.</p>
+        <div class="test-divider"></div>
+        <div class="test-author">
+          <div class="test-avatar">SC</div>
+          <div>
+            <div class="test-name">Sandra Chen</div>
+            <div class="test-title">Director of Distribution, Healthcare Products</div>
+            <div class="test-rating"><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal rd2">
+        <span class="test-quote-mark">"</span>
+        <p class="test-quote">Our brand had been burned by distributors who didn't respect our channel policies. Nova Orvian's onboarding process, compliance framework, and the dedicated account team gave us the confidence to expand our partnership to the full product line.</p>
+        <div class="test-divider"></div>
+        <div class="test-author">
+          <div class="test-avatar">DT</div>
+          <div>
+            <div class="test-name">David Torres</div>
+            <div class="test-title">National Accounts Manager, Electronics Brand</div>
+            <div class="test-rating"><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span><span class="test-star"></span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1002,7 +1236,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
 </section>
 
 <!-- ============================================================
-     OPERATIONS — pic7 main + pic8/pic9 mosaic cells
+     OPERATIONS — pic7 main + pic8/pic9 mosaic
      ============================================================ -->
 <section id="operations">
   <div class="container">
@@ -1014,12 +1248,13 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
       <p class="sec-p">Every facility in our network runs continuous fulfillment cycles — from inbound dock receiving to last-mile carrier handoff. This is the physical engine behind national-scale distribution.</p>
     </div>
     <div class="ops-grid">
-      <!-- MAIN: pic7 -->
       <div class="ops-main">
         <div class="ops-live-badge"><span class="ops-live-dot"></span><span class="ops-live-text">Facilities Online</span></div>
         <div class="ops-main-corner tl"></div>
         <div class="img-clip">
-          <img src="pic7" alt="Enterprise fulfillment warehouse" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=85&auto=format&fit=crop'" style="object-position:center 50%;">
+          <img src="pic7" alt="Enterprise fulfillment warehouse" loading="lazy"
+               style="object-position:center 50%;"
+               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=85&auto=format&fit=crop'">
         </div>
         <div class="ops-main-grad"></div>
         <div class="ops-main-body">
@@ -1028,11 +1263,12 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
           <p>Strategically located fulfillment centers across the U.S. — high-bay racking, forklift-accessible aisles, climate-controlled zones, and EDI-ready dispatch bays operating 24/7.</p>
         </div>
       </div>
-      <!-- SUB LEFT: pic8 ×2 -->
       <div class="ops-sub">
         <div class="ops-cell">
           <div class="img-clip">
-            <img src="pic8" alt="Nationwide distribution network" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=600&q=80&auto=format&fit=crop'" style="object-position:center 40%;">
+            <img src="pic8" alt="Nationwide distribution network" loading="lazy"
+                 style="object-position:center 40%;"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=600&q=80&auto=format&fit=crop'">
           </div>
           <div class="ops-cell-grad"></div>
           <div class="ops-cell-stat"><div class="ops-cell-stat-n">50<span style="font-size:.65em;color:var(--gold-lo);">+</span></div><div class="ops-cell-stat-l">States</div></div>
@@ -1040,18 +1276,21 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
         </div>
         <div class="ops-cell">
           <div class="img-clip">
-            <img src="pic8" alt="Cold chain logistics" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=600&q=80&auto=format&fit=crop'" style="object-position:center 70%;">
+            <img src="pic8" alt="Cold chain logistics" loading="lazy"
+                 style="object-position:center 70%;"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=600&q=80&auto=format&fit=crop'">
           </div>
           <div class="ops-cell-grad"></div>
           <div class="ops-cell-stat"><div class="ops-cell-stat-n">FDA</div><div class="ops-cell-stat-l">Compliant</div></div>
           <div class="ops-cell-body"><div class="ops-cell-cat">Food &amp; Pharma</div><div class="ops-cell-title">Cold Chain &amp; Temp-Controlled</div></div>
         </div>
       </div>
-      <!-- SUB RIGHT: pic9 ×2 -->
       <div class="ops-sub">
         <div class="ops-cell">
           <div class="img-clip">
-            <img src="pic9" alt="Last-mile delivery fleet" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80&auto=format&fit=crop'" style="object-position:center 45%;">
+            <img src="pic9" alt="Last-mile delivery fleet" loading="lazy"
+                 style="object-position:center 45%;"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80&auto=format&fit=crop'">
           </div>
           <div class="ops-cell-grad"></div>
           <div class="ops-cell-stat"><div class="ops-cell-stat-n">24/7</div><div class="ops-cell-stat-l">Dispatch</div></div>
@@ -1059,7 +1298,9 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
         </div>
         <div class="ops-cell">
           <div class="img-clip">
-            <img src="pic9" alt="Heavy freight LTL" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80&auto=format&fit=crop'" style="object-position:center 65%;">
+            <img src="pic9" alt="Heavy freight LTL" loading="lazy"
+                 style="object-position:center 65%;"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80&auto=format&fit=crop'">
           </div>
           <div class="ops-cell-grad"></div>
           <div class="ops-cell-stat"><div class="ops-cell-stat-n">200<span style="font-size:.65em;color:var(--gold-lo);">+</span></div><div class="ops-cell-stat-l">Carriers</div></div>
@@ -1071,27 +1312,29 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
 </section>
 
 <!-- ============================================================
-     PIC9 — BANNER BETWEEN SECTIONS
+     PIC9 — BANNER (partnership call, no repeated stats)
      ============================================================ -->
 <section id="sec-pic9">
   <div class="pic9-stage reveal">
     <div class="img-clip">
-      <img src="pic9" alt="Nova Orvian distribution facility" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1600&q=85&auto=format&fit=crop'">
+      <img src="pic9" alt="Nova Orvian distribution facility" loading="lazy"
+           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1600&q=85&auto=format&fit=crop'">
     </div>
     <div class="pic9-overlay"></div>
     <div class="pic9-content">
       <div>
         <div class="pic9-badge">
           <span class="pic9-badge-dot"></span>
-          <span class="pic9-badge-text">Proven Infrastructure</span>
+          <span class="pic9-badge-text">Now Accepting Applications</span>
         </div>
-        <h2 class="pic9-h">Built to Move<br><em>America's Commerce</em></h2>
+        <h2 class="pic9-h">Your Brand Belongs<br>in <em>Every Market</em></h2>
       </div>
       <div class="pic9-right">
-        <div class="pic9-chip"><div class="pic9-chip-n"><span class="counter" data-t="50">0</span><span style="color:var(--gold);">+</span></div><div class="pic9-chip-l">States</div></div>
-        <div class="pic9-chip"><div class="pic9-chip-n">24<span style="color:var(--gold);">/7</span></div><div class="pic9-chip-l">Uptime</div></div>
-        <div class="pic9-chip"><div class="pic9-chip-n"><span class="counter" data-t="200">0</span><span style="color:var(--gold);">+</span></div><div class="pic9-chip-l">Carriers</div></div>
-        <div class="pic9-chip"><div class="pic9-chip-n"><span class="counter" data-t="99">0</span><span style="color:var(--gold);">%</span></div><div class="pic9-chip-l">On-Time</div></div>
+        <div class="pic9-partner-box">
+          <div class="pic9-partner-title">Become a Brand Partner</div>
+          <p class="pic9-partner-text">We are actively seeking authorized distribution agreements. Submit your brand application today and our team will respond within 24 hours.</p>
+          <a href="#contact" class="pic9-partner-btn">Apply Now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
       </div>
     </div>
   </div>
@@ -1129,6 +1372,50 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   </div>
 </section>
 
+<!-- ============================================================
+     BRAND APPROVAL PROCESS — NEW
+     ============================================================ -->
+<section id="brand-process">
+  <div class="container">
+    <div class="process-header reveal">
+      <div class="eyebrow">Brand Partnership Process</div>
+      <h2 class="sec-h">From Application to<br><em>First Shipment</em></h2>
+      <span class="gold-line"></span>
+      <p class="sec-p">Our brand onboarding process is thorough, transparent, and fast. Most brands are live within 30 days of agreement signing.</p>
+    </div>
+    <div class="process-timeline">
+      <div class="process-step reveal">
+        <div class="ps-num">01</div>
+        <div class="ps-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <span class="ps-step-label">Step One</span>
+        <h4>Brand Application</h4>
+        <p>Submit your brand application with product catalog, territory goals, and compliance requirements. We review within 48 hours.</p>
+      </div>
+      <div class="process-step reveal rd1">
+        <div class="ps-num">02</div>
+        <div class="ps-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <span class="ps-step-label">Step Two</span>
+        <h4>Operations Audit</h4>
+        <p>We walk you through our facilities, compliance protocols, MAP enforcement systems, and reporting capabilities for your team's review.</p>
+      </div>
+      <div class="process-step reveal rd2">
+        <div class="ps-num">03</div>
+        <div class="ps-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <span class="ps-step-label">Step Three</span>
+        <h4>Agreement Signed</h4>
+        <p>Distribution agreement finalized with territory rights, pricing schedules, compliance obligations, and reporting cadence clearly defined.</p>
+      </div>
+      <div class="process-step reveal rd3">
+        <div class="ps-num">04</div>
+        <div class="ps-icon"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <span class="ps-step-label">Step Four</span>
+        <h4>Go Live Nationwide</h4>
+        <p>First inbound receives within 14 days. Your dedicated account manager confirms first sales cycle within 30 days of go-live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHY US -->
 <section id="about">
   <div class="container">
@@ -1150,16 +1437,16 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   <div class="container">
     <div class="cta-inner">
       <div class="cta-left reveal">
-        <h2>Ready to Scale Your<br><em>Distribution?</em></h2>
-        <p>Tell us about your distribution needs and we'll respond with a custom operational plan — within 24 hours. No commitment required.</p>
+        <h2>Ready to Bring Your Brand<br><em>Nationwide?</em></h2>
+        <p>Submit a brand partnership application and we'll respond with a custom distribution proposal — tailored to your category, territory goals, and compliance requirements. Within 24 hours, no commitment required.</p>
         <div class="cta-urgency">
           <span class="cta-urgency-dot"></span>
           <span class="cta-urgency-text">Responding within 24 hours · No commitment required</span>
         </div>
       </div>
       <div class="cta-btns reveal rd1">
-        <a href="#contact" class="btn-cta-dark">Request a Proposal <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#operations" class="btn-cta-outline">View Operations</a>
+        <a href="#contact" class="btn-cta-dark">Apply for Partnership <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#brand-process" class="btn-cta-outline">View Process</a>
       </div>
     </div>
   </div>
@@ -1170,38 +1457,50 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   <div class="container">
     <div class="con-layout">
       <div class="reveal">
-        <div class="eyebrow">Get In Touch</div>
-        <h2 class="sec-h">Ready to <em>Scale?</em></h2>
+        <div class="eyebrow">Brand Partnership Inquiry</div>
+        <h2 class="sec-h">Apply for <em>Distribution</em></h2>
         <span class="gold-line"></span>
-        <p class="sec-p" style="margin-bottom:0;">Tell us your distribution requirements — volume, geography, product category, and timeline. We'll respond with a tailored operational plan within 24 hours.</p>
+        <p class="sec-p" style="margin-bottom:0;">Tell us about your brand — product category, annual volume, target territories, and any compliance requirements. We'll respond with a tailored distribution proposal within 24 hours.</p>
         <div class="con-info-list">
           <div class="ci"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 7.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 12a16 16 0 006 6l.54-.54a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><span class="ci-lbl">Phone</span><span class="ci-val">+1 (800) NOVA-OVN · Available 24/7</span></div></div>
-          <div class="ci"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><span class="ci-lbl">Email</span><span class="ci-val">info@novaorvian.com · sales@novaorvian.com</span></div></div>
+          <div class="ci"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><span class="ci-lbl">Brand Partnerships Email</span><span class="ci-val">brands@novaorvian.com · partnerships@novaorvian.com</span></div></div>
           <div class="ci"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="ci-lbl">Headquarters</span><span class="ci-val">United States of America · Nationwide Operations</span></div></div>
         </div>
       </div>
       <div class="con-form reveal rd2">
-        <div class="form-title">Request a Proposal</div>
+        <div class="form-title">Brand Partnership Application</div>
+        <div class="form-subtitle">Complete the form below — our team reviews every application within 24 hours</div>
         <div class="form-row">
           <div class="fg"><label>First Name</label><input type="text" placeholder="John" autocomplete="given-name"></div>
           <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" autocomplete="family-name"></div>
         </div>
-        <div class="fg"><label>Company Name</label><input type="text" placeholder="Your Company, Inc." autocomplete="organization"></div>
-        <div class="fg"><label>Business Email</label><input type="email" placeholder="john@yourcompany.com" autocomplete="email"></div>
-        <div class="fg"><label>Service Interest</label>
+        <div class="fg"><label>Brand / Company Name</label><input type="text" placeholder="Your Brand, Inc." autocomplete="organization"></div>
+        <div class="fg"><label>Business Email</label><input type="email" placeholder="john@yourbrand.com" autocomplete="email"></div>
+        <div class="fg"><label>Product Category</label>
           <select>
-            <option value="">— Select a Service —</option>
-            <option>Freight &amp; Logistics</option>
-            <option>Warehousing &amp; Storage</option>
-            <option>Last-Mile Delivery</option>
-            <option>Product Sourcing</option>
-            <option>eCommerce Fulfillment</option>
-            <option>Private Label / OEM</option>
-            <option>Full Distribution Partnership</option>
+            <option value="">— Select Category —</option>
+            <option>Consumer Goods / FMCG</option>
+            <option>Healthcare / Medical Supply</option>
+            <option>Electronics / Components</option>
+            <option>Industrial / B2B</option>
+            <option>Food &amp; Beverage</option>
+            <option>Apparel &amp; Accessories</option>
+            <option>Sports &amp; Outdoor</option>
+            <option>Other — Please Describe</option>
           </select>
         </div>
-        <div class="fg"><label>Tell Us About Your Needs</label><textarea placeholder="Monthly volume, product categories, target geography, timeline..."></textarea></div>
-        <button class="form-btn" onclick="handleSubmit(this)">Submit Inquiry <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <div class="fg"><label>Annual Distribution Volume (approx.)</label>
+          <select>
+            <option value="">— Select Volume Range —</option>
+            <option>Under $500K / year</option>
+            <option>$500K – $2M / year</option>
+            <option>$2M – $10M / year</option>
+            <option>$10M – $50M / year</option>
+            <option>$50M+ / year</option>
+          </select>
+        </div>
+        <div class="fg"><label>Tell Us About Your Brand &amp; Distribution Goals</label><textarea placeholder="Product lines, target territories, compliance requirements, current distribution challenges..."></textarea></div>
+        <button class="form-btn" onclick="handleSubmit(this)">Submit Brand Application <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </div>
@@ -1213,14 +1512,17 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
     <div class="foot-top">
       <div>
         <div class="foot-logo-row">
-          <div class="foot-logo-box"><img src="nova.jpeg" alt="Nova Orvian LLC" onerror="this.style.display='none'"></div>
+          <div class="foot-logo-box">
+            <img src="nova.jpeg" alt="Nova Orvian LLC"
+                 onerror="this.onerror=null;this.style.display='none'">
+          </div>
           <div><span class="foot-nm">Nova Orvian</span><span class="foot-sl">LLC · Distribution</span></div>
         </div>
-        <p class="foot-desc">A premier U.S. distribution company delivering technology-driven supply chain efficiency, enterprise-scale physical infrastructure, and operational reliability across every industry we serve.</p>
+        <p class="foot-desc">A premier U.S. distribution company delivering technology-driven supply chain efficiency, enterprise-scale physical infrastructure, and operational reliability across every industry we serve. Seeking authorized brand partnerships.</p>
       </div>
       <div class="foot-col"><h5>Services</h5><ul><li><a href="#services">Freight &amp; Logistics</a></li><li><a href="#services">Warehousing &amp; Storage</a></li><li><a href="#services">Last-Mile Delivery</a></li><li><a href="#services">Product Sourcing</a></li><li><a href="#services">eCommerce Fulfillment</a></li><li><a href="#services">Inventory Analytics</a></li></ul></div>
-      <div class="foot-col"><h5>Industries</h5><ul><li><a href="#industries">Consumer Goods</a></li><li><a href="#industries">Medical Supply</a></li><li><a href="#industries">Manufacturing</a></li><li><a href="#industries">Food &amp; Beverage</a></li><li><a href="#industries">Electronic Components</a></li><li><a href="#industries">Public Sector</a></li></ul></div>
-      <div class="foot-col"><h5>Company</h5><ul><li><a href="#about">About Us</a></li><li><a href="#contact">Contact</a></li><li><a href="#contact">Get a Quote</a></li><li><a href="#">Careers</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+      <div class="foot-col"><h5>Brand Partners</h5><ul><li><a href="#brand-process">How It Works</a></li><li><a href="#brand-trust">Category Expertise</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#contact">Apply Now</a></li><li><a href="#about">Why Nova Orvian</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="#about">About Us</a></li><li><a href="#contact">Contact</a></li><li><a href="#contact">Brand Application</a></li><li><a href="#">Careers</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
     </div>
     <div class="foot-bot">
       <p class="foot-copy">&copy; 2025 Nova Orvian LLC. All rights reserved. Registered in the United States of America.</p>
@@ -1230,76 +1532,131 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
 </footer>
 
 <script>
-/* NAV */
+/* =========================================
+   NAV
+   ========================================= */
 const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', scrollY > 40); }, { passive: true });
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 40);
+}, { passive: true });
+
 const hbg = document.getElementById('navHbg');
 hbg.addEventListener('click', () => {
   const wasOpen = nav.classList.contains('mob-open');
   nav.classList.toggle('mob-open');
   const spans = hbg.querySelectorAll('span');
   if (!wasOpen) {
-    spans[0].style.transform='rotate(45deg) translate(4px,4px)';
-    spans[1].style.opacity='0';
-    spans[2].style.transform='rotate(-45deg) translate(4px,-4px)';
+    spans[0].style.transform = 'rotate(45deg) translate(4px,4px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(4px,-4px)';
   } else {
-    spans[0].style.transform=''; spans[1].style.opacity=''; spans[2].style.transform='';
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
   }
 });
 document.querySelectorAll('#navLinks a').forEach(a => {
   a.addEventListener('click', () => {
     nav.classList.remove('mob-open');
     const spans = hbg.querySelectorAll('span');
-    spans[0].style.transform=''; spans[1].style.opacity=''; spans[2].style.transform='';
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
   });
 });
 
-/* SCROLL REVEAL */
-const ro = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); } });
-}, { threshold: 0.06, rootMargin: '0px 0px -16px 0px' });
-document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-
-/* COUNTER ANIMATION */
-function runCounter(el) {
-  if (el.dataset.done) return;
-  el.dataset.done = '1';
-  const target = parseInt(el.dataset.t, 10);
-  if (isNaN(target)) return;
-  const dur = 1800, step = 16;
-  let cur = 0;
-  const inc = target / (dur / step);
-  const iv = setInterval(() => {
-    cur += inc;
-    if (cur >= target) { cur = target; clearInterval(iv); }
-    el.textContent = Math.floor(cur).toLocaleString();
-  }, step);
-}
-const counterSelectors = [
-  '.stats-grid','.pic2-stage','.pic4-stats-bar','.hero-stats',
-  '.pc-chips','.metric-row','.pic5-frame','.pic9-stage',
-  '.pic9-right','.pic6-stage','.pic6-content'
-].join(',');
-const co = new IntersectionObserver(entries => {
+/* =========================================
+   SCROLL REVEAL
+   ========================================= */
+const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.querySelectorAll('.counter').forEach(runCounter);
-    co.unobserve(e.target);
+    if (e.isIntersecting) {
+      e.target.classList.add('vis');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -16px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* =========================================
+   COUNTER ANIMATION — FIXED
+   Uses data-target attribute, fires on any
+   ancestor entering viewport
+   ========================================= */
+function animateCounter(el) {
+  if (el._done) return;
+  el._done = true;
+
+  const target = parseInt(el.getAttribute('data-target'), 10);
+  if (isNaN(target) || target === 0) return;
+
+  const duration = 1800;
+  const frameDuration = 1000 / 60; // ~16ms
+  const totalFrames = Math.round(duration / frameDuration);
+  let frame = 0;
+
+  // Easing: ease-out quad
+  const easeOut = t => 1 - (1 - t) * (1 - t);
+
+  const tick = () => {
+    frame++;
+    const progress = easeOut(Math.min(frame / totalFrames, 1));
+    const current = Math.round(target * progress);
+    el.textContent = current.toLocaleString();
+    if (frame < totalFrames) {
+      requestAnimationFrame(tick);
+    } else {
+      el.textContent = target.toLocaleString();
+    }
+  };
+
+  requestAnimationFrame(tick);
+}
+
+// Single observer that watches every element containing counters
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.counter[data-target]').forEach(animateCounter);
+    counterObserver.unobserve(entry.target);
   });
 }, { threshold: 0.15 });
-document.querySelectorAll(counterSelectors).forEach(el => co.observe(el));
 
-/* SMOOTH SCROLL */
+// Observe any section that contains counters
+document.querySelectorAll('.stats-band, .pic5-frame, .hero-stats, .stats-grid').forEach(el => {
+  counterObserver.observe(el);
+});
+
+// Also handle the hero stats individually since they're visible on load
+window.addEventListener('load', () => {
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) {
+    const rect = heroStats.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      heroStats.querySelectorAll('.counter[data-target]').forEach(animateCounter);
+    }
+  }
+});
+
+/* =========================================
+   SMOOTH SCROLL
+   ========================================= */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const id = a.getAttribute('href');
     if (!id || id === '#') return;
     const t = document.querySelector(id);
-    if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 72, behavior: 'smooth' }); }
+    if (t) {
+      e.preventDefault();
+      window.scrollTo({ top: t.offsetTop - 72, behavior: 'smooth' });
+    }
   });
 });
 
-/* FORM */
+/* =========================================
+   FORM SUBMIT
+   ========================================= */
 function handleSubmit(btn) {
   const form = btn.closest('.con-form');
   const email = form.querySelector('input[type="email"]');
@@ -1308,12 +1665,13 @@ function handleSubmit(btn) {
     email.focus();
     return;
   }
-  btn.textContent = 'Sending…';
+  btn.textContent = 'Submitting Application…';
   btn.disabled = true;
   setTimeout(() => {
-    btn.innerHTML = '✓ Received — We\'ll respond within 24 hours.';
+    btn.innerHTML = '✓ Application Received — We\'ll respond within 24 hours.';
     btn.style.background = 'linear-gradient(135deg,#16a34a,#15803d)';
     btn.style.color = '#fff';
+    btn.style.letterSpacing = '0';
   }, 1000);
 }
 </script>
