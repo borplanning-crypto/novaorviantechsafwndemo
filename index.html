@@ -24,9 +24,11 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Nova Orvian LLC",
+  "legalName": "Nova Orvian LLC",
   "url": "https://novaorvian.com",
   "logo": "https://novaorvian.com/nova.jpeg",
   "description": "Premium U.S. wholesale distribution and authorized retail partner helping manufacturers expand brand presence across Amazon, Walmart, and major retail channels with full MAP compliance and pricing integrity.",
+  "foundingDate": "2021",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "US",
@@ -36,11 +38,29 @@
     {
       "@type": "ContactPoint",
       "email": "sales@novaorvian.com",
-      "contactType": "partnerships",
+      "contactType": "sales",
+      "availableLanguage": "English"
+    },
+    {
+      "@type": "ContactPoint",
+      "email": "partnerships@novaorvian.com",
+      "contactType": "customer service",
       "availableLanguage": "English"
     }
   ],
-  "areaServed": "US",
+  "sameAs": [
+    "https://www.amazon.com",
+    "https://www.walmart.com"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "minValue": 1,
+    "maxValue": 50
+  },
   "serviceType": ["Wholesale Distribution", "Authorized Retail Partnership", "Amazon FBA Management", "Walmart Marketplace", "MAP Compliance", "Brand Protection", "Inventory Procurement", "Omnichannel Commerce"]
 }
 </script>
@@ -442,6 +462,25 @@ nav.scrolled{background:rgba(5,15,31,.96);backdrop-filter:blur(24px);border-bott
 @media(max-width:900px){.test-grid{grid-template-columns:1fr;}}
 
 /* =========================================
+   BRAND PARTNER LOGOS BAR
+   ========================================= */
+#brand-logos{padding:clamp(52px,5vw,72px) 0;background:var(--navy);border-top:1px solid var(--border-lo);border-bottom:1px solid var(--border-lo);}
+.bl-label{text-align:center;font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text-4);margin-bottom:36px;}
+.bl-label span{color:var(--gold);}
+.bl-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border-lo);border:1px solid var(--border-lo);}
+.bl-box{background:var(--surface-1);padding:26px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:background .25s,border-color .25s;position:relative;overflow:hidden;}
+.bl-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease-out);}
+.bl-box:hover{background:var(--surface-2);}
+.bl-box:hover::after{transform:scaleX(1);}
+.bl-icon{width:36px;height:36px;border:1px solid var(--border-md);background:var(--gold-mist);display:flex;align-items:center;justify-content:center;margin-bottom:4px;}
+.bl-icon svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:1.6;opacity:.7;}
+.bl-name{font-family:var(--font-head);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);opacity:.55;transition:opacity .25s,color .25s;text-align:center;line-height:1.2;}
+.bl-cat{font-size:8px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-4);opacity:.4;text-align:center;font-family:var(--font-head);}
+.bl-box:hover .bl-name{opacity:.80;color:var(--text-2);}
+@media(max-width:860px){.bl-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:480px){.bl-grid{grid-template-columns:repeat(2,1fr);}}
+
+/* =========================================
    CTA BOTTOM BAND
    ========================================= */
 #cta-apply{padding:clamp(72px,8vw,100px) 0;background:linear-gradient(135deg,var(--navy-4) 0%,var(--royal) 50%,var(--navy-4) 100%);border-top:1px solid var(--border-blue);position:relative;overflow:hidden;}
@@ -527,6 +566,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
         <li><a href="#why-us">Why Us</a></li>
         <li><a href="#brand-process">How It Works</a></li>
         <li><a href="#testimonials">Partners</a></li>
+        <li><a href="#brand-logos">Industries</a></li>
         <li><a href="#contact" class="nav-cta">Apply Now</a></li>
       </ul>
       <button class="nav-hbg" id="navHbg" aria-label="Menu">
@@ -543,7 +583,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   <div class="hero-bg">
     <img src="pic1"
          alt="Professional warehouse and distribution facility"
-         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=85&auto=format&fit=crop'">
+         onerror="this._fb=this._fb||0;const fbs=['https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=85&auto=format&fit=crop','https://images.unsplash.com/photo-1565891741441-64926e441838?w=1600&q=85&auto=format&fit=crop'];if(this._fb<fbs.length){this.src=fbs[this._fb++];}else{this.style.opacity='0';}">
   </div>
   <div class="hero-topline"></div>
   <div class="hero-grid"></div>
@@ -573,7 +613,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
             <img src="pic6"
                  alt="Nova Orvian wholesale distribution operations"
                  style="object-position:center 35%;"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=85&auto=format&fit=crop'">
+                 onerror="this._fb=this._fb||0;const fbs=['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=85&auto=format&fit=crop','https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=85&auto=format&fit=crop'];if(this._fb<fbs.length){this.src=fbs[this._fb++];}else{this.parentNode.style.background='var(--surface-2)';this.style.display='none';}">
             <div class="hero-badge">
               <span class="hb-dot"></span>
               <div><span class="hb-label">Partnership Status</span><span class="hb-value">Accepting Applications</span></div>
@@ -642,7 +682,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   <div class="cin-stage reveal">
     <div class="img-clip">
       <img src="pic6" alt="Nova Orvian retail distribution operations" loading="lazy"
-           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1600&q=85&auto=format&fit=crop'">
+           onerror="this._fb=this._fb||0;const fbs=['https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1600&q=85&auto=format&fit=crop','https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=85&auto=format&fit=crop'];if(this._fb<fbs.length){this.src=fbs[this._fb++];}else{this.style.opacity='0';}">
     </div>
     <div class="cin-overlay"></div>
     <div class="cin-content">
@@ -677,7 +717,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
       <div class="about-img-col reveal">
         <div class="about-frame">
           <img src="pic2" alt="Nova Orvian commerce partnership"
-               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85&auto=format&fit=crop'">
+               onerror="this._fb=this._fb||0;const fbs=['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85&auto=format&fit=crop','https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=900&q=85&auto=format&fit=crop'];if(this._fb<fbs.length){this.src=fbs[this._fb++];}else{this.parentNode.style.background='var(--surface-2)';this.style.display='none';}">
           <div class="about-badge-live"><span class="abl-dot"></span><span class="abl-text">Active Partner Network</span></div>
         </div>
         <div class="about-float-stat">
@@ -716,8 +756,9 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
 <!-- ============================================================
      STATS BAND — Distribution-Focused Metrics
      ============================================================ -->
-<div class="stats-band">
+<div class="stats-band" id="stats-numbers">
   <div class="container">
+    <p class="reveal" style="text-align:center;font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:clamp(28px,3vw,40px);">The Numbers That Define Us</p>
     <div class="stats-grid">
       <div class="stat-item reveal">
         <div class="stat-n"><span class="counter" data-target="100">0</span><span>%</span></div>
@@ -865,7 +906,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
   <div class="cin-stage reveal" style="border-top:1px solid var(--border-lo);">
     <div class="img-clip">
       <img src="pic3" alt="Omnichannel retail operations" loading="lazy"
-           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1600&q=85&auto=format&fit=crop'">
+           onerror="this._fb=this._fb||0;const fbs=['https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1600&q=85&auto=format&fit=crop','https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1600&q=85&auto=format&fit=crop'];if(this._fb<fbs.length){this.src=fbs[this._fb++];}else{this.style.opacity='0';}">
     </div>
     <div class="cin-overlay"></div>
     <div class="cin-content">
@@ -1012,7 +1053,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
       <div class="why-img-col reveal rd1">
         <div class="why-frame">
           <img src="pic4" alt="Nova Orvian partnership operations"
-               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=85&auto=format&fit=crop'">
+               onerror="this._fb=this._fb||0;const fbs=['https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=85&auto=format&fit=crop','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85&auto=format&fit=crop'];if(this._fb<fbs.length){this.src=fbs[this._fb++];}else{this.parentNode.style.background='var(--surface-2)';this.style.display='none';}">
         </div>
         <div class="why-float"><div class="wf-n">0%</div><div class="wf-l">Drop-Ship Activity</div></div>
         <div class="why-corner tl"></div>
@@ -1058,6 +1099,48 @@ footer{background:var(--navy-2);border-top:1px solid var(--border-lo);padding:cl
         <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BRAND PARTNER LOGOS BAR
+     ============================================================ -->
+<section id="brand-logos">
+  <div class="container">
+    <div class="bl-label reveal">Representative <span>Brand Categories We Serve</span></div>
+    <div class="bl-grid reveal rd1">
+      <div class="bl-box">
+        <div class="bl-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="bl-name">Health &amp; Wellness</div>
+        <div class="bl-cat">Supplements · Personal Care</div>
+      </div>
+      <div class="bl-box">
+        <div class="bl-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="bl-name">Consumer Electronics</div>
+        <div class="bl-cat">Gadgets · Accessories</div>
+      </div>
+      <div class="bl-box">
+        <div class="bl-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="bl-name">Home &amp; Kitchen</div>
+        <div class="bl-cat">Housewares · Tools</div>
+      </div>
+      <div class="bl-box">
+        <div class="bl-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div>
+        <div class="bl-name">Beauty &amp; Personal Care</div>
+        <div class="bl-cat">Skincare · Grooming</div>
+      </div>
+      <div class="bl-box">
+        <div class="bl-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="bl-name">Sports &amp; Outdoors</div>
+        <div class="bl-cat">Fitness · Recreation</div>
+      </div>
+      <div class="bl-box">
+        <div class="bl-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="bl-name">Industrial &amp; Commercial</div>
+        <div class="bl-cat">Tools · Supplies</div>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;font-family:var(--font-head);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-4);margin-top:28px;opacity:.5;">Brand names withheld per partnership confidentiality agreements</p>
   </div>
 </section>
 
@@ -1253,37 +1336,44 @@ function animateCounter(el) {
   if (el._done) return;
   el._done = true;
   const target = parseInt(el.getAttribute('data-target'), 10);
-  if (isNaN(target) || target === 0) return;
+  if (isNaN(target)) return;
   const duration = 1800;
-  const totalFrames = Math.round(duration / (1000 / 60));
-  let frame = 0;
-  const easeOut = t => 1 - (1 - t) * (1 - t);
-  const tick = () => {
-    frame++;
-    const progress = easeOut(Math.min(frame / totalFrames, 1));
+  const startTime = performance.now();
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const tick = (now) => {
+    const elapsed = now - startTime;
+    const progress = easeOut(Math.min(elapsed / duration, 1));
     el.textContent = Math.round(target * progress).toLocaleString();
-    if (frame < totalFrames) requestAnimationFrame(tick);
+    if (elapsed < duration) requestAnimationFrame(tick);
     else el.textContent = target.toLocaleString();
   };
   requestAnimationFrame(tick);
 }
 
+/* Observe each individual stat container so threshold is reliable */
 const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     entry.target.querySelectorAll('.counter[data-target]').forEach(animateCounter);
     counterObserver.unobserve(entry.target);
   });
-}, { threshold: 0.15 });
-document.querySelectorAll('.stats-band, .hero-stats').forEach(el => counterObserver.observe(el));
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-window.addEventListener('load', () => {
-  const heroStats = document.querySelector('.hero-stats');
-  if (heroStats) {
-    const rect = heroStats.getBoundingClientRect();
-    if (rect.top < window.innerHeight) heroStats.querySelectorAll('.counter[data-target]').forEach(animateCounter);
-  }
-});
+/* Observe both the stats band as a whole AND each stat-item individually */
+document.querySelectorAll('.stats-band, .stat-item').forEach(el => counterObserver.observe(el));
+
+/* Also fire immediately for any counter already in the viewport on load */
+function checkViewportCounters() {
+  document.querySelectorAll('.counter[data-target]').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) animateCounter(el);
+  });
+}
+if (document.readyState === 'complete') {
+  checkViewportCounters();
+} else {
+  window.addEventListener('load', checkViewportCounters);
+}
 
 /* SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
